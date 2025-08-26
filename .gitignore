@@ -1,0 +1,10 @@
+*.bak
+*-save.kicad_pcb
+*.kicad_prl
+*.log
+fp-info-cache
+__pycache__/
+*.tmp
+*.swp
+*.zip
+*.rar
