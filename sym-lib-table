@@ -2,4 +2,5 @@
   (version 7)
   (lib (name "SIM808")(type "KiCad")(uri "${KIPRJMOD}/Libraries/Symbols/SIM808.kicad_sym")(options "")(descr ""))
   (lib (name "693010020611")(type "KiCad")(uri "${KIPRJMOD}/Libraries/Symbols/693010020611.kicad_sym")(options "")(descr ""))
+  (lib (name "AO3407A")(type "KiCad")(uri "${KIPRJMOD}/Libraries/Symbols/AO3407A.kicad_sym")(options "")(descr ""))
 )
