@@ -6350,16 +6350,46 @@
 		)
 	)
 	(junction
+		(at 127 100.33)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "02d04e1e-f8c2-4b20-a8bf-51e5de5ba244")
+	)
+	(junction
+		(at 120.65 95.25)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "07b66863-8e86-40ae-9ac4-40858860a262")
+	)
+	(junction
 		(at 130.81 54.61)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "1aeec350-80f8-4bcf-bba4-686db74613da")
 	)
 	(junction
+		(at 111.76 107.95)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "1def3bee-13a3-4236-965d-ac8b7c85bf86")
+	)
+	(junction
 		(at 156.21 30.48)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "28f05032-9f30-4f24-b82a-b6a042f7a1df")
+	)
+	(junction
+		(at 139.7 105.41)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "57023756-c33a-493b-b129-a2d655ec7a63")
+	)
+	(junction
+		(at 121.92 107.95)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "60e8f843-5476-4ea9-8cf9-6e658de9ad96")
 	)
 	(junction
 		(at 85.09 33.02)
@@ -6374,10 +6404,28 @@
 		(uuid "709d18a0-10fe-4c92-b64e-70d776bce1fe")
 	)
 	(junction
+		(at 138.43 95.25)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "83112a37-0151-4af4-b653-56f5d3dbc9b7")
+	)
+	(junction
 		(at 45.72 69.85)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "9ccb26db-b7ac-4368-b1c7-7be19e0202e9")
+	)
+	(junction
+		(at 123.19 107.95)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "a8f09af5-f146-4781-bac1-bceb12d0637f")
+	)
+	(junction
+		(at 140.97 97.79)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "b2991360-9506-4f92-802d-f863912b0e77")
 	)
 	(junction
 		(at 162.56 30.48)
@@ -6502,6 +6550,10 @@
 		(uuid "c9fc2a77-6ce2-400e-a16e-ac1906133547")
 	)
 	(no_connect
+		(at 142.24 110.49)
+		(uuid "caf0b446-1892-42ee-ba08-979b3e1355e8")
+	)
+	(no_connect
 		(at 39.37 158.75)
 		(uuid "cce69911-b6ac-4872-8ff4-54791e04a961")
 	)
@@ -6595,6 +6647,16 @@
 	)
 	(wire
 		(pts
+			(xy 137.16 121.92) (xy 138.43 121.92)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "05f35c52-759e-45c1-a4b0-22cdb0ae228d")
+	)
+	(wire
+		(pts
 			(xy 110.49 38.1) (xy 110.49 60.96)
 		)
 		(stroke
@@ -6615,6 +6677,16 @@
 	)
 	(wire
 		(pts
+			(xy 121.92 127) (xy 118.11 127)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "0cd37660-7d2e-4bfe-9bdb-290a39bc427a")
+	)
+	(wire
+		(pts
 			(xy 85.09 33.02) (xy 85.09 35.56)
 		)
 		(stroke
@@ -6625,6 +6697,36 @@
 	)
 	(wire
 		(pts
+			(xy 140.97 97.79) (xy 142.24 97.79)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "1449a1db-5f23-46ea-864a-c6b5c30661db")
+	)
+	(wire
+		(pts
+			(xy 123.19 107.95) (xy 142.24 107.95)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "15653009-e82c-4250-8dfb-b2d9efeff3b4")
+	)
+	(wire
+		(pts
+			(xy 109.22 105.41) (xy 139.7 105.41)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "16d77103-b00d-4a36-a890-bc550e51b4ab")
+	)
+	(wire
+		(pts
 			(xy 80.01 90.17) (xy 82.55 90.17)
 		)
 		(stroke
@@ -6632,6 +6734,16 @@
 			(type default)
 		)
 		(uuid "1ae8f76f-4652-410d-9317-2ef4b6c49cae")
+	)
+	(wire
+		(pts
+			(xy 120.65 83.82) (xy 120.65 85.09)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "20608aae-d54e-4a5c-a1d9-90015dc4d8ea")
 	)
 	(wire
 		(pts
@@ -6725,6 +6837,26 @@
 	)
 	(wire
 		(pts
+			(xy 137.16 124.46) (xy 139.7 124.46)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "3166cc66-e013-4b83-9e50-1ba5f4ed3f13")
+	)
+	(wire
+		(pts
+			(xy 121.92 107.95) (xy 123.19 107.95)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "3168d5af-693b-4b9b-98e0-5f04db5101a5")
+	)
+	(wire
+		(pts
 			(xy 54.61 69.85) (xy 45.72 69.85)
 		)
 		(stroke
@@ -6782,6 +6914,36 @@
 			(type default)
 		)
 		(uuid "429631b2-a0fa-44ed-ab2f-96d550c8764c")
+	)
+	(wire
+		(pts
+			(xy 109.22 95.25) (xy 120.65 95.25)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "43633699-e61c-45b4-b8ce-c64df9cd500d")
+	)
+	(wire
+		(pts
+			(xy 120.65 95.25) (xy 120.65 92.71)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "43a7f885-eac7-4de1-be83-92de9f48e422")
+	)
+	(wire
+		(pts
+			(xy 118.11 111.76) (xy 123.19 111.76)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "4700699c-4d13-4fcc-a7d2-501e9ca96302")
 	)
 	(wire
 		(pts
@@ -6865,6 +7027,16 @@
 	)
 	(wire
 		(pts
+			(xy 127 100.33) (xy 127 104.14)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "6933e335-782e-4977-b9fc-8642aee10eab")
+	)
+	(wire
+		(pts
 			(xy 151.13 33.02) (xy 151.13 35.56)
 		)
 		(stroke
@@ -6925,6 +7097,16 @@
 	)
 	(wire
 		(pts
+			(xy 109.22 107.95) (xy 111.76 107.95)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "75fc8d83-7707-4ad6-b0a3-9223de18d4a4")
+	)
+	(wire
+		(pts
 			(xy 213.36 38.1) (xy 213.36 40.64)
 		)
 		(stroke
@@ -6965,6 +7147,16 @@
 	)
 	(wire
 		(pts
+			(xy 125.73 97.79) (xy 140.97 97.79)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "83438475-3b3f-4d38-9699-e70a78c8be98")
+	)
+	(wire
+		(pts
 			(xy 85.09 33.02) (xy 88.9 33.02)
 		)
 		(stroke
@@ -6972,6 +7164,36 @@
 			(type default)
 		)
 		(uuid "85e4050e-df46-45df-b327-2f7903c959ed")
+	)
+	(wire
+		(pts
+			(xy 127 100.33) (xy 142.24 100.33)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "87d91b21-263b-4ccf-ac4d-18d781d6b7cb")
+	)
+	(wire
+		(pts
+			(xy 142.24 95.25) (xy 138.43 95.25)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "8b4899c8-2259-43a6-9b9f-d324880abe01")
+	)
+	(wire
+		(pts
+			(xy 125.73 100.33) (xy 127 100.33)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "8c521799-8ec3-442e-8b95-1a9b04d9793e")
 	)
 	(wire
 		(pts
@@ -6995,6 +7217,26 @@
 	)
 	(wire
 		(pts
+			(xy 139.7 105.41) (xy 142.24 105.41)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "91205c3a-47a3-4ee9-ab46-2211f6837f5d")
+	)
+	(wire
+		(pts
+			(xy 118.11 127) (xy 118.11 111.76)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "9223e27e-d7c0-4719-a8fb-e437a11ca7ea")
+	)
+	(wire
+		(pts
 			(xy 177.8 30.48) (xy 179.07 30.48)
 		)
 		(stroke
@@ -7015,6 +7257,16 @@
 	)
 	(wire
 		(pts
+			(xy 130.81 102.87) (xy 142.24 102.87)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "99b13dc3-0c52-49f6-91dd-5864da5a0e44")
+	)
+	(wire
+		(pts
 			(xy 99.06 40.64) (xy 99.06 45.72)
 		)
 		(stroke
@@ -7025,6 +7277,16 @@
 	)
 	(wire
 		(pts
+			(xy 121.92 107.95) (xy 121.92 104.14)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "9b3a062e-b082-4880-a488-b2a6527caa1c")
+	)
+	(wire
+		(pts
 			(xy 80.01 120.65) (xy 85.09 120.65)
 		)
 		(stroke
@@ -7032,6 +7294,16 @@
 			(type default)
 		)
 		(uuid "9f663660-c3ae-40e6-96b8-61e529bdca0f")
+	)
+	(wire
+		(pts
+			(xy 121.92 104.14) (xy 127 104.14)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "a0739fd3-e2d0-40d8-8924-a41ea615d60e")
 	)
 	(wire
 		(pts
@@ -7072,6 +7344,46 @@
 			(type default)
 		)
 		(uuid "a715a2a7-6470-4eee-b29d-a386ad450877")
+	)
+	(wire
+		(pts
+			(xy 109.22 97.79) (xy 118.11 97.79)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "a77aec56-3ed3-4268-8f55-ace534021921")
+	)
+	(wire
+		(pts
+			(xy 139.7 124.46) (xy 139.7 105.41)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "ad8a63b2-b681-47e0-961f-3aa0b5e388fb")
+	)
+	(wire
+		(pts
+			(xy 111.76 107.95) (xy 111.76 110.49)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "b043d813-5995-4066-b9f2-60d8318f1e0a")
+	)
+	(wire
+		(pts
+			(xy 121.92 121.92) (xy 121.92 107.95)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "b07c8783-4032-4e20-b4d7-c46fa0aa4189")
 	)
 	(wire
 		(pts
@@ -7125,6 +7437,16 @@
 	)
 	(wire
 		(pts
+			(xy 109.22 100.33) (xy 118.11 100.33)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "bf08de47-fb32-4e05-8afd-9c81d8cbfff1")
+	)
+	(wire
+		(pts
 			(xy 195.58 30.48) (xy 196.85 30.48)
 		)
 		(stroke
@@ -7142,6 +7464,16 @@
 			(type default)
 		)
 		(uuid "c1a39694-600b-4b8d-8d95-39744be0df7a")
+	)
+	(wire
+		(pts
+			(xy 140.97 127) (xy 140.97 97.79)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "c46a6de6-b2bc-4813-b81f-3845c666b1f1")
 	)
 	(wire
 		(pts
@@ -7215,6 +7547,46 @@
 	)
 	(wire
 		(pts
+			(xy 111.76 107.95) (xy 114.3 107.95)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "d4b9c544-9965-43b1-8c8f-4cef6f9112c3")
+	)
+	(wire
+		(pts
+			(xy 138.43 121.92) (xy 138.43 95.25)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "d727cce0-9f30-43cf-89bd-1fbe86e82a19")
+	)
+	(wire
+		(pts
+			(xy 138.43 95.25) (xy 120.65 95.25)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "d91ab6f9-d8a4-40c3-bd3a-0edc44cea2d3")
+	)
+	(wire
+		(pts
+			(xy 121.92 124.46) (xy 111.76 124.46)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "d92ef4e5-7099-4cc7-99fe-a4cd7376e8e9")
+	)
+	(wire
+		(pts
 			(xy 80.01 82.55) (xy 82.55 82.55)
 		)
 		(stroke
@@ -7222,6 +7594,16 @@
 			(type default)
 		)
 		(uuid "dcfa4554-1b59-4915-8532-72fb01f1e2d1")
+	)
+	(wire
+		(pts
+			(xy 123.19 111.76) (xy 123.19 107.95)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "e1d6475c-4efd-4bfd-860d-53536297e9a4")
 	)
 	(wire
 		(pts
@@ -7262,6 +7644,16 @@
 			(type default)
 		)
 		(uuid "ec74d25b-def3-48ef-8dd5-92df9f434bc7")
+	)
+	(wire
+		(pts
+			(xy 111.76 124.46) (xy 111.76 118.11)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "eedb3f70-87c8-420e-8fc5-04824151173e")
 	)
 	(wire
 		(pts
@@ -7312,6 +7704,16 @@
 			(type default)
 		)
 		(uuid "fb089621-964b-4733-81bf-54fa71171040")
+	)
+	(wire
+		(pts
+			(xy 137.16 127) (xy 140.97 127)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "fc236868-92c1-433e-b0a3-1cb5db6b254c")
 	)
 	(wire
 		(pts
@@ -7368,6 +7770,28 @@
 		(uuid "141508c6-d39e-40ec-b197-e95af78534d8")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 91.44 103.3151 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+				(hide yes)
+			)
+		)
+	)
+	(global_label "SIM_RST"
+		(shape input)
+		(at 109.22 97.79 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "1d612672-574e-48db-ad6e-1c22da0f82e9")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 98.5544 97.79 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7439,6 +7863,28 @@
 					(size 1.27 1.27)
 				)
 				(justify left)
+				(hide yes)
+			)
+		)
+	)
+	(global_label "SIM_DATA"
+		(shape input)
+		(at 109.22 107.95 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "35227fc0-a8b3-4e6e-bce8-5c2f37f7abb6")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 97.5867 107.95 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
 				(hide yes)
 			)
 		)
@@ -7531,6 +7977,28 @@
 			)
 		)
 	)
+	(global_label "SIM_DET"
+		(shape input)
+		(at 109.22 105.41 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "6dc78586-42a7-4c5d-a8a2-153f2e6ceca9")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 98.6149 105.41 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+				(hide yes)
+			)
+		)
+	)
 	(global_label "GSM_ANT"
 		(shape input)
 		(at 85.09 107.95 0)
@@ -7549,6 +8017,28 @@
 					(size 1.27 1.27)
 				)
 				(justify left)
+				(hide yes)
+			)
+		)
+	)
+	(global_label "SIM_VDD"
+		(shape input)
+		(at 109.22 95.25 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "8dff131c-9499-4cde-bbde-060b0ae3e9ff")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 98.3729 95.25 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
 				(hide yes)
 			)
 		)
@@ -7632,6 +8122,28 @@
 		(uuid "dabf8765-13e0-40e8-b0cc-7a517b143f0f")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 20.0564 97.79 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+				(hide yes)
+			)
+		)
+	)
+	(global_label "SIM_CLK"
+		(shape input)
+		(at 109.22 100.33 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "e3b46fb7-0423-451a-8da4-3cfe948c9940")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 98.4334 100.33 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8179,7 +8691,7 @@
 	)
 	(symbol
 		(lib_id "Device:C")
-		(at 123.19 102.87 0)
+		(at 111.76 114.3 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -8187,7 +8699,7 @@
 		(dnp no)
 		(uuid "174f8d8a-fe75-47fd-be3e-3c88c4d3488e")
 		(property "Reference" "C6"
-			(at 125.222 101.6 0)
+			(at 113.792 113.03 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8195,8 +8707,8 @@
 				(justify left)
 			)
 		)
-		(property "Value" "4u7"
-			(at 125.222 104.14 0)
+		(property "Value" "22p"
+			(at 113.792 115.57 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8205,7 +8717,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 124.1552 106.68 0)
+			(at 112.7252 118.11 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8214,7 +8726,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 123.19 102.87 0)
+			(at 111.76 114.3 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8223,7 +8735,7 @@
 			)
 		)
 		(property "Description" "Unpolarized capacitor"
-			(at 123.19 102.87 0)
+			(at 111.76 114.3 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8241,6 +8753,73 @@
 			(project "STM32 GPS Tracker"
 				(path "/320039b8-7fce-4c2b-9942-11f4784b13b1"
 					(reference "C6")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:R")
+		(at 118.11 107.95 270)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "19633780-8380-492b-b577-ed2bf9f967f9")
+		(property "Reference" "R2"
+			(at 118.11 109.982 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "10K"
+			(at 118.11 107.95 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 118.11 106.172 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 118.11 107.95 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Resistor"
+			(at 118.11 107.95 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "cb3d211d-f8b6-4bb3-a270-22a50a0b4ce2")
+		)
+		(pin "2"
+			(uuid "635273cc-9629-49b8-aa15-28e66b7758c6")
+		)
+		(instances
+			(project "STM32 GPS Tracker"
+				(path "/320039b8-7fce-4c2b-9942-11f4784b13b1"
+					(reference "R2")
 					(unit 1)
 				)
 			)
@@ -8917,6 +9496,73 @@
 		)
 	)
 	(symbol
+		(lib_id "Device:R")
+		(at 121.92 100.33 270)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "38fa2a89-4be4-4fb2-b390-092e3e1428b9")
+		(property "Reference" "R4"
+			(at 121.92 102.362 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "10K"
+			(at 121.92 100.33 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 121.92 98.552 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 121.92 100.33 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Resistor"
+			(at 121.92 100.33 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "b6e94c85-540d-48e3-8834-b2c22df413ff")
+		)
+		(pin "2"
+			(uuid "d0da96c6-aae0-4f5c-a352-dab44a0af3e8")
+		)
+		(instances
+			(project "STM32 GPS Tracker"
+				(path "/320039b8-7fce-4c2b-9942-11f4784b13b1"
+					(reference "R4")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "Device:L_Iron")
 		(at 170.18 30.48 90)
 		(unit 1)
@@ -9197,6 +9843,75 @@
 		)
 	)
 	(symbol
+		(lib_id "Device:C")
+		(at 120.65 88.9 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "4c4d356a-d3bd-4657-83c1-a1d95fda7b75")
+		(property "Reference" "C8"
+			(at 122.682 87.63 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "1u"
+			(at 122.682 90.17 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" ""
+			(at 121.6152 92.71 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 120.65 88.9 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Unpolarized capacitor"
+			(at 120.65 88.9 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "f93277c5-f156-48e8-93b0-2e58ef0dc3ae")
+		)
+		(pin "2"
+			(uuid "e7e9834e-3635-4733-a675-2139950b13b2")
+		)
+		(instances
+			(project "STM32 GPS Tracker"
+				(path "/320039b8-7fce-4c2b-9942-11f4784b13b1"
+					(reference "C8")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "power:GND")
 		(at 130.81 55.88 0)
 		(unit 1)
@@ -9467,6 +10182,73 @@
 		)
 	)
 	(symbol
+		(lib_id "Device:R")
+		(at 121.92 97.79 270)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "69e06923-f6ae-4c5a-907a-f891f8de5dec")
+		(property "Reference" "R3"
+			(at 121.92 96.012 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "10K"
+			(at 121.92 97.79 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 121.92 96.012 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 121.92 97.79 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Resistor"
+			(at 121.92 97.79 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "ac1217f2-528d-4be4-96a8-bd7ef30bd070")
+		)
+		(pin "2"
+			(uuid "d486024b-195b-45be-aeb4-a088196fab5e")
+		)
+		(instances
+			(project "STM32 GPS Tracker"
+				(path "/320039b8-7fce-4c2b-9942-11f4784b13b1"
+					(reference "R3")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "power:+3.3V")
 		(at 177.8 27.94 0)
 		(unit 1)
@@ -9526,6 +10308,71 @@
 			(project "STM32 GPS Tracker"
 				(path "/320039b8-7fce-4c2b-9942-11f4784b13b1"
 					(reference "#PWR012")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GND")
+		(at 120.65 83.82 180)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "7d2fe88c-6f92-470c-85b6-8eb8cdad5bf8")
+		(property "Reference" "#PWR016"
+			(at 120.65 77.47 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "GND"
+			(at 120.65 80.264 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 120.65 83.82 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 120.65 83.82 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+			(at 120.65 83.82 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "65ebf622-683c-4825-b505-a45466067f7a")
+		)
+		(instances
+			(project "STM32 GPS Tracker"
+				(path "/320039b8-7fce-4c2b-9942-11f4784b13b1"
+					(reference "#PWR016")
 					(unit 1)
 				)
 			)
@@ -10261,7 +11108,7 @@
 	)
 	(symbol
 		(lib_id "U.FL-R-SMT-1:U.FL-R-SMT-1")
-		(at 105.41 78.74 0)
+		(at 105.41 74.93 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -10270,7 +11117,7 @@
 		(fields_autoplaced yes)
 		(uuid "b47a0382-2e5e-4722-950f-d37e0b3aa0b1")
 		(property "Reference" "ANT1"
-			(at 105.41 71.12 0)
+			(at 105.41 67.31 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -10278,7 +11125,7 @@
 			)
 		)
 		(property "Value" "U.FL-R-SMT-1"
-			(at 105.41 73.66 0)
+			(at 105.41 69.85 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -10286,7 +11133,7 @@
 			)
 		)
 		(property "Footprint" "U.FL-R-SMT-1:U.FL-R-SMT-1"
-			(at 105.41 78.74 0)
+			(at 105.41 74.93 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -10296,7 +11143,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 105.41 78.74 0)
+			(at 105.41 74.93 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -10305,7 +11152,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 105.41 78.74 0)
+			(at 105.41 74.93 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -10314,7 +11161,7 @@
 			)
 		)
 		(property "MF" "Hirose Electric Co Ltd"
-			(at 105.41 78.74 0)
+			(at 105.41 74.93 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -10324,7 +11171,7 @@
 			)
 		)
 		(property "Description_1" "U.FL-R-SMT(10) Hirose Electric RF Connectors U.FL 0Hz to 6GHz 50Ohm Solder ST SMD F Gold T/R - Arrow.com"
-			(at 105.41 78.74 0)
+			(at 105.41 74.93 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -10334,7 +11181,7 @@
 			)
 		)
 		(property "Package" "None"
-			(at 105.41 78.74 0)
+			(at 105.41 74.93 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -10344,7 +11191,7 @@
 			)
 		)
 		(property "Price" "None"
-			(at 105.41 78.74 0)
+			(at 105.41 74.93 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -10354,7 +11201,7 @@
 			)
 		)
 		(property "SnapEDA_Link" "https://www.snapeda.com/parts/U.FL-R-SMT-1/Hirose+Electric+Co+Ltd/view-part/?ref=snap"
-			(at 105.41 78.74 0)
+			(at 105.41 74.93 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -10364,7 +11211,7 @@
 			)
 		)
 		(property "MP" "U.FL-R-SMT-1"
-			(at 105.41 78.74 0)
+			(at 105.41 74.93 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -10374,7 +11221,7 @@
 			)
 		)
 		(property "Purchase-URL" "https://www.snapeda.com/api/url_track_click_mouser/?unipart_id=5844606&manufacturer=Hirose Electric Co Ltd&part_name=U.FL-R-SMT-1&search_term=u.fl-r-smt(10)"
-			(at 105.41 78.74 0)
+			(at 105.41 74.93 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -10384,7 +11231,7 @@
 			)
 		)
 		(property "Availability" "In Stock"
-			(at 105.41 78.74 0)
+			(at 105.41 74.93 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -10394,7 +11241,7 @@
 			)
 		)
 		(property "Check_prices" "https://www.snapeda.com/parts/U.FL-R-SMT-1/Hirose+Electric+Co+Ltd/view-part/?ref=eda"
-			(at 105.41 78.74 0)
+			(at 105.41 74.93 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -10557,6 +11404,71 @@
 	)
 	(symbol
 		(lib_id "power:GND")
+		(at 130.81 102.87 270)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "c99a2453-eef8-43c0-a357-dccbd7019416")
+		(property "Reference" "#PWR017"
+			(at 124.46 102.87 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "GND"
+			(at 127.254 102.87 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 130.81 102.87 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 130.81 102.87 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+			(at 130.81 102.87 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "69e0bfcc-04c2-4182-8937-cf180bff5ba8")
+		)
+		(instances
+			(project "STM32 GPS Tracker"
+				(path "/320039b8-7fce-4c2b-9942-11f4784b13b1"
+					(reference "#PWR017")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GND")
 		(at 213.36 52.07 0)
 		(unit 1)
 		(exclude_from_sim no)
@@ -10622,7 +11534,7 @@
 	)
 	(symbol
 		(lib_id "U.FL-R-SMT-1:U.FL-R-SMT-1")
-		(at 129.54 77.47 0)
+		(at 129.54 74.93 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -10631,7 +11543,7 @@
 		(fields_autoplaced yes)
 		(uuid "ced8b4ff-e184-4208-b994-23a5bb525ea6")
 		(property "Reference" "ANT2"
-			(at 129.54 69.85 0)
+			(at 129.54 67.31 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -10639,7 +11551,7 @@
 			)
 		)
 		(property "Value" "U.FL-R-SMT-1"
-			(at 129.54 72.39 0)
+			(at 129.54 69.85 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -10647,7 +11559,7 @@
 			)
 		)
 		(property "Footprint" "U.FL-R-SMT-1:U.FL-R-SMT-1"
-			(at 129.54 77.47 0)
+			(at 129.54 74.93 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -10657,7 +11569,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 129.54 77.47 0)
+			(at 129.54 74.93 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -10666,7 +11578,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 129.54 77.47 0)
+			(at 129.54 74.93 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -10675,7 +11587,7 @@
 			)
 		)
 		(property "MF" "Hirose Electric Co Ltd"
-			(at 129.54 77.47 0)
+			(at 129.54 74.93 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -10685,7 +11597,7 @@
 			)
 		)
 		(property "Description_1" "U.FL-R-SMT(10) Hirose Electric RF Connectors U.FL 0Hz to 6GHz 50Ohm Solder ST SMD F Gold T/R - Arrow.com"
-			(at 129.54 77.47 0)
+			(at 129.54 74.93 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -10695,7 +11607,7 @@
 			)
 		)
 		(property "Package" "None"
-			(at 129.54 77.47 0)
+			(at 129.54 74.93 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -10705,7 +11617,7 @@
 			)
 		)
 		(property "Price" "None"
-			(at 129.54 77.47 0)
+			(at 129.54 74.93 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -10715,7 +11627,7 @@
 			)
 		)
 		(property "SnapEDA_Link" "https://www.snapeda.com/parts/U.FL-R-SMT-1/Hirose+Electric+Co+Ltd/view-part/?ref=snap"
-			(at 129.54 77.47 0)
+			(at 129.54 74.93 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -10725,7 +11637,7 @@
 			)
 		)
 		(property "MP" "U.FL-R-SMT-1"
-			(at 129.54 77.47 0)
+			(at 129.54 74.93 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -10735,7 +11647,7 @@
 			)
 		)
 		(property "Purchase-URL" "https://www.snapeda.com/api/url_track_click_mouser/?unipart_id=5844606&manufacturer=Hirose Electric Co Ltd&part_name=U.FL-R-SMT-1&search_term=u.fl-r-smt(10)"
-			(at 129.54 77.47 0)
+			(at 129.54 74.93 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -10745,7 +11657,7 @@
 			)
 		)
 		(property "Availability" "In Stock"
-			(at 129.54 77.47 0)
+			(at 129.54 74.93 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -10755,7 +11667,7 @@
 			)
 		)
 		(property "Check_prices" "https://www.snapeda.com/parts/U.FL-R-SMT-1/Hirose+Electric+Co+Ltd/view-part/?ref=eda"
-			(at 129.54 77.47 0)
+			(at 129.54 74.93 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -10919,7 +11831,7 @@
 	)
 	(symbol
 		(lib_id "693010020611:693010020611")
-		(at 144.78 97.79 0)
+		(at 154.94 100.33 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -10928,7 +11840,7 @@
 		(fields_autoplaced yes)
 		(uuid "e4a447aa-3d56-4d6b-9697-d6cb2723fbdc")
 		(property "Reference" "J3"
-			(at 152.4 98.363 0)
+			(at 162.56 100.903 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -10937,7 +11849,7 @@
 			)
 		)
 		(property "Value" "693010020611"
-			(at 152.4 100.903 0)
+			(at 162.56 103.443 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -10946,7 +11858,7 @@
 			)
 		)
 		(property "Footprint" "693010020611:693010020611"
-			(at 144.78 97.79 0)
+			(at 154.94 100.33 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -10956,7 +11868,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 144.78 97.79 0)
+			(at 154.94 100.33 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -10965,7 +11877,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 144.78 97.79 0)
+			(at 154.94 100.33 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -10974,7 +11886,7 @@
 			)
 		)
 		(property "MF" "Wurth Elektronik"
-			(at 144.78 97.79 0)
+			(at 154.94 100.33 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -10984,7 +11896,7 @@
 			)
 		)
 		(property "Description_1" "CardConnector_SMT_MiniSIM_Header_6pins"
-			(at 144.78 97.79 0)
+			(at 154.94 100.33 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -10994,7 +11906,7 @@
 			)
 		)
 		(property "Package" "None"
-			(at 144.78 97.79 0)
+			(at 154.94 100.33 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -11004,7 +11916,7 @@
 			)
 		)
 		(property "Purchase-URL" "https://www.snapeda.com/api/url_track_click_mouser/?unipart_id=4871526&manufacturer=Wurth Elektronik&part_name=693010020611&search_term=sim conncetor"
-			(at 144.78 97.79 0)
+			(at 154.94 100.33 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -11014,7 +11926,7 @@
 			)
 		)
 		(property "MOUNT" "SMT"
-			(at 144.78 97.79 0)
+			(at 154.94 100.33 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -11024,7 +11936,7 @@
 			)
 		)
 		(property "IR" "0.5A"
-			(at 144.78 97.79 0)
+			(at 154.94 100.33 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -11034,7 +11946,7 @@
 			)
 		)
 		(property "VALUE" "693010020611"
-			(at 144.78 97.79 0)
+			(at 154.94 100.33 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -11044,7 +11956,7 @@
 			)
 		)
 		(property "Price" "None"
-			(at 144.78 97.79 0)
+			(at 154.94 100.33 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -11054,7 +11966,7 @@
 			)
 		)
 		(property "PART-NUMBER" "693010020611"
-			(at 144.78 97.79 0)
+			(at 154.94 100.33 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -11064,7 +11976,7 @@
 			)
 		)
 		(property "SnapEDA_Link" "https://www.snapeda.com/parts/693010020611/Wurth+Elektronik/view-part/?ref=snap"
-			(at 144.78 97.79 0)
+			(at 154.94 100.33 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -11074,7 +11986,7 @@
 			)
 		)
 		(property "DATASHEET-URL" "https://www.we-online.com/redexpert/spec/693010020611?ae"
-			(at 144.78 97.79 0)
+			(at 154.94 100.33 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -11084,7 +11996,7 @@
 			)
 		)
 		(property "MP" "693010020611"
-			(at 144.78 97.79 0)
+			(at 154.94 100.33 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -11094,7 +12006,7 @@
 			)
 		)
 		(property "WORKING-VOLTAGE" "50V(AC)"
-			(at 144.78 97.79 0)
+			(at 154.94 100.33 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -11104,7 +12016,7 @@
 			)
 		)
 		(property "PINS" "6"
-			(at 144.78 97.79 0)
+			(at 154.94 100.33 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -11114,7 +12026,7 @@
 			)
 		)
 		(property "Availability" "In Stock"
-			(at 144.78 97.79 0)
+			(at 154.94 100.33 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -11124,7 +12036,7 @@
 			)
 		)
 		(property "TYPE" "Header"
-			(at 144.78 97.79 0)
+			(at 154.94 100.33 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -11134,7 +12046,7 @@
 			)
 		)
 		(property "GERDER" "Socket"
-			(at 144.78 97.79 0)
+			(at 154.94 100.33 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -11144,7 +12056,7 @@
 			)
 		)
 		(property "Check_prices" "https://www.snapeda.com/parts/693010020611/Wurth+Elektronik/view-part/?ref=eda"
-			(at 144.78 97.79 0)
+			(at 154.94 100.33 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -11523,16 +12435,15 @@
 	)
 	(symbol
 		(lib_id "SMF05CT1G:SMF05CT1G")
-		(at 114.3 115.57 0)
+		(at 129.54 124.46 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(fields_autoplaced yes)
 		(uuid "ff4dd2f3-881e-47ca-80e4-6062a6c2941a")
 		(property "Reference" "U3"
-			(at 114.3 105.41 0)
+			(at 129.032 116.332 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -11540,7 +12451,7 @@
 			)
 		)
 		(property "Value" "SMF05CT1G"
-			(at 114.3 107.95 0)
+			(at 129.286 118.11 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -11548,7 +12459,7 @@
 			)
 		)
 		(property "Footprint" "SMF05CT1G:SOT65P210X110-6N"
-			(at 114.3 115.57 0)
+			(at 129.54 124.46 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -11558,7 +12469,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 114.3 115.57 0)
+			(at 129.54 124.46 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -11567,7 +12478,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 114.3 115.57 0)
+			(at 129.54 124.46 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -11576,7 +12487,7 @@
 			)
 		)
 		(property "MF" "onsemi"
-			(at 114.3 115.57 0)
+			(at 129.54 124.46 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -11586,7 +12497,7 @@
 			)
 		)
 		(property "DESCRIPTION" "SMF05C Series 7.2 V 100 W 5-Line Transient Voltage Suppressor Array - SC-88"
-			(at 114.3 115.57 0)
+			(at 129.54 124.46 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -11596,7 +12507,7 @@
 			)
 		)
 		(property "PACKAGE" "SOT-363 ON Semiconductor"
-			(at 114.3 115.57 0)
+			(at 129.54 124.46 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -11606,7 +12517,7 @@
 			)
 		)
 		(property "PRICE" "None"
-			(at 114.3 115.57 0)
+			(at 129.54 124.46 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -11616,7 +12527,7 @@
 			)
 		)
 		(property "Package" "SC-88-6 ON Semiconductor"
-			(at 114.3 115.57 0)
+			(at 129.54 124.46 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -11626,7 +12537,7 @@
 			)
 		)
 		(property "Check_prices" "https://www.snapeda.com/parts/SMF05CT1G/Onsemi/view-part/?ref=eda"
-			(at 114.3 115.57 0)
+			(at 129.54 124.46 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -11636,7 +12547,7 @@
 			)
 		)
 		(property "STANDARD" "IPC7351B"
-			(at 114.3 115.57 0)
+			(at 129.54 124.46 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -11646,7 +12557,7 @@
 			)
 		)
 		(property "SnapEDA_Link" "https://www.snapeda.com/parts/SMF05CT1G/Onsemi/view-part/?ref=snap"
-			(at 114.3 115.57 0)
+			(at 129.54 124.46 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -11656,7 +12567,7 @@
 			)
 		)
 		(property "MP" "SMF05CT1G"
-			(at 114.3 115.57 0)
+			(at 129.54 124.46 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -11666,7 +12577,7 @@
 			)
 		)
 		(property "Purchase-URL" "https://www.snapeda.com/api/url_track_click_mouser/?unipart_id=7109045&manufacturer=onsemi&part_name=SMF05CT1G&search_term=smf05ct1g"
-			(at 114.3 115.57 0)
+			(at 129.54 124.46 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -11676,7 +12587,7 @@
 			)
 		)
 		(property "Description_1" "12.5V Clamp 8A (8/20µs) Ipp Tvs Diode Surface Mount SC-88/SC70-6/SOT-363"
-			(at 114.3 115.57 0)
+			(at 129.54 124.46 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -11686,7 +12597,7 @@
 			)
 		)
 		(property "Availability" "In Stock"
-			(at 114.3 115.57 0)
+			(at 129.54 124.46 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -11696,7 +12607,7 @@
 			)
 		)
 		(property "Price" "None"
-			(at 114.3 115.57 0)
+			(at 129.54 124.46 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -11706,7 +12617,7 @@
 			)
 		)
 		(property "MANUFACTURER" "ON Semiconductor"
-			(at 114.3 115.57 0)
+			(at 129.54 124.46 0)
 			(effects
 				(font
 					(size 1.27 1.27)
