@@ -6805,6 +6805,12 @@
 		(uuid "9ccb26db-b7ac-4368-b1c7-7be19e0202e9")
 	)
 	(junction
+		(at 243.84 128.27)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "a8c5db57-e6f6-4052-9b86-0872d6596453")
+	)
+	(junction
 		(at 123.19 107.95)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -6857,12 +6863,6 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "de5a9275-657b-45e8-8a84-99484eec1608")
-	)
-	(junction
-		(at 245.11 123.19)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "de7b8172-aa9d-4487-8987-82fb6f0edd1d")
 	)
 	(junction
 		(at 267.97 17.78)
@@ -7318,16 +7318,6 @@
 	)
 	(wire
 		(pts
-			(xy 243.84 127) (xy 243.84 121.92)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "1e7bb0ff-d322-4286-a408-56f47e5aa8dc")
-	)
-	(wire
-		(pts
 			(xy 120.65 83.82) (xy 120.65 85.09)
 		)
 		(stroke
@@ -7365,16 +7355,6 @@
 			(type default)
 		)
 		(uuid "245f44fb-a233-4127-8a5f-469523736c5c")
-	)
-	(wire
-		(pts
-			(xy 245.11 123.19) (xy 245.11 121.92)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "24dfd578-c28d-43dc-a356-abca38e539ba")
 	)
 	(wire
 		(pts
@@ -7435,16 +7415,6 @@
 			(type default)
 		)
 		(uuid "2db9e40d-caf9-45c5-816e-48ba41482d41")
-	)
-	(wire
-		(pts
-			(xy 243.84 121.92) (xy 245.11 121.92)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "2efb3499-4829-41cd-b5e8-d3cef9086377")
 	)
 	(wire
 		(pts
@@ -7518,6 +7488,16 @@
 	)
 	(wire
 		(pts
+			(xy 264.16 99.06) (xy 264.16 101.6)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "34db2c69-17d5-41f5-bf1f-c9588402e9cd")
+	)
+	(wire
+		(pts
 			(xy 88.9 87.63) (xy 88.9 86.36)
 		)
 		(stroke
@@ -7535,6 +7515,16 @@
 			(type default)
 		)
 		(uuid "38306801-5349-4e49-984a-1b7b9fc1a2b7")
+	)
+	(wire
+		(pts
+			(xy 273.05 119.38) (xy 273.05 123.19)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "3a55b512-9748-4fff-a735-077781e3ac8e")
 	)
 	(wire
 		(pts
@@ -7678,6 +7668,16 @@
 	)
 	(wire
 		(pts
+			(xy 273.05 99.06) (xy 273.05 101.6)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "4c5663ca-f20a-459b-809e-ce8596d663fc")
+	)
+	(wire
+		(pts
 			(xy 130.81 24.13) (xy 134.62 24.13)
 		)
 		(stroke
@@ -7765,6 +7765,16 @@
 			(type default)
 		)
 		(uuid "5d3b5d81-ebed-417f-83f6-d49bd713bc8c")
+	)
+	(wire
+		(pts
+			(xy 245.11 127) (xy 245.11 128.27)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "6069d206-d6de-4417-92b8-488aeaaa686f")
 	)
 	(wire
 		(pts
@@ -7988,6 +7998,16 @@
 	)
 	(wire
 		(pts
+			(xy 264.16 109.22) (xy 264.16 111.76)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "78907d78-5854-4fd9-a98f-62266c389ddc")
+	)
+	(wire
+		(pts
 			(xy 257.81 63.5) (xy 265.43 63.5)
 		)
 		(stroke
@@ -8035,6 +8055,16 @@
 			(type default)
 		)
 		(uuid "7df0fd8c-9077-4f43-927a-c211f601a79f")
+	)
+	(wire
+		(pts
+			(xy 264.16 119.38) (xy 264.16 123.19)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "7e1c69f1-ee5b-4180-b4bc-03d63dbb5923")
 	)
 	(wire
 		(pts
@@ -8188,16 +8218,6 @@
 	)
 	(wire
 		(pts
-			(xy 242.57 127) (xy 243.84 127)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "8cd3f38a-d544-4907-b66f-f02053658aba")
-	)
-	(wire
-		(pts
 			(xy 82.55 82.55) (xy 82.55 78.74)
 		)
 		(stroke
@@ -8245,6 +8265,16 @@
 			(type default)
 		)
 		(uuid "937f79f5-f9e2-4fee-8e15-67b4455a3463")
+	)
+	(wire
+		(pts
+			(xy 242.57 127) (xy 242.57 128.27)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "943f302b-e1a6-4e0e-bcbd-9e5fd570bbc7")
 	)
 	(wire
 		(pts
@@ -8325,16 +8355,6 @@
 			(type default)
 		)
 		(uuid "a0eea322-8685-4977-863b-a647ebae1cc1")
-	)
-	(wire
-		(pts
-			(xy 245.11 127) (xy 245.11 123.19)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "a359aac2-45db-4ba9-bea9-c889f7dfdbdb")
 	)
 	(wire
 		(pts
@@ -8465,6 +8485,16 @@
 			(type default)
 		)
 		(uuid "b07c8783-4032-4e20-b4d7-c46fa0aa4189")
+	)
+	(wire
+		(pts
+			(xy 273.05 109.22) (xy 273.05 111.76)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "b13bf04c-7625-4da0-9277-f732b3211369")
 	)
 	(wire
 		(pts
@@ -8928,6 +8958,16 @@
 	)
 	(wire
 		(pts
+			(xy 243.84 128.27) (xy 245.11 128.27)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "ed3eb3c0-a195-425f-94dc-230c38032c60")
+	)
+	(wire
+		(pts
 			(xy 250.19 17.78) (xy 250.19 20.32)
 		)
 		(stroke
@@ -9028,6 +9068,16 @@
 	)
 	(wire
 		(pts
+			(xy 242.57 128.27) (xy 243.84 128.27)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "fa5979da-6ef3-4854-8aa8-88b0dfe59a8b")
+	)
+	(wire
+		(pts
 			(xy 26.67 58.42) (xy 36.83 58.42)
 		)
 		(stroke
@@ -9065,6 +9115,16 @@
 			(type default)
 		)
 		(uuid "fcaa364f-ee0f-4bb6-b7be-9477d2729f27")
+	)
+	(wire
+		(pts
+			(xy 243.84 128.27) (xy 243.84 129.54)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "fd6f49f4-d5ea-4bd8-a617-f8d82e9d6bdb")
 	)
 	(wire
 		(pts
@@ -9428,6 +9488,28 @@
 			)
 		)
 	)
+	(global_label "LED2"
+		(shape input)
+		(at 273.05 99.06 90)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "5c890375-03cd-4c2d-b251-009cf401fad0")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 273.05 91.4182 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+	)
 	(global_label "FEEDBACK"
 		(shape input)
 		(at 165.1 24.13 0)
@@ -9617,6 +9699,28 @@
 		(uuid "9f4df431-f80d-4837-822e-c3d1bea8c2e6")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 271.9833 58.42 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+	)
+	(global_label "LED1"
+		(shape input)
+		(at 264.16 99.06 90)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "a24a5ad9-e941-4eda-874f-85400243a76d")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 264.16 91.4182 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -10211,6 +10315,71 @@
 		)
 	)
 	(symbol
+		(lib_id "power:GND")
+		(at 273.05 123.19 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "0d120c93-0070-4064-af5a-8adbf66b685a")
+		(property "Reference" "#PWR032"
+			(at 273.05 129.54 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "GND"
+			(at 273.05 126.746 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 273.05 123.19 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 273.05 123.19 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+			(at 273.05 123.19 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "6f29272c-f56c-4112-93f9-07c5be2c6b55")
+		)
+		(instances
+			(project "STM32 GPS Tracker"
+				(path "/320039b8-7fce-4c2b-9942-11f4784b13b1"
+					(reference "#PWR032")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "Device:R")
 		(at 151.13 24.13 90)
 		(unit 1)
@@ -10714,71 +10883,6 @@
 			(project ""
 				(path "/320039b8-7fce-4c2b-9942-11f4784b13b1"
 					(reference "R1")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "power:GND")
-		(at 245.11 123.19 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "19fca2a8-31a0-4c3d-b914-07c51205c18d")
-		(property "Reference" "#PWR028"
-			(at 245.11 129.54 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Value" "GND"
-			(at 245.11 126.746 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 245.11 123.19 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 245.11 123.19 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
-			(at 245.11 123.19 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "2db13136-6710-4a83-b57c-70865a85ddbc")
-		)
-		(instances
-			(project "STM32 GPS Tracker"
-				(path "/320039b8-7fce-4c2b-9942-11f4784b13b1"
-					(reference "#PWR028")
 					(unit 1)
 				)
 			)
@@ -12133,6 +12237,84 @@
 		)
 	)
 	(symbol
+		(lib_id "Device:LED")
+		(at 264.16 115.57 90)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "510d4c76-5401-4a60-a861-a92d4811c647")
+		(property "Reference" "D4"
+			(at 264.414 113.284 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Value" "LED"
+			(at 264.922 116.078 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Footprint" ""
+			(at 264.16 115.57 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 264.16 115.57 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Light emitting diode"
+			(at 264.16 115.57 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Sim.Pins" "1=K 2=A"
+			(at 264.16 115.57 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "6d9abbb0-415a-41da-bd29-5df826bed360")
+		)
+		(pin "2"
+			(uuid "159f3323-0060-428e-bdda-3bbe39e875a8")
+		)
+		(instances
+			(project "STM32 GPS Tracker"
+				(path "/320039b8-7fce-4c2b-9942-11f4784b13b1"
+					(reference "D4")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "power:+3.3V")
 		(at 267.97 16.51 0)
 		(unit 1)
@@ -13132,6 +13314,73 @@
 			(project ""
 				(path "/320039b8-7fce-4c2b-9942-11f4784b13b1"
 					(reference "C9")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:R")
+		(at 273.05 105.41 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "82f41f20-6a1e-4b94-8b90-0a8c00021ef3")
+		(property "Reference" "R13"
+			(at 275.082 105.41 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "1K5"
+			(at 273.05 105.41 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 271.272 105.41 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 273.05 105.41 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Resistor"
+			(at 273.05 105.41 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "2af1e0ef-fe3a-493f-ab07-8a306d2e9b0b")
+		)
+		(pin "2"
+			(uuid "314eb3a8-9501-40d1-8847-3a98cba01ab5")
+		)
+		(instances
+			(project "STM32 GPS Tracker"
+				(path "/320039b8-7fce-4c2b-9942-11f4784b13b1"
+					(reference "R13")
 					(unit 1)
 				)
 			)
@@ -15190,6 +15439,84 @@
 		)
 	)
 	(symbol
+		(lib_id "Device:LED")
+		(at 273.05 115.57 90)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "d39f650d-6f20-4d79-8a53-bbedf77f108a")
+		(property "Reference" "D5"
+			(at 273.304 113.284 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Value" "LED"
+			(at 273.812 116.078 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Footprint" ""
+			(at 273.05 115.57 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 273.05 115.57 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Light emitting diode"
+			(at 273.05 115.57 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Sim.Pins" "1=K 2=A"
+			(at 273.05 115.57 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "8bfe9760-1eed-40f3-a86a-efe4222dda86")
+		)
+		(pin "2"
+			(uuid "bcd952e7-711c-4e27-9abc-ab6ed9818bb6")
+		)
+		(instances
+			(project "STM32 GPS Tracker"
+				(path "/320039b8-7fce-4c2b-9942-11f4784b13b1"
+					(reference "D5")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "power:+12V")
 		(at 39.37 24.13 0)
 		(unit 1)
@@ -15319,6 +15646,71 @@
 			(project "STM32 GPS Tracker"
 				(path "/320039b8-7fce-4c2b-9942-11f4784b13b1"
 					(reference "C15")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GND")
+		(at 243.84 129.54 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "dc9ea5ec-2626-4c9b-9155-67ebef5afd04")
+		(property "Reference" "#PWR028"
+			(at 243.84 135.89 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "GND"
+			(at 243.84 133.096 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 243.84 129.54 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 243.84 129.54 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+			(at 243.84 129.54 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "6cbfbecb-bcb7-4585-9c82-bb8659cf28d9")
+		)
+		(instances
+			(project "STM32 GPS Tracker"
+				(path "/320039b8-7fce-4c2b-9942-11f4784b13b1"
+					(reference "#PWR028")
 					(unit 1)
 				)
 			)
@@ -15868,6 +16260,71 @@
 		)
 	)
 	(symbol
+		(lib_id "power:GND")
+		(at 264.16 123.19 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "ed35d9e1-522e-4db8-a643-0f13f4d21613")
+		(property "Reference" "#PWR031"
+			(at 264.16 129.54 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "GND"
+			(at 264.16 126.746 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 264.16 123.19 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 264.16 123.19 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+			(at 264.16 123.19 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "a3b32b53-a8d7-426b-a7a2-e6c85ec734c6")
+		)
+		(instances
+			(project "STM32 GPS Tracker"
+				(path "/320039b8-7fce-4c2b-9942-11f4784b13b1"
+					(reference "#PWR031")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "Device:R")
 		(at 181.61 27.94 180)
 		(unit 1)
@@ -16061,6 +16518,73 @@
 			(project ""
 				(path "/320039b8-7fce-4c2b-9942-11f4784b13b1"
 					(reference "#FLG01")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:R")
+		(at 264.16 105.41 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "ff345a4b-fb86-4463-ae55-28a083a2f822")
+		(property "Reference" "R12"
+			(at 266.192 105.41 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "1K5"
+			(at 264.16 105.41 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 262.382 105.41 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 264.16 105.41 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Resistor"
+			(at 264.16 105.41 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "01bd6203-f64e-4a22-ad15-c98cbbed0e74")
+		)
+		(pin "2"
+			(uuid "b795b699-82c1-4a6d-9a2a-ba83ae3c7f0b")
+		)
+		(instances
+			(project "STM32 GPS Tracker"
+				(path "/320039b8-7fce-4c2b-9942-11f4784b13b1"
+					(reference "R12")
 					(unit 1)
 				)
 			)
