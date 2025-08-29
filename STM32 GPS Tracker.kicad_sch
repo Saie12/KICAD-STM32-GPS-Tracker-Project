@@ -7378,6 +7378,97 @@
 			(embedded_fonts no)
 		)
 	)
+	(text "Voltage Regulation CKT 5.5V-36V->3.6V"
+		(exclude_from_sim no)
+		(at 69.088 14.478 0)
+		(effects
+			(font
+				(face "KiCad Font")
+				(size 2 2)
+				(thickness 0.254)
+				(bold yes)
+			)
+		)
+		(uuid "254ec1de-e0cd-4a09-b871-48f3d63d651b")
+	)
+	(text "Connectors"
+		(exclude_from_sim no)
+		(at 105.918 143.256 0)
+		(effects
+			(font
+				(face "KiCad Font")
+				(size 2 2)
+				(thickness 0.254)
+				(bold yes)
+			)
+		)
+		(uuid "2eece093-c814-4740-bb1c-7dbc6b8be5ec")
+	)
+	(text "STM32"
+		(exclude_from_sim no)
+		(at 200.914 15.748 0)
+		(effects
+			(font
+				(face "KiCad Font")
+				(size 2 2)
+				(thickness 0.254)
+				(bold yes)
+			)
+		)
+		(uuid "48c4e290-cc0c-4a15-8f00-e6e991a996e9")
+	)
+	(text "SIM Socket"
+		(exclude_from_sim no)
+		(at 165.608 130.302 0)
+		(effects
+			(font
+				(face "KiCad Font")
+				(size 2 2)
+				(thickness 0.254)
+				(bold yes)
+			)
+		)
+		(uuid "63ebb42e-3d33-4914-8aec-9d69b12e2f1a")
+	)
+	(text "Power Input"
+		(exclude_from_sim no)
+		(at 21.336 15.24 0)
+		(effects
+			(font
+				(face "KiCad Font")
+				(size 2 2)
+				(thickness 0.254)
+				(bold yes)
+			)
+		)
+		(uuid "b14c51ce-24c4-4c09-854e-2d999c513b73")
+	)
+	(text "SIM808"
+		(exclude_from_sim no)
+		(at 22.352 54.356 0)
+		(effects
+			(font
+				(face "KiCad Font")
+				(size 2 2)
+				(thickness 0.254)
+				(bold yes)
+			)
+		)
+		(uuid "d323aad7-30e8-4fef-9b73-ab916b2a17db")
+	)
+	(text "Antennas"
+		(exclude_from_sim no)
+		(at 104.648 63.754 0)
+		(effects
+			(font
+				(face "KiCad Font")
+				(size 2 2)
+				(thickness 0.254)
+				(bold yes)
+			)
+		)
+		(uuid "e8649c46-983b-4ccf-9c73-fbca1cc1f9f8")
+	)
 	(junction
 		(at 129.54 105.41)
 		(diameter 0)
