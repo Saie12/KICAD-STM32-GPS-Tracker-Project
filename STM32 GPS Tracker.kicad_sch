@@ -22,13 +22,12 @@
 				)
 			)
 			(property "Value" "693010020611"
-				(at 0 0 0)
+				(at 0 -13.97 0)
 				(effects
 					(font
 						(size 1.27 1.27)
 					)
 					(justify bottom)
-					(hide yes)
 				)
 			)
 			(property "Footprint" "693010020611:693010020611"
@@ -110,6 +109,16 @@
 				)
 			)
 			(property "IR" "0.5A"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify bottom)
+					(hide yes)
+				)
+			)
+			(property "VALUE" "693010020611"
 				(at 0 0 0)
 				(effects
 					(font
@@ -5417,7 +5426,16 @@
 					(hide yes)
 				)
 			)
-			(property "Description" "SMF05C Series 7.2 V 100 W 5-Line Transient Voltage Suppressor Array - SC-88"
+			(property "Description" ""
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "MF" "onsemi"
 				(at 0 0 0)
 				(effects
 					(font
@@ -5427,7 +5445,7 @@
 					(hide yes)
 				)
 			)
-			(property "MF" "onsemi"
+			(property "DESCRIPTION" "SMF05C Series 7.2 V 100 W 5-Line Transient Voltage Suppressor Array - SC-88"
 				(at 0 0 0)
 				(effects
 					(font
@@ -7852,6 +7870,10 @@
 	(no_connect
 		(at 34.29 125.73)
 		(uuid "ab4b3fe4-06fa-4905-bd55-84a0cf92f076")
+	)
+	(no_connect
+		(at 74.93 138.43)
+		(uuid "addc4885-aa19-4a4c-9a6e-c5feefcedb07")
 	)
 	(no_connect
 		(at 74.93 133.35)
@@ -11729,7 +11751,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
 			(at 242.2652 27.94 0)
 			(effects
 				(font
@@ -11863,7 +11885,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "LED_SMD:LED_0201_0603Metric"
 			(at 181.61 38.1 0)
 			(effects
 				(font
@@ -12069,7 +12091,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_SMD:R_0805_2012Metric"
 			(at 151.13 25.908 90)
 			(effects
 				(font
@@ -12202,7 +12224,7 @@
 				)
 			)
 		)
-		(property "Footprint" "TPS5430DDA:VREG_LM5017MR_NOPB"
+		(property "Footprint" "Footprints:VREG_LM5017MR_NOPB"
 			(at 97.79 34.29 0)
 			(effects
 				(font
@@ -12507,7 +12529,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
 			(at 115.2652 123.19 0)
 			(effects
 				(font
@@ -12574,7 +12596,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_SMD:R_0402_1005Metric"
 			(at 120.65 111.252 90)
 			(effects
 				(font
@@ -12641,7 +12663,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_SMD:R_0402_1005Metric"
 			(at 81.28 91.948 90)
 			(effects
 				(font
@@ -12710,7 +12732,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_1206_3216Metric"
 			(at 27.6352 68.58 0)
 			(effects
 				(font
@@ -13441,7 +13463,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_SMD:R_0402_1005Metric"
 			(at 124.46 103.632 90)
 			(effects
 				(font
@@ -13509,7 +13531,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Inductor_SMD:L_10.4x10.4_H4.8"
 			(at 138.43 24.13 0)
 			(effects
 				(font
@@ -13642,7 +13664,7 @@
 				)
 			)
 		)
-		(property "Footprint" "SOT95P280X125-3N"
+		(property "Footprint" "Footprints:SOT95P280X125-3N"
 			(at 166.04 22.86 0)
 			(effects
 				(font
@@ -13786,7 +13808,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
 			(at 197.8152 74.93 0)
 			(effects
 				(font
@@ -13855,7 +13877,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
 			(at 37.7952 68.58 0)
 			(effects
 				(font
@@ -13924,7 +13946,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
 			(at 124.1552 97.79 0)
 			(effects
 				(font
@@ -14058,7 +14080,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "LED_SMD:LED_0201_0603Metric"
 			(at 264.16 115.57 0)
 			(effects
 				(font
@@ -14201,7 +14223,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric"
 			(at 54.3052 36.83 0)
 			(effects
 				(font
@@ -14268,7 +14290,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_SMD:R_0805_2012Metric"
 			(at 165.608 40.64 90)
 			(effects
 				(font
@@ -14335,7 +14357,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "TerminalBlock:TerminalBlock_bornier-2_P5.08mm"
 			(at 16.51 39.37 0)
 			(effects
 				(font
@@ -14404,7 +14426,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
 			(at 210.5152 120.65 0)
 			(effects
 				(font
@@ -14473,7 +14495,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Button_Switch_SMD:SW_Push_1P1T_NO_CK_KSC6xxJ"
 			(at 181.61 102.87 0)
 			(effects
 				(font
@@ -14672,7 +14694,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0201_0603Metric"
 			(at 125.4252 33.02 0)
 			(effects
 				(font
@@ -14739,7 +14761,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_SMD:R_0402_1005Metric"
 			(at 124.46 101.092 90)
 			(effects
 				(font
@@ -14806,7 +14828,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Crystal:Crystal_SMD_5032-2Pin_5.0x3.2mm"
 			(at 201.93 66.04 0)
 			(effects
 				(font
@@ -14979,6 +15001,136 @@
 		)
 	)
 	(symbol
+		(lib_id "power:GND")
+		(at 186.69 160.02 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "73f1ae3f-c337-4559-8bfa-0e18dac21772")
+		(property "Reference" "#PWR042"
+			(at 186.69 166.37 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "GND"
+			(at 186.69 163.576 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 186.69 160.02 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 186.69 160.02 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+			(at 186.69 160.02 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "ed088f56-34fb-4672-ac92-6209273fee6c")
+		)
+		(instances
+			(project "STM32 GPS Tracker"
+				(path "/320039b8-7fce-4c2b-9942-11f4784b13b1"
+					(reference "#PWR042")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GND")
+		(at 234.95 143.51 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "7464f122-66c3-4275-a852-bf730405e50d")
+		(property "Reference" "#PWR041"
+			(at 234.95 149.86 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "GND"
+			(at 234.95 147.066 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 234.95 143.51 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 234.95 143.51 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+			(at 234.95 143.51 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "e82c9dcd-0bca-440b-993a-77582d0cb4ba")
+		)
+		(instances
+			(project "STM32 GPS Tracker"
+				(path "/320039b8-7fce-4c2b-9942-11f4784b13b1"
+					(reference "#PWR041")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "power:+3.3V")
 		(at 146.05 21.59 0)
 		(unit 1)
@@ -15051,25 +15203,26 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(fields_autoplaced yes)
 		(uuid "7b7145c8-f88b-4f08-bd0c-b07d09ed642a")
-		(property "Reference" "J4"
-			(at 133.985 173.99 0)
+		(property "Reference" "J2"
+			(at 127.762 172.466 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
+				(justify right)
 			)
 		)
-		(property "Value" "Conn_01x08_Pin"
-			(at 133.985 171.45 0)
+		(property "Value" "LEFT HEADER PINS"
+			(at 125.73 175.768 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
+				(justify right)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Connector_PinHeader_2.54mm:PinHeader_1x08_P2.54mm_Vertical"
 			(at 134.62 161.29 0)
 			(effects
 				(font
@@ -15123,7 +15276,7 @@
 		(instances
 			(project "STM32 GPS Tracker"
 				(path "/320039b8-7fce-4c2b-9942-11f4784b13b1"
-					(reference "J4")
+					(reference "J2")
 					(unit 1)
 				)
 			)
@@ -15286,7 +15439,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
 			(at 47.9552 68.58 0)
 			(effects
 				(font
@@ -15355,7 +15508,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_Tantalum_SMD:CP_EIA-7343-15_Kemet-W"
 			(at 147.0152 36.83 0)
 			(effects
 				(font
@@ -15425,7 +15578,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "MountingHole:MountingHole_2.2mm_M2_Pad_Via"
 			(at 234.95 157.48 0)
 			(effects
 				(font
@@ -15489,7 +15642,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_SMD:R_0805_2012Metric"
 			(at 271.272 105.41 90)
 			(effects
 				(font
@@ -15558,7 +15711,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
 			(at 195.2752 120.65 0)
 			(effects
 				(font
@@ -15608,25 +15761,26 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(fields_autoplaced yes)
 		(uuid "840bd10d-93bd-4e05-83fc-9a99b3fe70f1")
-		(property "Reference" "J2"
-			(at 160.655 173.99 0)
+		(property "Reference" "J4"
+			(at 155.702 171.196 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
+				(justify right)
 			)
 		)
-		(property "Value" "Conn_01x08_Pin"
-			(at 160.655 171.45 0)
+		(property "Value" "RIGHT HEADER PINS"
+			(at 154.178 175.768 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
+				(justify right)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Connector_PinHeader_2.54mm:PinHeader_1x08_P2.54mm_Vertical"
 			(at 161.29 161.29 0)
 			(effects
 				(font
@@ -15680,7 +15834,7 @@
 		(instances
 			(project ""
 				(path "/320039b8-7fce-4c2b-9942-11f4784b13b1"
-					(reference "J2")
+					(reference "J4")
 					(unit 1)
 				)
 			)
@@ -15778,7 +15932,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
 			(at 268.9352 27.94 0)
 			(effects
 				(font
@@ -15847,7 +16001,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
 			(at 220.6752 36.83 0)
 			(effects
 				(font
@@ -15914,7 +16068,7 @@
 				)
 			)
 		)
-		(property "Footprint" "SIM808:XCVR_SIM808"
+		(property "Footprint" "Footprints:XCVR_SIM808"
 			(at 54.61 128.27 0)
 			(effects
 				(font
@@ -16367,7 +16521,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
 			(at 251.1552 27.94 0)
 			(effects
 				(font
@@ -16434,7 +16588,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_SMD:R_0201_0603Metric"
 			(at 184.912 116.84 90)
 			(effects
 				(font
@@ -16503,7 +16657,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
 			(at 260.0452 27.94 0)
 			(effects
 				(font
@@ -16700,7 +16854,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_SMD:R_0402_1005Metric"
 			(at 193.548 60.96 90)
 			(effects
 				(font
@@ -16768,7 +16922,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Fuse:Fuse_0402_1005Metric"
 			(at 45.72 28.448 90)
 			(effects
 				(font
@@ -16908,7 +17062,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "MountingHole:MountingHole_2.2mm_M2_Pad_Via"
 			(at 186.69 157.48 0)
 			(effects
 				(font
@@ -17040,7 +17194,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Button_Switch_SMD:SW_Push_1P1T_NO_CK_KSC6xxJ"
 			(at 204.47 33.02 0)
 			(effects
 				(font
@@ -17092,7 +17246,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "b47a0382-2e5e-4722-950f-d37e0b3aa0b1")
-		(property "Reference" "ANT1"
+		(property "Reference" "GSM1"
 			(at 119.38 66.04 0)
 			(effects
 				(font
@@ -17108,7 +17262,7 @@
 				)
 			)
 		)
-		(property "Footprint" "U.FL-R-SMT-1:U.FL-R-SMT-1"
+		(property "Footprint" "Footprints:U.FL-R-SMT-1"
 			(at 119.38 73.66 0)
 			(effects
 				(font
@@ -17238,7 +17392,7 @@
 		(instances
 			(project ""
 				(path "/320039b8-7fce-4c2b-9942-11f4784b13b1"
-					(reference "ANT1")
+					(reference "GSM1")
 					(unit 1)
 				)
 			)
@@ -17269,7 +17423,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
 			(at 201.93 107.442 90)
 			(effects
 				(font
@@ -17377,6 +17531,71 @@
 		)
 	)
 	(symbol
+		(lib_id "power:GND")
+		(at 234.95 160.02 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "bc17ebd9-69e0-4d04-9019-4dcd2014a53e")
+		(property "Reference" "#PWR043"
+			(at 234.95 166.37 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "GND"
+			(at 234.95 163.576 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 234.95 160.02 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 234.95 160.02 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+			(at 234.95 160.02 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "0f8080cb-c7b3-4f0e-a68c-82e322977e66")
+		)
+		(instances
+			(project "STM32 GPS Tracker"
+				(path "/320039b8-7fce-4c2b-9942-11f4784b13b1"
+					(reference "#PWR043")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "Device:D_Zener")
 		(at 55.88 64.77 270)
 		(unit 1)
@@ -17403,7 +17622,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Diode_SMD:D_0805_2012Metric"
 			(at 55.88 64.77 0)
 			(effects
 				(font
@@ -17641,6 +17860,71 @@
 		)
 	)
 	(symbol
+		(lib_id "power:GND")
+		(at 186.69 143.51 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "cd97f376-6e12-47a1-8cb3-9b903411a68e")
+		(property "Reference" "#PWR040"
+			(at 186.69 149.86 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "GND"
+			(at 186.69 147.066 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 186.69 143.51 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 186.69 143.51 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+			(at 186.69 143.51 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "da6c5b8f-7a4e-47d1-8d5e-542c75974a15")
+		)
+		(instances
+			(project "STM32 GPS Tracker"
+				(path "/320039b8-7fce-4c2b-9942-11f4784b13b1"
+					(reference "#PWR040")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "U.FL-R-SMT-1:U.FL-R-SMT-1")
 		(at 153.67 72.39 0)
 		(unit 1)
@@ -17650,7 +17934,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "ced8b4ff-e184-4208-b994-23a5bb525ea6")
-		(property "Reference" "ANT2"
+		(property "Reference" "GPS1"
 			(at 153.67 64.77 0)
 			(effects
 				(font
@@ -17666,7 +17950,7 @@
 				)
 			)
 		)
-		(property "Footprint" "U.FL-R-SMT-1:U.FL-R-SMT-1"
+		(property "Footprint" "Footprints:U.FL-R-SMT-1"
 			(at 153.67 72.39 0)
 			(effects
 				(font
@@ -17796,7 +18080,7 @@
 		(instances
 			(project ""
 				(path "/320039b8-7fce-4c2b-9942-11f4784b13b1"
-					(reference "ANT2")
+					(reference "GPS1")
 					(unit 1)
 				)
 			)
@@ -17829,7 +18113,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "LED_SMD:LED_0201_0603Metric"
 			(at 273.05 115.57 0)
 			(effects
 				(font
@@ -17973,7 +18257,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0201_0603Metric"
 			(at 233.3752 27.94 0)
 			(effects
 				(font
@@ -18237,7 +18521,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0201_0603Metric"
 			(at 84.7852 86.36 0)
 			(effects
 				(font
@@ -18307,7 +18591,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "MountingHole:MountingHole_2.2mm_M2_Pad_Via"
 			(at 234.95 140.97 0)
 			(effects
 				(font
@@ -18374,7 +18658,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "693010020611:693010020611"
+		(property "Footprint" "Footprints:693010020611"
 			(at 157.48 105.41 0)
 			(effects
 				(font
@@ -18713,7 +18997,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
 			(at 207.9752 74.93 0)
 			(effects
 				(font
@@ -18975,7 +19259,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_SMD:R_0805_2012Metric"
 			(at 183.388 27.94 90)
 			(effects
 				(font
@@ -19042,7 +19326,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_SMD:R_0805_2012Metric"
 			(at 165.608 30.48 90)
 			(effects
 				(font
@@ -19177,7 +19461,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "MountingHole:MountingHole_2.2mm_M2_Pad_Via"
 			(at 186.69 140.97 0)
 			(effects
 				(font
@@ -19241,7 +19525,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_SMD:R_0805_2012Metric"
 			(at 262.382 105.41 90)
 			(effects
 				(font
@@ -19308,7 +19592,7 @@
 				)
 			)
 		)
-		(property "Footprint" "SMF05CT1G:SOT65P210X110-6N"
+		(property "Footprint" "Footprints:SOT65P210X110-6N"
 			(at 132.08 129.54 0)
 			(effects
 				(font
