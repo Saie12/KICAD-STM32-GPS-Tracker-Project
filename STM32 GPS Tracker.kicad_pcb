@@ -5325,7 +5325,7 @@
 			(uuid "39fe1866-a2fc-4c52-9607-d0fa10f1baf3")
 		)
 		(embedded_fonts no)
-		(model "${KICAD9_3DMODEL_DIR}/Button_Switch_SMD.3dshapes/SW_push_1P1T_NO_CK_KSC6xxJxxx.step"
+		(model "${KIPRJMOD}/Libraries/3D Models/KSC641JLFS.stp"
 			(offset
 				(xyz 0 0 0)
 			)
@@ -5333,7 +5333,7 @@
 				(xyz 1 1 1)
 			)
 			(rotate
-				(xyz 0 0 0)
+				(xyz -0 -0 -0)
 			)
 		)
 	)
@@ -7647,7 +7647,7 @@
 			(uuid "dfbe3918-47e8-4415-b759-d2c54b69d4cb")
 		)
 		(embedded_fonts no)
-		(model "${KICAD9_3DMODEL_DIR}/Button_Switch_SMD.3dshapes/SW_push_1P1T_NO_CK_KSC6xxJxxx.step"
+		(model "${KIPRJMOD}/Libraries/3D Models/KSC641JLFS.stp"
 			(offset
 				(xyz 0 0 0)
 			)
@@ -11191,6 +11191,17 @@
 			(uuid "46941629-88a7-450a-abfe-785d013f246f")
 		)
 		(embedded_fonts no)
+		(model "${KIPRJMOD}/Libraries/3D Models/SMF05CT1G.step"
+			(offset
+				(xyz 0 0 0)
+			)
+			(scale
+				(xyz 1 1 1)
+			)
+			(rotate
+				(xyz -90 -0 -0)
+			)
+		)
 	)
 	(footprint "Footprints:693010020611"
 		(layer "B.Cu")
@@ -12549,6 +12560,17 @@
 			)
 		)
 		(embedded_fonts no)
+		(model "${KIPRJMOD}/Libraries/3D Models/693010020611.step"
+			(offset
+				(xyz 0 0 0)
+			)
+			(scale
+				(xyz 1 1 1)
+			)
+			(rotate
+				(xyz -0 -0 180)
+			)
+		)
 	)
 	(footprint "Resistor_SMD:R_0402_1005Metric"
 		(layer "B.Cu")
@@ -14405,6 +14427,17 @@
 			(uuid "2cc77881-1575-4658-a81f-0cbb2234c3d9")
 		)
 		(embedded_fonts no)
+		(model "${KIPRJMOD}/Libraries/3D Models/SIM808.step"
+			(offset
+				(xyz 0 0 0)
+			)
+			(scale
+				(xyz 1 1 1)
+			)
+			(rotate
+				(xyz -90 -0 90)
+			)
+		)
 	)
 	(footprint "Footprints:U.FL-R-SMT-1"
 		(layer "B.Cu")
@@ -14728,6 +14761,17 @@
 			(uuid "cf718f0d-e063-4080-ba0d-bb377b99d59c")
 		)
 		(embedded_fonts no)
+		(model "${KIPRJMOD}/Libraries/3D Models/U.FL-R-SMT-1.step"
+			(offset
+				(xyz 55.25 1 22.5)
+			)
+			(scale
+				(xyz 1 1 1)
+			)
+			(rotate
+				(xyz -90 180 -0)
+			)
+		)
 	)
 	(footprint "Capacitor_SMD:C_0402_1005Metric"
 		(layer "B.Cu")
@@ -15459,6 +15503,17 @@
 			(uuid "cdfe6e5a-cb38-4f3f-b777-a1579bc907ff")
 		)
 		(embedded_fonts no)
+		(model "${KIPRJMOD}/Libraries/3D Models/U.FL-R-SMT-1.step"
+			(offset
+				(xyz 55.25 1 22.5)
+			)
+			(scale
+				(xyz 1 1 1)
+			)
+			(rotate
+				(xyz -90 180 -0)
+			)
+		)
 	)
 	(footprint "Resistor_SMD:R_0402_1005Metric"
 		(layer "B.Cu")
