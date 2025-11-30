@@ -1,0 +1,7 @@
+../Core/Src/sim808_gprs.c:10:6:sim808_gprs_init	1
+../Core/Src/sim808_gprs.c:16:21:sim808_gprs_get_state	1
+../Core/Src/sim808_gprs.c:21:17:sim808_gprs_attach	4
+../Core/Src/sim808_gprs.c:54:17:sim808_gprs_open_tcp	3
+../Core/Src/sim808_gprs.c:75:17:sim808_gprs_send_data	3
+../Core/Src/sim808_gprs.c:99:17:sim808_gprs_close	1
+../Core/Src/sim808_gprs.c:110:13:sim808_gprs_state_to_str	5

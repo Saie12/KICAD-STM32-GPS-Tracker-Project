@@ -5,7 +5,6 @@
 #include "sim808_config.h"
 #include "sim808_driver.h"
 #include "sim808_gps.h"
-#include "sim808_gprs.h"
 
 
 /* Private includes ----------------------------------------------------------*/
@@ -89,8 +88,6 @@ int main(void)
 
   /* USER CODE BEGIN 2 */
   sim808_init();
-  sim808_gps_init();
-  sim808_gprs_init();
   /* Welcome message */
   printf("\r\n");
   printf("=============================================\r\n");
@@ -111,64 +108,34 @@ int main(void)
   while (1)
   {
     /* USER CODE END WHILE */
-    sim808_task();
+	 sim808_task();
+    /* In demo mode: just wait or blink LED */
+    /* If real hardware: this would poll UART for GPS data */
+	    /* Periodically show SIM808 state and request GPS info when READY */
+	    static uint32_t last_sim808_tick = 0;
+	    if (HAL_GetTick() - last_sim808_tick >= 2000) {
+	        last_sim808_tick = HAL_GetTick();
 
-    /* Periodically show SIM808 state and request GPS info when READY */
-    static uint32_t last_sim808_tick = 0;
-    if (HAL_GetTick() - last_sim808_tick >= 2000) {
-        last_sim808_tick = HAL_GetTick();
+	        sim808_state_t st = sim808_get_state();
+	        printf("[SIM808] State: %s\r\n", sim808_state_to_str(st));
 
-        sim808_state_t st = sim808_get_state();
-        printf("[SIM808] State: %s\r\n", sim808_state_to_str(st));
+	        if (st == SIM808_STATE_READY) {
+	            sim808_result_t res = sim808_request_gps_info();
+	            if (res == SIM808_OK) {
+	                printf("[SIM808] Requested GPS info (AT+CGNSINF)\r\n");
+	            }
 
-        if (st == SIM808_STATE_READY) {
-            sim808_result_t res = sim808_request_gps_info();
-            if (res == SIM808_OK) {
-                printf("[SIM808] Requested GPS info (AT+CGNSINF)\r\n");
-            }
+	            /* Try to fetch latest SIM808 GPS fix */
+	            gps_fix_t sim_fix;
+	            if (sim808_gps_get_fix(&sim_fix) && sim_fix.valid_fix) {
+	                printf("[SIM808 GPS] Lat: %.6f  Lon: %.6f\r\n",
+	                       sim_fix.latitude, sim_fix.longitude);
+	            } else {
+	                printf("[SIM808 GPS] No valid fix yet\r\n");
+	            }
+	        }
+	    }
 
-            /* Try to fetch latest SIM808 GPS fix */
-            gps_fix_t sim_fix;
-            if (sim808_gps_get_fix(&sim_fix) && sim_fix.valid_fix) {
-                printf("[SIM808 GPS] Lat: %.6f  Lon: %.6f\r\n",
-                       sim_fix.latitude, sim_fix.longitude);
-            } else {
-                printf("[SIM808 GPS] No valid fix yet\r\n");
-            }
-        }
-
-        /* GPRS/TCP test (when SIM808 is READY) */
-        static int gprs_test_done = 0;
-        if (st == SIM808_STATE_READY && !gprs_test_done) {
-            static uint32_t gprs_step_tick = 0;
-            static int gprs_step = 0;
-
-            if (gprs_step == 0) {
-                printf("[SIM808] Initiating GPRS attach...\r\n");
-                sim808_gprs_attach("internet");
-                gprs_step = 1;
-                gprs_step_tick = HAL_GetTick();
-            } else if (gprs_step == 1 && HAL_GetTick() - gprs_step_tick >= 1000) {
-                printf("[SIM808] GPRS State: %s\r\n", sim808_gprs_state_to_str(sim808_gprs_get_state()));
-                if (sim808_gprs_get_state() == SIM808_GPRS_CONNECTED) {
-                    printf("[SIM808] Opening TCP connection...\r\n");
-                    sim808_gprs_open_tcp("example.com", 80);
-                    gprs_step = 2;
-                    gprs_step_tick = HAL_GetTick();
-                }
-            } else if (gprs_step == 2 && HAL_GetTick() - gprs_step_tick >= 1000) {
-                printf("[SIM808] Sending test payload...\r\n");
-                sim808_gprs_send_data("GET / HTTP/1.1\r\nHost: example.com\r\n\r\n");
-                gprs_step = 3;
-                gprs_step_tick = HAL_GetTick();
-            } else if (gprs_step == 3 && HAL_GetTick() - gprs_step_tick >= 1000) {
-                printf("[SIM808] Closing TCP connection...\r\n");
-                sim808_gprs_close();
-                gprs_test_done = 1;
-                printf("[SIM808 GPRS] Test complete!\r\n");
-            }
-        }
-    }
 
     static uint32_t last_blink = 0;
     if (HAL_GetTick() - last_blink >= 500) {

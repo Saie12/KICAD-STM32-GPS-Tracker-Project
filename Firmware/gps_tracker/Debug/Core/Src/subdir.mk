@@ -9,6 +9,7 @@ C_SRCS += \
 ../Core/Src/gps_uart.c \
 ../Core/Src/main.c \
 ../Core/Src/sim808_driver.c \
+../Core/Src/sim808_gprs.c \
 ../Core/Src/sim808_gps.c \
 ../Core/Src/sim808_mock.c \
 ../Core/Src/stm32f0xx_hal_msp.c \
@@ -20,6 +21,7 @@ OBJS += \
 ./Core/Src/gps_uart.o \
 ./Core/Src/main.o \
 ./Core/Src/sim808_driver.o \
+./Core/Src/sim808_gprs.o \
 ./Core/Src/sim808_gps.o \
 ./Core/Src/sim808_mock.o \
 ./Core/Src/stm32f0xx_hal_msp.o \
@@ -31,6 +33,7 @@ C_DEPS += \
 ./Core/Src/gps_uart.d \
 ./Core/Src/main.d \
 ./Core/Src/sim808_driver.d \
+./Core/Src/sim808_gprs.d \
 ./Core/Src/sim808_gps.d \
 ./Core/Src/sim808_mock.d \
 ./Core/Src/stm32f0xx_hal_msp.d \
@@ -45,7 +48,7 @@ Core/Src/%.o Core/Src/%.su Core/Src/%.cyclo: ../Core/Src/%.c Core/Src/subdir.mk
 clean: clean-Core-2f-Src
 
 clean-Core-2f-Src:
-	-$(RM) ./Core/Src/gps_parser.cyclo ./Core/Src/gps_parser.d ./Core/Src/gps_parser.o ./Core/Src/gps_parser.su ./Core/Src/gps_uart.cyclo ./Core/Src/gps_uart.d ./Core/Src/gps_uart.o ./Core/Src/gps_uart.su ./Core/Src/main.cyclo ./Core/Src/main.d ./Core/Src/main.o ./Core/Src/main.su ./Core/Src/sim808_driver.cyclo ./Core/Src/sim808_driver.d ./Core/Src/sim808_driver.o ./Core/Src/sim808_driver.su ./Core/Src/sim808_gps.cyclo ./Core/Src/sim808_gps.d ./Core/Src/sim808_gps.o ./Core/Src/sim808_gps.su ./Core/Src/sim808_mock.cyclo ./Core/Src/sim808_mock.d ./Core/Src/sim808_mock.o ./Core/Src/sim808_mock.su ./Core/Src/stm32f0xx_hal_msp.cyclo ./Core/Src/stm32f0xx_hal_msp.d ./Core/Src/stm32f0xx_hal_msp.o ./Core/Src/stm32f0xx_hal_msp.su ./Core/Src/stm32f0xx_it.cyclo ./Core/Src/stm32f0xx_it.d ./Core/Src/stm32f0xx_it.o ./Core/Src/stm32f0xx_it.su ./Core/Src/system_stm32f0xx.cyclo ./Core/Src/system_stm32f0xx.d ./Core/Src/system_stm32f0xx.o ./Core/Src/system_stm32f0xx.su
+	-$(RM) ./Core/Src/gps_parser.cyclo ./Core/Src/gps_parser.d ./Core/Src/gps_parser.o ./Core/Src/gps_parser.su ./Core/Src/gps_uart.cyclo ./Core/Src/gps_uart.d ./Core/Src/gps_uart.o ./Core/Src/gps_uart.su ./Core/Src/main.cyclo ./Core/Src/main.d ./Core/Src/main.o ./Core/Src/main.su ./Core/Src/sim808_driver.cyclo ./Core/Src/sim808_driver.d ./Core/Src/sim808_driver.o ./Core/Src/sim808_driver.su ./Core/Src/sim808_gprs.cyclo ./Core/Src/sim808_gprs.d ./Core/Src/sim808_gprs.o ./Core/Src/sim808_gprs.su ./Core/Src/sim808_gps.cyclo ./Core/Src/sim808_gps.d ./Core/Src/sim808_gps.o ./Core/Src/sim808_gps.su ./Core/Src/sim808_mock.cyclo ./Core/Src/sim808_mock.d ./Core/Src/sim808_mock.o ./Core/Src/sim808_mock.su ./Core/Src/stm32f0xx_hal_msp.cyclo ./Core/Src/stm32f0xx_hal_msp.d ./Core/Src/stm32f0xx_hal_msp.o ./Core/Src/stm32f0xx_hal_msp.su ./Core/Src/stm32f0xx_it.cyclo ./Core/Src/stm32f0xx_it.d ./Core/Src/stm32f0xx_it.o ./Core/Src/stm32f0xx_it.su ./Core/Src/system_stm32f0xx.cyclo ./Core/Src/system_stm32f0xx.d ./Core/Src/system_stm32f0xx.o ./Core/Src/system_stm32f0xx.su
 
 .PHONY: clean-Core-2f-Src
 
