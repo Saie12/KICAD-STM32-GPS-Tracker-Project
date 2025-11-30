@@ -4,7 +4,6 @@
 #include <unistd.h>  /* for STDOUT_FILENO */
 #include "sim808_config.h"
 #include "sim808_driver.h"
-#include "sim808_gps.h"
 
 
 /* Private includes ----------------------------------------------------------*/
@@ -113,7 +112,7 @@ int main(void)
     /* If real hardware: this would poll UART for GPS data */
 	    /* Periodically show SIM808 state and request GPS info when READY */
 	    static uint32_t last_sim808_tick = 0;
-	    if (HAL_GetTick() - last_sim808_tick >= 2000) {
+	    if (HAL_GetTick() - last_sim808_tick >= 2000) {  /* every 2 seconds */
 	        last_sim808_tick = HAL_GetTick();
 
 	        sim808_state_t st = sim808_get_state();
@@ -124,18 +123,8 @@ int main(void)
 	            if (res == SIM808_OK) {
 	                printf("[SIM808] Requested GPS info (AT+CGNSINF)\r\n");
 	            }
-
-	            /* Try to fetch latest SIM808 GPS fix */
-	            gps_fix_t sim_fix;
-	            if (sim808_gps_get_fix(&sim_fix) && sim_fix.valid_fix) {
-	                printf("[SIM808 GPS] Lat: %.6f  Lon: %.6f\r\n",
-	                       sim_fix.latitude, sim_fix.longitude);
-	            } else {
-	                printf("[SIM808 GPS] No valid fix yet\r\n");
-	            }
 	        }
 	    }
-
 
     static uint32_t last_blink = 0;
     if (HAL_GetTick() - last_blink >= 500) {

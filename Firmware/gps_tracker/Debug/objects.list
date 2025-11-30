@@ -2,6 +2,7 @@
 "./Core/Src/gps_uart.o"
 "./Core/Src/main.o"
 "./Core/Src/sim808_driver.o"
+"./Core/Src/sim808_gps.o"
 "./Core/Src/sim808_mock.o"
 "./Core/Src/stm32f0xx_hal_msp.o"
 "./Core/Src/stm32f0xx_it.o"
