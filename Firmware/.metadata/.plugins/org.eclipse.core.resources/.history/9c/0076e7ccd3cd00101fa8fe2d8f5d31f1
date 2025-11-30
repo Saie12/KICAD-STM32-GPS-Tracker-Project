@@ -33,8 +33,6 @@ sim808_result_t sim808_request_gps_info(void);
 /* Initialize SIM808 driver (mock or real, depending on config) */
 void sim808_init(void);
 
-const char *sim808_state_to_str(sim808_state_t st);
-
 /* Periodic task (call from main loop) */
 void sim808_task(void);
 

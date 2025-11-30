@@ -1,5 +1,6 @@
-../Core/Src/sim808_driver.c:14:6:sim808_init	1
-../Core/Src/sim808_driver.c:24:16:sim808_get_state	1
-../Core/Src/sim808_driver.c:29:17:sim808_request_gps_info	3
-../Core/Src/sim808_driver.c:45:6:sim808_task	1
-../Core/Src/sim808_driver.c:59:13:sim808_process_mock_responses	16
+../Core/Src/sim808_driver.c:11:13:sim808_state_to_str	6
+../Core/Src/sim808_driver.c:26:6:sim808_init	1
+../Core/Src/sim808_driver.c:36:16:sim808_get_state	1
+../Core/Src/sim808_driver.c:41:17:sim808_request_gps_info	3
+../Core/Src/sim808_driver.c:57:6:sim808_task	1
+../Core/Src/sim808_driver.c:71:13:sim808_process_mock_responses	16

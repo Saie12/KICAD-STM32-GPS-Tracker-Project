@@ -8,18 +8,6 @@ static uint32_t       g_last_tick = 0;
 static uint8_t        g_step = 0;
 static sim808_cmd_t  g_active_cmd = SIM808_CMD_NONE;
 
-const char *sim808_state_to_str(sim808_state_t st)
-{
-    switch (st) {
-    case SIM808_STATE_IDLE:        return "IDLE";
-    case SIM808_STATE_INIT:        return "INIT";
-    case SIM808_STATE_GPRS_ATTACH: return "GPRS_ATTACH";
-    case SIM808_STATE_GPS_ON:      return "GPS_ON";
-    case SIM808_STATE_READY:       return "READY";
-    default:                       return "UNKNOWN";
-    }
-}
-
 /* Forward‑decl */
 static void sim808_process_mock_responses(void);
 
