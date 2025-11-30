@@ -1,9 +1,25 @@
-
+/* USER CODE BEGIN Header */
+/**
+  ******************************************************************************
+  * @file           : main.c
+  * @brief          : Main program body
+  ******************************************************************************
+  * @attention
+  *
+  * Copyright (c) 2025 STMicroelectronics.
+  * All rights reserved.
+  *
+  * This software is licensed under terms that can be found in the LICENSE file
+  * in the root directory of this software component.
+  * If no LICENSE file comes with this software, it is provided AS-IS.
+  *
+  ******************************************************************************
+  */
+/* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 #include <unistd.h>  /* for STDOUT_FILENO */
 #include "sim808_config.h"
-#include "sim808_driver.h"
 
 
 /* Private includes ----------------------------------------------------------*/
@@ -86,7 +102,7 @@ int main(void)
   gps_uart_init();
 
   /* USER CODE BEGIN 2 */
-  sim808_init();
+
   /* Welcome message */
   printf("\r\n");
   printf("=============================================\r\n");
@@ -107,7 +123,7 @@ int main(void)
   while (1)
   {
     /* USER CODE END WHILE */
-	 sim808_task();
+
     /* In demo mode: just wait or blink LED */
     /* If real hardware: this would poll UART for GPS data */
 

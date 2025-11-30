@@ -1,0 +1,4 @@
+../Core/Src/sim808_driver.c:13:6:sim808_init	8	static
+../Core/Src/sim808_driver.c:23:16:sim808_get_state	8	static
+../Core/Src/sim808_driver.c:28:6:sim808_task	8	static
+../Core/Src/sim808_driver.c:42:13:sim808_process_mock_responses	8	static
