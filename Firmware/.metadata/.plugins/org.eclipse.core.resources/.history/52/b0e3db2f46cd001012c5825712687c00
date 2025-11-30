@@ -1,0 +1,414 @@
+/**
+ * @file config.h
+ * @brief Compile-time configuration for GPS tracker firmware
+ * @author Embedded Systems Team
+ * @date 2025-11-29
+ * 
+ * All firmware behavior controlled through compile-time definitions.
+ * Edit this file to customize firmware features and parameters.
+ */
+
+#ifndef __CONFIG_H__
+#define __CONFIG_H__
+
+/* ==================== BUILD CONFIGURATION ==================== */
+
+/**
+ * @def SIMULATION_MODE
+ * Enable simulation mode (mock SIM808, generated GPS data)
+ * Set to 1 for testing without hardware
+ * Set to 0 for production with real hardware
+ */
+#define SIMULATION_MODE                 1
+
+/**
+ * @def ENABLE_DEBUG_LOGGING
+ * Enable detailed debug output via UART
+ * Set to 1 for development/debugging
+ * Set to 0 for production to reduce code size
+ */
+#define ENABLE_DEBUG_LOGGING            1
+
+/**
+ * @def PRODUCTION_BUILD
+ * Production build mode (optimized, minimal overhead)
+ * Note: Conflicts with ENABLE_DEBUG_LOGGING
+ */
+// #define PRODUCTION_BUILD             1
+
+/* ==================== UART CONFIGURATION ==================== */
+
+/**
+ * @def UART_BAUDRATE
+ * UART communication speed (bits per second)
+ * SIM808 typically operates at 115200 baud
+ */
+#define UART_BAUDRATE                   115200
+
+/**
+ * @def UART_RX_BUFFER_SIZE
+ * Size of UART receive circular buffer (bytes)
+ * Sized for typical SIM808 responses (~256 bytes max)
+ */
+#define UART_RX_BUFFER_SIZE             512
+
+/**
+ * @def UART_TX_BUFFER_SIZE
+ * Size of UART transmit circular buffer (bytes)
+ */
+#define UART_TX_BUFFER_SIZE             256
+
+/**
+ * @def UART_TIMEOUT_MS
+ * UART operation timeout (milliseconds)
+ */
+#define UART_TIMEOUT_MS                 1000
+
+/* ==================== GPIO CONFIGURATION ==================== */
+
+/**
+ * @def GPIO_LED1_PORT
+ * GPIO port for LED1 (GPS lock indicator)
+ */
+#define GPIO_LED1_PORT                  GPIOA
+
+/**
+ * @def GPIO_LED1_PIN
+ * GPIO pin for LED1
+ */
+#define GPIO_LED1_PIN                   GPIO_PIN_4
+
+/**
+ * @def GPIO_BUTTON1_PORT
+ * GPIO port for Button1 (SW1 - Start/Stop)
+ */
+#define GPIO_BUTTON1_PORT               GPIOC
+
+/**
+ * @def GPIO_BUTTON1_PIN
+ * GPIO pin for Button1
+ */
+#define GPIO_BUTTON1_PIN                GPIO_PIN_13
+
+/**
+ * @def GPIO_BUTTON2_PORT
+ * GPIO port for Button2 (SW2 - Mode)
+ */
+#define GPIO_BUTTON2_PORT               GPIOF
+
+/**
+ * @def GPIO_BUTTON2_PIN
+ * GPIO pin for Button2
+ */
+#define GPIO_BUTTON2_PIN                GPIO_PIN_0
+
+/* ==================== GPS CONFIGURATION ==================== */
+
+/**
+ * @def GPS_ACQUISITION_TIMEOUT
+ * Maximum time to wait for GPS lock (seconds)
+ * 120 seconds = 2 minutes (typical for cold start)
+ */
+#define GPS_ACQUISITION_TIMEOUT         120
+
+/**
+ * @def GPS_WARM_START_TIMEOUT
+ * Time to wait for GPS lock in warm start (seconds)
+ * 30 seconds typical when ephemeris data available
+ */
+#define GPS_WARM_START_TIMEOUT          30
+
+/**
+ * @def GPS_REQUIRED_SATELLITES
+ * Minimum satellites required for valid fix
+ * 4 satellites minimum for 3D position fix
+ */
+#define GPS_REQUIRED_SATELLITES         4
+
+/**
+ * @def GPS_ENABLE_BY_DEFAULT
+ * Enable GPS immediately on boot
+ */
+#define GPS_ENABLE_BY_DEFAULT           1
+
+/* ==================== GPRS CONFIGURATION ==================== */
+
+/**
+ * @def GPRS_TX_INTERVAL
+ * Interval between GPRS transmissions (seconds)
+ * 30 seconds = location update every 30 seconds
+ */
+#define GPRS_TX_INTERVAL                30
+
+/**
+ * @def GPRS_MAX_RETRIES
+ * Maximum number of transmission retries
+ * Before giving up and returning to sleep
+ */
+#define GPRS_MAX_RETRIES                3
+
+/**
+ * @def GPRS_RETRY_DELAY
+ * Delay between retries (milliseconds)
+ * Uses exponential backoff: delay * (1 << attempt)
+ */
+#define GPRS_RETRY_DELAY                1000
+
+/**
+ * @def GPRS_ENABLE_BY_DEFAULT
+ * Enable GPRS immediately on boot
+ */
+#define GPRS_ENABLE_BY_DEFAULT          1
+
+/**
+ * @def GPRS_CONNECTION_TIMEOUT
+ * Timeout for GPRS connection (seconds)
+ */
+#define GPRS_CONNECTION_TIMEOUT         30
+
+/**
+ * @def GPRS_TRANSMISSION_TIMEOUT
+ * Timeout for data transmission (seconds)
+ */
+#define GPRS_TRANSMISSION_TIMEOUT       10
+
+/* ==================== NETWORK CONFIGURATION ==================== */
+
+/**
+ * @def SERVER_URL
+ * Target server URL for GPS data transmission
+ */
+#define SERVER_URL                      "api.gps-tracker.local"
+
+/**
+ * @def SERVER_PORT
+ * Target server port (HTTP typically 80, HTTPS 443)
+ */
+#define SERVER_PORT                     80
+
+/**
+ * @def SERVER_TIMEOUT
+ * Server connection timeout (milliseconds)
+ */
+#define SERVER_TIMEOUT                  5000
+
+/**
+ * @def APN_NAME
+ * Access Point Name for GPRS connection
+ * Edit for your mobile carrier (e.g., "airtelgprs.com" for Airtel India)
+ */
+#define APN_NAME                        "airtelgprs.com"
+
+/**
+ * @def APN_USERNAME
+ * APN authentication username (empty if not required)
+ */
+#define APN_USERNAME                    ""
+
+/**
+ * @def APN_PASSWORD
+ * APN authentication password (empty if not required)
+ */
+#define APN_PASSWORD                    ""
+
+/* ==================== POWER MANAGEMENT ==================== */
+
+/**
+ * @def POWER_SAVE_ENABLED
+ * Enable power save mode (sleep between transmissions)
+ */
+#define POWER_SAVE_ENABLED              1
+
+/**
+ * @def SLEEP_DURATION_SECONDS
+ * Duration of sleep mode (seconds)
+ * After transmission, sleep this long before next acquisition
+ */
+#define SLEEP_DURATION_SECONDS          60
+
+/**
+ * @def WATCHDOG_TIMEOUT_MS
+ * Watchdog timer timeout (milliseconds)
+ * 0 = disabled
+ */
+#define WATCHDOG_TIMEOUT_MS             0
+
+/**
+ * @def BATTERY_WARNING_THRESHOLD_MV
+ * Battery voltage threshold for warning (millivolts)
+ * Below this triggers low-power mode
+ */
+#define BATTERY_WARNING_THRESHOLD_MV    3300
+
+/**
+ * @def BATTERY_CRITICAL_THRESHOLD_MV
+ * Battery voltage threshold for critical (millivolts)
+ * Below this stops non-critical operations
+ */
+#define BATTERY_CRITICAL_THRESHOLD_MV   3000
+
+/* ==================== TIMING CONFIGURATION ==================== */
+
+/**
+ * @def SYSTICK_INTERVAL_MS
+ * System tick interval (milliseconds)
+ * 1 ms typical for STM32 HAL
+ */
+#define SYSTICK_INTERVAL_MS             1
+
+/**
+ * @def BUTTON_DEBOUNCE_MS
+ * Button debounce time (milliseconds)
+ */
+#define BUTTON_DEBOUNCE_MS              20
+
+/**
+ * @def AT_COMMAND_TIMEOUT_MS
+ * Timeout for AT command responses (milliseconds)
+ * 1000 ms = 1 second typical
+ */
+#define AT_COMMAND_TIMEOUT_MS           1000
+
+/**
+ * @def LED_BLINK_INTERVAL_MS
+ * LED blink interval (milliseconds)
+ * For status indication
+ */
+#define LED_BLINK_INTERVAL_MS           500
+
+/* ==================== MEMORY CONFIGURATION ==================== */
+
+/**
+ * @def MAX_AT_RESPONSE_LENGTH
+ * Maximum length of AT command response (bytes)
+ */
+#define MAX_AT_RESPONSE_LENGTH          512
+
+/**
+ * @def MAX_GPS_SENTENCE_LENGTH
+ * Maximum length of GPS NMEA sentence (bytes)
+ * Standard NMEA max is 82 characters
+ */
+#define MAX_GPS_SENTENCE_LENGTH         128
+
+/**
+ * @def MAX_NETWORK_ADDRESS_LENGTH
+ * Maximum length for network addresses (bytes)
+ */
+#define MAX_NETWORK_ADDRESS_LENGTH      16
+
+/**
+ * @def DATA_LOG_BUFFER_SIZE
+ * Size of data logging buffer (bytes)
+ * For storing last N location updates
+ */
+#define DATA_LOG_BUFFER_SIZE            1024
+
+/* ==================== SIMULATION MODE SETTINGS ==================== */
+
+#if SIMULATION_MODE
+
+/**
+ * @def SIMULATION_GPS_LATITUDE
+ * Simulated GPS latitude (for testing)
+ * Pune, India coordinates
+ */
+#define SIMULATION_GPS_LATITUDE         18.5204f
+
+/**
+ * @def SIMULATION_GPS_LONGITUDE
+ * Simulated GPS longitude (for testing)
+ */
+#define SIMULATION_GPS_LONGITUDE        73.8567f
+
+/**
+ * @def SIMULATION_GPS_ALTITUDE
+ * Simulated GPS altitude (meters)
+ */
+#define SIMULATION_GPS_ALTITUDE         560.0f
+
+/**
+ * @def SIMULATION_UPDATE_INTERVAL_MS
+ * Interval between simulated updates (milliseconds)
+ */
+#define SIMULATION_UPDATE_INTERVAL_MS   5000
+
+/**
+ * @def SIMULATION_GSIGNAL_STRENGTH
+ * Simulated GSM signal strength (0-31)
+ */
+#define SIMULATION_GSM_SIGNAL_STRENGTH  25
+
+#endif /* SIMULATION_MODE */
+
+/* ==================== DEBUG OUTPUT CONFIGURATION ==================== */
+
+#if ENABLE_DEBUG_LOGGING
+
+/**
+ * @def DEBUG_PRINT(...)
+ * Debug print macro (uses printf redirection)
+ */
+#define DEBUG_PRINT(fmt, ...)  printf(fmt, ##__VA_ARGS__)
+
+/**
+ * @def DEBUG_LOG_GPS
+ * Log GPS data updates
+ */
+#define DEBUG_LOG_GPS                   1
+
+/**
+ * @def DEBUG_LOG_GSM
+ * Log GSM status changes
+ */
+#define DEBUG_LOG_GSM                   1
+
+/**
+ * @def DEBUG_LOG_AT_COMMANDS
+ * Log all AT commands sent/received
+ */
+#define DEBUG_LOG_AT_COMMANDS           1
+
+/**
+ * @def DEBUG_LOG_POWER
+ * Log power state transitions
+ */
+#define DEBUG_LOG_POWER                 1
+
+#else
+
+/**
+ * @def DEBUG_PRINT(...)
+ * No-op in production build
+ */
+#define DEBUG_PRINT(fmt, ...)           do { } while(0)
+
+#endif /* ENABLE_DEBUG_LOGGING */
+
+/* ==================== VERSION INFORMATION ==================== */
+
+/**
+ * @def FIRMWARE_VERSION_MAJOR
+ * Firmware major version
+ */
+#define FIRMWARE_VERSION_MAJOR          1
+
+/**
+ * @def FIRMWARE_VERSION_MINOR
+ * Firmware minor version
+ */
+#define FIRMWARE_VERSION_MINOR          0
+
+/**
+ * @def FIRMWARE_VERSION_PATCH
+ * Firmware patch version
+ */
+#define FIRMWARE_VERSION_PATCH          0
+
+/**
+ * @def BUILD_DATE
+ * Firmware build date
+ */
+#define BUILD_DATE                      "2025-11-29"
+
+#endif /* __CONFIG_H__ */

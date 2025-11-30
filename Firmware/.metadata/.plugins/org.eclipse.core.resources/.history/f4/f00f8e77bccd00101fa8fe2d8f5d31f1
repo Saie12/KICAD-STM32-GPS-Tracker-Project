@@ -1,0 +1,98 @@
+#include "gps_uart.h"
+#include "main.h"      /* for huart2 */
+#include <string.h>
+
+/* Simple ring buffer for RX bytes */
+static volatile uint8_t  rx_buf[GPS_RX_BUFFER_SIZE];
+static volatile uint16_t rx_head = 0;
+static volatile uint16_t rx_tail = 0;
+
+static uint8_t rx_byte; /* single‑byte buffer for HAL UART IT */
+
+/* Push a byte into ring buffer */
+void gps_uart_rx_byte(uint8_t byte)
+{
+    uint16_t next = (uint16_t)((rx_head + 1U) % GPS_RX_BUFFER_SIZE);
+    if (next != rx_tail) {
+        rx_buf[rx_head] = byte;
+        rx_head = next;
+    }
+    /* else: buffer overflow, byte is dropped */
+}
+
+/* Initialize UART2 reception in interrupt mode */
+void gps_uart_init(void)
+{
+    /* Start first interrupt‑driven receive */
+    HAL_UART_Receive_IT(&huart2, &rx_byte, 1);
+}
+
+/* Called from HAL UART RX complete callback (see main.c) */
+void gps_uart_on_rx_complete(void)
+{
+    gps_uart_rx_byte(rx_byte);
+    /* Restart reception for next byte */
+    HAL_UART_Receive_IT(&huart2, &rx_byte, 1);
+}
+
+/* Get one byte from ring buffer, return -1 if empty */
+static int rb_get_char(void)
+{
+    if (rx_head == rx_tail) {
+        return -1; /* empty */
+    }
+    uint8_t c = rx_buf[rx_tail];
+    rx_tail = (uint16_t)((rx_tail + 1U) % GPS_RX_BUFFER_SIZE);
+    return (int)c;
+}
+
+/* Assemble a full NMEA line ending with \n. Returns 1 if a line is copied. */
+int gps_uart_get_line(char *out, int max_len)
+{
+    static char line[GPS_LINE_BUFFER_SIZE];
+    static int  idx = 0;
+
+    if (out == NULL || max_len <= 0) {
+        return 0;
+    }
+
+    while (1) {
+        int ch = rb_get_char();
+        if (ch < 0) {
+            /* no more data */
+            return 0;
+        }
+
+        char c = (char)ch;
+        if (c == '\r') {
+            /* skip */
+            continue;
+        }
+
+        if (c == '\n') {
+            /* end of line */
+            line[idx] = '\0';
+            if (idx > 0) {
+                /* copy to user buffer */
+                if (idx >= max_len) {
+                    idx = 0;
+                    return 0; /* line too long; drop */
+                }
+                strcpy(out, line);
+                idx = 0;
+                return 1;
+            } else {
+                /* empty line; ignore */
+                idx = 0;
+                continue;
+            }
+        }
+
+        if (idx < (GPS_LINE_BUFFER_SIZE - 1)) {
+            line[idx++] = c;
+        } else {
+            /* overflow in line buffer; reset */
+            idx = 0;
+        }
+    }
+}

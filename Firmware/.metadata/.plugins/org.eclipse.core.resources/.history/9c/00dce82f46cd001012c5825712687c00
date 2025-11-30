@@ -1,0 +1,14 @@
+/**
+ * @file sim808_gps.h
+ * @brief GPS parsing module (PHASE 4 stub)
+ */
+
+#ifndef __SIM808_GPS_H__
+#define __SIM808_GPS_H__
+
+#include <stdint.h>
+#include "types.h"
+
+error_code_t gps_parse_nmea(const char *sentence, gps_location_t *location);
+
+#endif

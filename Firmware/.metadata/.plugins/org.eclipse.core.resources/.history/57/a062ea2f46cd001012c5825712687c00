@@ -1,0 +1,237 @@
+/**
+ * @file types.h
+ * @brief Common types and data structures for GPS tracker firmware
+ * @author Embedded Systems Team
+ * @date 2025-11-29
+ * 
+ * Contains all common types, enums, and structures used across the firmware.
+ * Ensures consistent data representations throughout the project.
+ */
+
+#ifndef __TYPES_H__
+#define __TYPES_H__
+
+#include <stdint.h>
+#include <stdbool.h>
+
+/* ==================== Status Codes ==================== */
+
+/**
+ * @enum error_code_t
+ * @brief Standard error codes for all firmware functions
+ */
+typedef enum {
+    ERROR_OK                 = 0,    /**< Operation successful */
+    ERROR_INVALID_PARAM      = 1,    /**< Invalid parameter */
+    ERROR_TIMEOUT            = 2,    /**< Operation timeout */
+    ERROR_UART_TX_BUSY       = 3,    /**< UART TX in progress */
+    ERROR_BUFFER_FULL        = 4,    /**< Buffer overflow */
+    ERROR_BUFFER_EMPTY       = 5,    /**< Buffer underrun */
+    ERROR_DEVICE_NOT_READY   = 6,    /**< Device not initialized */
+    ERROR_INVALID_RESPONSE   = 7,    /**< Unexpected response format */
+    ERROR_NO_SIGNAL          = 8,    /**< No GSM signal */
+    ERROR_GPS_TIMEOUT        = 9,    /**< GPS acquisition timeout */
+    ERROR_NETWORK_ERROR      = 10,   /**< Network communication error */
+    ERROR_MEMORY_FULL        = 11,   /**< Memory allocation failed */
+    ERROR_INVALID_STATE      = 12,   /**< Invalid state transition */
+    ERROR_CRC_FAILED         = 13,   /**< CRC validation failed */
+    ERROR_UNKNOWN            = 255   /**< Unknown error */
+} error_code_t;
+
+/* ==================== State Machines ==================== */
+
+/**
+ * @enum device_state_t
+ * @brief Main device operational state
+ */
+typedef enum {
+    STATE_INIT,          /**< Initialization state */
+    STATE_READY,         /**< Ready to accept commands */
+    STATE_GPS_ACQUIRING, /**< Acquiring GPS lock */
+    STATE_TRACKING,      /**< Active tracking */
+    STATE_TRANSMITTING,  /**< Transmitting data */
+    STATE_SLEEP,         /**< Sleep mode */
+    STATE_ERROR          /**< Error state */
+} device_state_t;
+
+/**
+ * @enum gsm_state_t
+ * @brief GSM module state
+ */
+typedef enum {
+    GSM_OFF,             /**< GSM module not ready */
+    GSM_NO_SIGNAL,       /**< Searching for network */
+    GSM_HOME_NETWORK,    /**< Connected to home network */
+    GSM_ROAMING,         /**< Connected to roaming network */
+    GSM_ERROR            /**< GSM error state */
+} gsm_state_t;
+
+/**
+ * @enum gps_state_t
+ * @brief GPS acquisition state
+ */
+typedef enum {
+    GPS_OFF,             /**< GPS not enabled */
+    GPS_SEARCHING,       /**< Searching for satellites */
+    GPS_LOCKED,          /**< Lock acquired */
+    GPS_NO_FIX,          /**< GPS ready but no fix */
+    GPS_TIMEOUT          /**< GPS acquisition timeout */
+} gps_state_t;
+
+/* ==================== GPS Data Structures ==================== */
+
+/**
+ * @struct gps_time_t
+ * @brief GPS time information (from NMEA)
+ */
+typedef struct {
+    uint8_t  hour;       /**< Hour (0-23) */
+    uint8_t  minute;     /**< Minute (0-59) */
+    uint8_t  second;     /**< Second (0-59) */
+    uint16_t millisecond;/**< Millisecond (0-999) */
+} gps_time_t;
+
+/**
+ * @struct gps_date_t
+ * @brief GPS date information (from NMEA)
+ */
+typedef struct {
+    uint8_t  day;        /**< Day (1-31) */
+    uint8_t  month;      /**< Month (1-12) */
+    uint16_t year;       /**< Year (2000+) */
+} gps_date_t;
+
+/**
+ * @struct gps_location_t
+ * @brief GPS location data
+ */
+typedef struct {
+    float    latitude;   /**< Latitude in degrees (-90 to +90) */
+    float    longitude;  /**< Longitude in degrees (-180 to +180) */
+    float    altitude;   /**< Altitude in meters */
+    float    speed_kmh;  /**< Speed in km/h */
+    float    course;     /**< Course over ground in degrees */
+    uint8_t  satellites; /**< Number of satellites used */
+    uint8_t  hdop;       /**< Horizontal Dilution of Precision */
+    gps_time_t time;     /**< UTC time */
+    gps_date_t date;     /**< UTC date */
+    bool     valid;      /**< Data validity flag */
+} gps_location_t;
+
+/* ==================== GSM/GPRS Data Structures ==================== */
+
+/**
+ * @struct gsm_signal_t
+ * @brief GSM signal quality information
+ */
+typedef struct {
+    uint8_t  rssi;       /**< Signal strength (0-31, where 31 is best) */
+    uint8_t  ber;        /**< Bit error rate (0-7) */
+    uint8_t  mcc;        /**< Mobile Country Code */
+    uint8_t  mnc;        /**< Mobile Network Code */
+    uint8_t  lac;        /**< Location Area Code */
+    uint16_t ci;         /**< Cell ID */
+    gsm_state_t state;   /**< Current GSM state */
+} gsm_signal_t;
+
+/**
+ * @struct network_address_t
+ * @brief Network connection information
+ */
+typedef struct {
+    char ip_address[16]; /**< IP address (null-terminated) */
+    char apn[32];        /**< APN name (null-terminated) */
+    char username[32];   /**< APN username (null-terminated) */
+    char password[32];   /**< APN password (null-terminated) */
+    bool connected;      /**< Connection status */
+} network_address_t;
+
+/* ==================== Data Packet Structures ==================== */
+
+/**
+ * @struct tracker_data_t
+ * @brief Complete tracker data packet
+ */
+typedef struct {
+    uint32_t     timestamp;      /**< Unix timestamp */
+    gps_location_t location;     /**< GPS location data */
+    gsm_signal_t signal;         /**< GSM signal quality */
+    uint16_t     battery_mv;     /**< Battery voltage in mV */
+    device_state_t device_state; /**< Current device state */
+    uint32_t     sequence_number;/**< Packet sequence number */
+    uint8_t      data_valid;     /**< Validity flags (bitmask) */
+} tracker_data_t;
+
+/* ==================== Configuration Structures ==================== */
+
+/**
+ * @struct device_config_t
+ * @brief Device configuration parameters
+ */
+typedef struct {
+    uint32_t gps_timeout_seconds;      /**< GPS acquisition timeout */
+    uint32_t gprs_interval_seconds;    /**< GPRS transmission interval */
+    uint32_t sleep_duration_seconds;   /**< Sleep mode duration */
+    uint8_t  max_retries;              /**< Maximum retry attempts */
+    uint16_t server_port;              /**< Server communication port */
+    char     server_url[64];           /**< Server URL (null-terminated) */
+    char     sim_pin[5];               /**< SIM card PIN (null-terminated) */
+    bool     gps_enabled;              /**< GPS enable flag */
+    bool     gprs_enabled;             /**< GPRS enable flag */
+    bool     auto_transmit;            /**< Automatic data transmission */
+} device_config_t;
+
+/* ==================== Circular Buffer Structure ==================== */
+
+/**
+ * @struct circular_buffer_t
+ * @brief Generic circular buffer for UART/data buffering
+ */
+typedef struct {
+    uint8_t  *buffer;     /**< Pointer to buffer memory */
+    uint16_t capacity;    /**< Total buffer capacity */
+    uint16_t head;        /**< Write pointer */
+    uint16_t tail;        /**< Read pointer */
+    uint16_t count;       /**< Current data count */
+} circular_buffer_t;
+
+/* ==================== AT Command Response Structure ==================== */
+
+/**
+ * @struct at_response_t
+ * @brief SIM808 AT command response
+ */
+typedef struct {
+    char     response[512];  /**< Response string (null-terminated) */
+    uint16_t length;         /**< Response length */
+    bool     is_error;       /**< True if error response */
+    uint32_t timeout_ms;     /**< Response timeout */
+} at_response_t;
+
+/* ==================== Validation Flags ==================== */
+
+/**
+ * @def DATA_VALID_GPS
+ * @brief Flag indicating GPS data is valid
+ */
+#define DATA_VALID_GPS        (1 << 0)
+
+/**
+ * @def DATA_VALID_GSM
+ * @brief Flag indicating GSM data is valid
+ */
+#define DATA_VALID_GSM        (1 << 1)
+
+/**
+ * @def DATA_VALID_BATTERY
+ * @brief Flag indicating battery data is valid
+ */
+#define DATA_VALID_BATTERY    (1 << 2)
+
+/**
+ * @def DATA_VALID_TIMESTAMP
+ * @brief Flag indicating timestamp is valid
+ */
+#define DATA_VALID_TIMESTAMP  (1 << 3)
+
+#endif /* __TYPES_H__ */

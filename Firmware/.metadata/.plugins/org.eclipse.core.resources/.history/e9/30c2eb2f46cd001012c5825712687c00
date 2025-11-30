@@ -1,0 +1,117 @@
+/**
+ * @file uart.h
+ * @brief UART driver header for STM32F030 with interrupt-driven communication
+ * @author Embedded Systems Team
+ * @date 2025-11-29
+ * 
+ * Provides interrupt-driven UART communication with circular buffers.
+ * Supports printf redirection for debug output.
+ */
+
+#ifndef __UART_H__
+#define __UART_H__
+
+#include <stdint.h>
+#include <stdbool.h>
+#include <stdio.h>
+#include "config.h"
+#include "types.h"
+#include "stm32f0xx_hal.h"
+
+/* ==================== UART Buffer Management ==================== */
+
+/**
+ * @brief Initialize UART driver
+ * @param huart - HAL UART handle
+ * @return error_code_t - ERROR_OK on success
+ */
+error_code_t uart_init(UART_HandleTypeDef *huart);
+
+/**
+ * @brief Send single character via UART
+ * @param ch - Character to send
+ * @return error_code_t - ERROR_OK on success
+ */
+error_code_t uart_send_char(uint8_t ch);
+
+/**
+ * @brief Send string via UART (blocking)
+ * @param str - Null-terminated string to send
+ * @return error_code_t - ERROR_OK on success
+ */
+error_code_t uart_send_string(const char *str);
+
+/**
+ * @brief Send buffer via UART (blocking)
+ * @param buffer - Data buffer to send
+ * @param length - Length of data
+ * @return error_code_t - ERROR_OK on success
+ */
+error_code_t uart_send_buffer(const uint8_t *buffer, uint16_t length);
+
+/**
+ * @brief Receive single character from UART (non-blocking)
+ * @param ch - Pointer to character to receive
+ * @return error_code_t - ERROR_OK if data available, ERROR_BUFFER_EMPTY if not
+ */
+error_code_t uart_receive_char(uint8_t *ch);
+
+/**
+ * @brief Receive line from UART (until newline or timeout)
+ * @param buffer - Destination buffer
+ * @param max_length - Maximum buffer size
+ * @param timeout_ms - Timeout in milliseconds (0 = wait forever)
+ * @return Number of bytes received (excluding newline)
+ */
+uint16_t uart_receive_line(char *buffer, uint16_t max_length, uint32_t timeout_ms);
+
+/**
+ * @brief Get number of bytes available in RX buffer
+ * @return Number of bytes available
+ */
+uint16_t uart_available(void);
+
+/**
+ * @brief Flush UART RX buffer
+ */
+void uart_flush_rx(void);
+
+/**
+ * @brief Flush UART TX buffer
+ */
+void uart_flush_tx(void);
+
+/**
+ * @brief Enable UART interrupt
+ */
+void uart_enable_interrupt(void);
+
+/**
+ * @brief Disable UART interrupt
+ */
+void uart_disable_interrupt(void);
+
+/* ==================== Interrupt Callbacks ==================== */
+
+/**
+ * @brief UART RX complete callback (called from ISR)
+ * Should be called from HAL_UART_RxCpltCallback
+ */
+void uart_rx_callback(void);
+
+/**
+ * @brief UART TX complete callback (called from ISR)
+ * Should be called from HAL_UART_TxCpltCallback
+ */
+void uart_tx_callback(void);
+
+/* ==================== Printf Support ==================== */
+
+/**
+ * @def printf_to_uart
+ * Printf-like function that outputs to UART
+ * Usage: printf_to_uart("Value: %d\r\n", 42);
+ */
+int printf_to_uart(const char *fmt, ...);
+
+#endif /* __UART_H__ */

@@ -1,0 +1,3 @@
+../Core/Src/gps_parser.c:6:15:nmea_to_decimal	88	static
+../Core/Src/gps_parser.c:42:12:split_fields	32	static
+../Core/Src/gps_parser.c:67:5:gps_parse_nmea	264	static

@@ -1,0 +1,179 @@
+/**
+ * @file main.h
+ * @brief Main firmware header - Entry point for GPS tracker
+ * @author Embedded Systems Team
+ * @date 2025-11-29
+ */
+
+#ifndef __MAIN_H__
+#define __MAIN_H__
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+#include <stdint.h>
+#include <stdbool.h>
+#include <stdio.h>
+#include <string.h>
+
+/* STM32F0xx HAL headers */
+#include "stm32f0xx_hal.h"
+
+/* Project headers */
+#include "config.h"
+#include "types.h"
+
+/* ==================== Global State ==================== */
+
+/**
+ * @brief Main firmware state structure
+ */
+typedef struct {
+    device_state_t device_state;     /**< Current device state */
+    gps_location_t last_location;    /**< Last valid GPS location */
+    gsm_signal_t gsm_signal;         /**< Current GSM signal info */
+    uint32_t last_transmission_time; /**< Timestamp of last transmission */
+    uint32_t sequence_number;        /**< Data packet sequence counter */
+    bool tracking_enabled;           /**< Tracking active flag */
+    uint32_t boot_time_ms;           /**< System boot timestamp */
+} firmware_state_t;
+
+/**
+ * @brief Global firmware state (extern for access from modules)
+ */
+extern firmware_state_t g_firmware_state;
+
+/* ==================== Function Prototypes ==================== */
+
+/**
+ * @brief System initialization
+ * Initializes all peripherals and subsystems
+ * @return error_code_t - ERROR_OK on success
+ */
+error_code_t system_init(void);
+
+/**
+ * @brief Main firmware loop
+ * Handles all periodic tasks and state transitions
+ * Should be called continuously in main()
+ */
+void firmware_main_loop(void);
+
+/**
+ * @brief Get current system time (milliseconds since boot)
+ * @return uint32_t - Milliseconds since boot
+ */
+uint32_t get_system_time_ms(void);
+
+/**
+ * @brief Set device state with logging
+ * @param new_state - New device state
+ */
+void set_device_state(device_state_t new_state);
+
+/**
+ * @brief Get current device state
+ * @return device_state_t - Current state
+ */
+device_state_t get_device_state(void);
+
+/**
+ * @brief Enable/disable tracking
+ * @param enable - true to enable, false to disable
+ */
+void set_tracking_enabled(bool enable);
+
+/**
+ * @brief Check if tracking is enabled
+ * @return bool - Tracking status
+ */
+bool is_tracking_enabled(void);
+
+/* ==================== LED Control ==================== */
+
+/**
+ * @brief Turn LED on
+ * @param led_id - LED identifier (0 = LED1, etc.)
+ */
+void led_on(uint8_t led_id);
+
+/**
+ * @brief Turn LED off
+ * @param led_id - LED identifier
+ */
+void led_off(uint8_t led_id);
+
+/**
+ * @brief Toggle LED state
+ * @param led_id - LED identifier
+ */
+void led_toggle(uint8_t led_id);
+
+/**
+ * @brief Blink LED (blocking)
+ * @param led_id - LED identifier
+ * @param count - Number of blinks
+ * @param interval_ms - Interval between blinks
+ */
+void led_blink(uint8_t led_id, uint8_t count, uint16_t interval_ms);
+
+/* ==================== Error Handling ==================== */
+
+/**
+ * @brief Handle fatal error (halts device)
+ * @param error_code - Error code to report
+ * @param details - Optional error details string
+ */
+void handle_fatal_error(error_code_t error_code, const char *details);
+
+/**
+ * @brief Log error message
+ * @param error_code - Error code
+ * @param function_name - Function where error occurred
+ */
+void log_error(error_code_t error_code, const char *function_name);
+
+/* ==================== Hardware Abstraction ==================== */
+
+/**
+ * @brief Initialize clock system
+ * Sets up 8MHz external crystal and PLL to 48MHz
+ */
+void clock_init(void);
+
+/**
+ * @brief Initialize HAL peripheral handles
+ * Sets up UART, GPIO, timers, etc.
+ */
+void hal_init(void);
+
+/**
+ * @brief Reset the device
+ * Performs a soft reset
+ */
+void system_reset(void);
+
+/* ==================== Debug Support ==================== */
+
+/**
+ * @brief Printf redirection (implemented in uart.c)
+ * Allows use of printf() for debug output
+ */
+int _write(int file, char *ptr, int len);
+
+/**
+ * @brief Print firmware information
+ */
+void print_firmware_info(void);
+
+/**
+ * @brief Print system diagnostics
+ */
+void print_diagnostics(void);
+
+#ifdef __cplusplus
+}
+#endif
+
+#endif /* __MAIN_H__ */

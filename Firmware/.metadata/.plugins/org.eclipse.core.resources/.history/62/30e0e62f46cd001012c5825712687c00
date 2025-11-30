@@ -1,0 +1,93 @@
+/**
+ * @file sim808_driver.h
+ * @brief SIM808 AT command driver (PHASE 3 stub)
+ * @author Embedded Systems Team
+ * @date 2025-11-29
+ */
+
+#ifndef __SIM808_DRIVER_H__
+#define __SIM808_DRIVER_H__
+
+#include <stdint.h>
+#include <stdbool.h>
+#include "types.h"
+
+/* ==================== SIM808 Driver Functions ==================== */
+
+/**
+ * @brief Initialize SIM808 driver
+ * @return error_code_t - ERROR_OK on success
+ */
+error_code_t sim808_init(void);
+
+/**
+ * @brief Send AT command to SIM808
+ * @param command - Command string
+ * @param response - Response buffer
+ * @param timeout_ms - Timeout in milliseconds
+ * @return error_code_t - ERROR_OK on success
+ */
+error_code_t sim808_send_at_command(const char *command, at_response_t *response, uint32_t timeout_ms);
+
+/**
+ * @brief Start GPS acquisition
+ * @return error_code_t - ERROR_OK on success
+ */
+error_code_t sim808_start_gps(void);
+
+/**
+ * @brief Stop GPS
+ * @return error_code_t - ERROR_OK on success
+ */
+error_code_t sim808_stop_gps(void);
+
+/**
+ * @brief Read GPS location
+ * @param location - GPS location output
+ * @return error_code_t - ERROR_OK on success
+ */
+error_code_t sim808_read_gps_location(gps_location_t *location);
+
+/**
+ * @brief Get GSM signal quality
+ * @param signal - GSM signal output
+ * @return error_code_t - ERROR_OK on success
+ */
+error_code_t sim808_get_gsm_signal(gsm_signal_t *signal);
+
+/**
+ * @brief Start GPRS connection
+ * @return error_code_t - ERROR_OK on success
+ */
+error_code_t sim808_start_gprs(void);
+
+/**
+ * @brief Stop GPRS connection
+ * @return error_code_t - ERROR_OK on success
+ */
+error_code_t sim808_stop_gprs(void);
+
+/**
+ * @brief Send data via GPRS
+ * @param data - Data to send
+ * @param length - Data length
+ * @return error_code_t - ERROR_OK on success
+ */
+error_code_t sim808_send_data(const uint8_t *data, uint16_t length);
+
+/* ==================== Simulation Mode Functions ==================== */
+
+/**
+ * @brief Start GPS in simulation mode
+ * @return error_code_t - ERROR_OK on success
+ */
+error_code_t sim808_start_gps_sim(void);
+
+/**
+ * @brief Read simulated GPS data
+ * @param location - GPS location output
+ * @return error_code_t - ERROR_OK on success
+ */
+error_code_t sim808_read_gps_location_sim(gps_location_t *location);
+
+#endif /* __SIM808_DRIVER_H__ */

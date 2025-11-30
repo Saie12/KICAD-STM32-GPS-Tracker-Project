@@ -1,0 +1,35 @@
+ERC report (2025-11-27T00:33:46+0530, Encoding UTF8)
+
+***** Sheet /
+[pin_to_pin]: Pins of type Bidirectional and Power output are connected
+    ; warning
+    @(3150 mils, 1450 mils): Symbol U2 Pin 9 [EP, Bidirectional, Line]
+    @(1700 mils, 2800 mils): Symbol #FLG04 Pin 1 [Power output, Line]
+[pin_to_pin]: Pins of type Bidirectional and Power output are connected
+    ; warning
+    @(4900 mils, 2800 mils): Symbol GSM1 Pin GND1 [Bidirectional, Line]
+    @(1700 mils, 2800 mils): Symbol #FLG04 Pin 1 [Power output, Line]
+[pin_to_pin]: Pins of type Bidirectional and Power output are connected
+    ; warning
+    @(4900 mils, 3000 mils): Symbol GSM1 Pin GND2 [Bidirectional, Line]
+    @(1700 mils, 2800 mils): Symbol #FLG04 Pin 1 [Power output, Line]
+[pin_to_pin]: Pins of type Bidirectional and Power output are connected
+    ; warning
+    @(6250 mils, 2750 mils): Symbol GPS1 Pin GND1 [Bidirectional, Line]
+    @(1700 mils, 2800 mils): Symbol #FLG04 Pin 1 [Power output, Line]
+[pin_to_pin]: Pins of type Bidirectional and Power output are connected
+    ; warning
+    @(6250 mils, 2950 mils): Symbol GPS1 Pin GND2 [Bidirectional, Line]
+    @(1700 mils, 2800 mils): Symbol #FLG04 Pin 1 [Power output, Line]
+[pin_to_pin]: Pins of type Bidirectional and Power output are connected
+    ; warning
+    @(5700 mils, 4250 mils): Symbol J3 Pin 5 [GND, Bidirectional, Line]
+    @(1700 mils, 2800 mils): Symbol #FLG04 Pin 1 [Power output, Line]
+[footprint_link_issues]: The current configuration does not include the footprint library 'SMF05CT1G'.
+    ; warning
+    @(5200 mils, 5100 mils): Symbol U3 [SMF05CT1G]
+[footprint_link_issues]: The current configuration does not include the footprint library '693010020611'.
+    ; warning
+    @(6200 mils, 4150 mils): Symbol J3 [693010020611]
+
+ ** ERC messages: 8  Errors 0  Warnings 8

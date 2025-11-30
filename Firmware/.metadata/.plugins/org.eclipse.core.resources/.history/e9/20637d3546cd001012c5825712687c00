@@ -1,0 +1,581 @@
+/**
+ * @file main.c
+ * @brief Main firmware implementation - GPS tracker initialization and main loop
+ * @author Embedded Systems Team
+ * @date 2025-11-29
+ * 
+ * Contains system initialization, main execution loop, and state management.
+ * This is the primary entry point for the firmware.
+ */
+
+#include "main.h"
+#include "uart.h"
+#include "gpio.h"
+#include "sim808_driver.h"
+#include "sim808_gps.h"
+
+/* ==================== Global State ==================== */
+
+/** Global firmware state structure */
+firmware_state_t g_firmware_state = {
+    .device_state = STATE_INIT,
+    .tracking_enabled = false,
+    .sequence_number = 0,
+    .boot_time_ms = 0
+};
+
+/** SysTick counter for timekeeping */
+static volatile uint32_t g_systick_ms = 0;
+
+/* ==================== STM32 HAL Handles ==================== */
+
+UART_HandleTypeDef huart2;
+TIM_HandleTypeDef htim6;
+
+/* ==================== Hardware Initialization ==================== */
+
+/**
+ * @brief Initialize system clocks
+ * Configures 8MHz external oscillator and PLL to 48MHz SYSCLK
+ * 
+ * Clock configuration:
+ * - HSE: 8MHz external crystal
+ * - PLL: Multiplier 6x → 48MHz
+ * - AHB: 48MHz (no divider)
+ * - APB: 48MHz (no divider)
+ */
+void clock_init(void)
+{
+    /* Clock configuration already handled by CubeMX in system setup
+     * If needed for custom configuration, would go here */
+    
+    /* Enable peripheral clocks */
+    __HAL_RCC_USART2_CLK_ENABLE();
+    __HAL_RCC_GPIOA_CLK_ENABLE();
+    __HAL_RCC_GPIOC_CLK_ENABLE();
+    __HAL_RCC_GPIOF_CLK_ENABLE();
+    __HAL_RCC_TIM6_CLK_ENABLE();
+    
+    DEBUG_PRINT("[CLOCK] Initialized (SYSCLK=48MHz, HSE=8MHz)\r\n");
+}
+
+/**
+ * @brief Initialize UART2 for SIM808 communication
+ * UART2: PA2 (TX), PA3 (RX) @ 115,200 baud
+ */
+static void uart2_init(void)
+{
+    huart2.Instance = USART2;
+    huart2.Init.BaudRate = UART_BAUDRATE;
+    huart2.Init.WordLength = UART_WORDLENGTH_8B;
+    huart2.Init.StopBits = UART_STOPBITS_1;
+    huart2.Init.Parity = UART_PARITY_NONE;
+    huart2.Init.Mode = UART_MODE_TX_RX;
+    huart2.Init.HwFlowCtl = UART_HWCONTROL_NONE;
+    huart2.Init.OverSampling = UART_OVERSAMPLING_16;
+    
+    if (HAL_UART_Init(&huart2) != HAL_OK) {
+        log_error(ERROR_DEVICE_NOT_READY, "uart2_init");
+        handle_fatal_error(ERROR_DEVICE_NOT_READY, "UART2 init failed");
+    }
+    
+    /* Enable UART RX interrupt */
+    HAL_NVIC_EnableIRQ(USART2_IRQn);
+    __HAL_UART_ENABLE_IT(&huart2, UART_IT_RXNE);
+    
+    DEBUG_PRINT("[UART] UART2 initialized (115200 baud)\r\n");
+}
+
+/**
+ * @brief Configure GPIO pins
+ * PA4: LED1 output
+ * PC13: Button1 input
+ * PF0: Button2 input
+ */
+static void gpio_init(void)
+{
+    GPIO_InitTypeDef GPIO_InitStruct = {0};
+    
+    /* PA4 - LED1 Output */
+    GPIO_InitStruct.Pin = GPIO_PIN_4;
+    GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+    GPIO_InitStruct.Pull = GPIO_NOPULL;
+    GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+    HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
+    HAL_GPIO_WritePin(GPIOA, GPIO_PIN_4, GPIO_PIN_RESET);
+    
+    /* PC13 - Button1 Input */
+    GPIO_InitStruct.Pin = GPIO_PIN_13;
+    GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
+    GPIO_InitStruct.Pull = GPIO_PULLUP;
+    HAL_GPIO_Init(GPIOC, &GPIO_InitStruct);
+    
+    /* PF0 - Button2 Input */
+    GPIO_InitStruct.Pin = GPIO_PIN_0;
+    GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
+    GPIO_InitStruct.Pull = GPIO_PULLUP;
+    HAL_GPIO_Init(GPIOF, &GPIO_InitStruct);
+    
+    DEBUG_PRINT("[GPIO] GPIO pins initialized\r\n");
+}
+
+/**
+ * @brief Configure SysTick timer for 1ms interrupt
+ */
+static void systick_init(void)
+{
+    HAL_SYSTICK_Config(SystemCoreClock / 1000);
+    HAL_NVIC_SetPriority(SysTick_IRQn, 3, 0);
+}
+
+/**
+ * @brief Initialize all HAL peripherals
+ */
+void hal_init(void)
+{
+    HAL_Init();
+    clock_init();
+    uart2_init();
+    gpio_init();
+    systick_init();
+    
+    DEBUG_PRINT("[HAL] HAL initialization complete\r\n");
+}
+
+/* ==================== Timing Functions ==================== */
+
+/**
+ * @brief SysTick callback (called every 1ms)
+ * Increments system millisecond counter
+ */
+void HAL_SYSTICK_Callback(void)
+{
+    g_systick_ms++;
+}
+
+/**
+ * @brief Get current system time in milliseconds
+ * @return System time since boot in milliseconds
+ */
+uint32_t get_system_time_ms(void)
+{
+    return g_systick_ms;
+}
+
+/**
+ * @brief Delay for specified milliseconds
+ * @param ms - Milliseconds to delay
+ */
+void delay_ms(uint32_t ms)
+{
+    uint32_t start = get_system_time_ms();
+    while ((get_system_time_ms() - start) < ms) {
+        /* Wait */
+    }
+}
+
+/* ==================== State Management ==================== */
+
+/**
+ * @brief Set device state with debug logging
+ * @param new_state - New device state
+ */
+void set_device_state(device_state_t new_state)
+{
+    if (g_firmware_state.device_state != new_state) {
+        const char *state_names[] = {
+            "INIT", "READY", "GPS_ACQUIRING", "TRACKING", "TRANSMITTING", "SLEEP", "ERROR"
+        };
+        
+        if (new_state < 7) {
+            DEBUG_PRINT("[STATE] Transition: %s → %s\r\n",
+                       state_names[g_firmware_state.device_state],
+                       state_names[new_state]);
+        }
+        
+        g_firmware_state.device_state = new_state;
+    }
+}
+
+/**
+ * @brief Get current device state
+ * @return Current device state
+ */
+device_state_t get_device_state(void)
+{
+    return g_firmware_state.device_state;
+}
+
+/**
+ * @brief Enable/disable tracking
+ * @param enable - true to enable tracking
+ */
+void set_tracking_enabled(bool enable)
+{
+    if (g_firmware_state.tracking_enabled != enable) {
+        g_firmware_state.tracking_enabled = enable;
+        DEBUG_PRINT("[TRACKING] %s\r\n", enable ? "ENABLED" : "DISABLED");
+    }
+}
+
+/**
+ * @brief Check if tracking is enabled
+ * @return true if tracking is active
+ */
+bool is_tracking_enabled(void)
+{
+    return g_firmware_state.tracking_enabled;
+}
+
+/* ==================== LED Control ==================== */
+
+/**
+ * @brief Turn LED on
+ * @param led_id - LED identifier
+ */
+void led_on(uint8_t led_id)
+{
+    if (led_id == 0) {
+        HAL_GPIO_WritePin(GPIOA, GPIO_PIN_4, GPIO_PIN_SET);
+    }
+}
+
+/**
+ * @brief Turn LED off
+ * @param led_id - LED identifier
+ */
+void led_off(uint8_t led_id)
+{
+    if (led_id == 0) {
+        HAL_GPIO_WritePin(GPIOA, GPIO_PIN_4, GPIO_PIN_RESET);
+    }
+}
+
+/**
+ * @brief Toggle LED state
+ * @param led_id - LED identifier
+ */
+void led_toggle(uint8_t led_id)
+{
+    if (led_id == 0) {
+        HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_4);
+    }
+}
+
+/**
+ * @brief Blink LED (blocking)
+ * @param led_id - LED identifier
+ * @param count - Number of blinks
+ * @param interval_ms - Interval between blinks
+ */
+void led_blink(uint8_t led_id, uint8_t count, uint16_t interval_ms)
+{
+    for (uint8_t i = 0; i < count; i++) {
+        led_on(led_id);
+        delay_ms(interval_ms / 2);
+        led_off(led_id);
+        delay_ms(interval_ms / 2);
+    }
+}
+
+/* ==================== Error Handling ==================== */
+
+/**
+ * @brief Log error message
+ * @param error_code - Error code
+ * @param function_name - Function where error occurred
+ */
+void log_error(error_code_t error_code, const char *function_name)
+{
+    const char *error_names[] = {
+        "OK", "INVALID_PARAM", "TIMEOUT", "UART_TX_BUSY", "BUFFER_FULL",
+        "BUFFER_EMPTY", "DEVICE_NOT_READY", "INVALID_RESPONSE", "NO_SIGNAL",
+        "GPS_TIMEOUT", "NETWORK_ERROR", "MEMORY_FULL", "INVALID_STATE",
+        "CRC_FAILED", "UNKNOWN"
+    };
+    
+    const char *name = (error_code <= ERROR_UNKNOWN) ? error_names[error_code] : "UNKNOWN";
+    DEBUG_PRINT("[ERROR] %s(): %s (code=%d)\r\n", function_name, name, error_code);
+}
+
+/**
+ * @brief Handle fatal error (halts device)
+ * @param error_code - Error code
+ * @param details - Optional error details
+ */
+void handle_fatal_error(error_code_t error_code, const char *details)
+{
+    DEBUG_PRINT("\r\n");
+    DEBUG_PRINT("============= FATAL ERROR =============\r\n");
+    DEBUG_PRINT("Error Code: %d\r\n", error_code);
+    if (details) {
+        DEBUG_PRINT("Details: %s\r\n", details);
+    }
+    DEBUG_PRINT("========================================\r\n");
+    
+    /* Blink LED rapidly to indicate error */
+    while (1) {
+        led_blink(0, 5, 100);
+        delay_ms(1000);
+    }
+}
+
+/* ==================== System Initialization ==================== */
+
+/**
+ * @brief Initialize all firmware subsystems
+ * @return ERROR_OK on success
+ */
+error_code_t system_init(void)
+{
+    DEBUG_PRINT("\r\n");
+    DEBUG_PRINT("=== STM32F030C8Tx GPS Tracker Firmware ===\r\n");
+    DEBUG_PRINT("Version: %d.%d.%d\r\n", FIRMWARE_VERSION_MAJOR, FIRMWARE_VERSION_MINOR, FIRMWARE_VERSION_PATCH);
+    DEBUG_PRINT("Build Date: %s\r\n", BUILD_DATE);
+    DEBUG_PRINT("==========================================\r\n\r\n");
+    
+    /* Initialize global state */
+    g_firmware_state.boot_time_ms = get_system_time_ms();
+    set_device_state(STATE_INIT);
+    
+    DEBUG_PRINT("[INIT] System initialization starting...\r\n");
+    
+    /* Initialize hardware */
+    hal_init();
+    
+    /* Initialize UART driver */
+    uart_init(&huart2);
+    DEBUG_PRINT("[INIT] UART driver initialized\r\n");
+    
+    /* Initialize GPIO module */
+    gpio_init();
+    DEBUG_PRINT("[INIT] GPIO module initialized\r\n");
+    
+    /* Initialize SIM808 driver */
+    error_code_t status = sim808_init();
+    if (status != ERROR_OK) {
+        log_error(status, "sim808_init");
+        #if !SIMULATION_MODE
+        return status;
+        #endif
+    }
+    DEBUG_PRINT("[INIT] SIM808 driver initialized\r\n");
+    
+    /* Initialization complete */
+    led_blink(0, 3, 100);  /* 3 quick blinks to indicate startup */
+    
+    set_device_state(STATE_READY);
+    DEBUG_PRINT("[INIT] System initialization complete!\r\n\r\n");
+    
+    return ERROR_OK;
+}
+
+/* ==================== Main Firmware Loop ==================== */
+
+/**
+ * @brief Main firmware execution loop
+ * Handles all periodic tasks and state transitions
+ * Should be called continuously in main()
+ */
+void firmware_main_loop(void)
+{
+    static uint32_t last_status_time = 0;
+    
+    switch (g_firmware_state.device_state) {
+        case STATE_INIT:
+            /* Should not reach here - handled in system_init() */
+            break;
+            
+        case STATE_READY:
+            /* Ready state - waiting for tracking enable */
+            if (is_tracking_enabled()) {
+                set_device_state(STATE_GPS_ACQUIRING);
+                DEBUG_PRINT("[READY] Tracking enabled, starting GPS acquisition\r\n");
+                
+                #if SIMULATION_MODE
+                sim808_start_gps_sim();
+                #else
+                sim808_start_gps();
+                #endif
+            }
+            break;
+            
+        case STATE_GPS_ACQUIRING:
+            /* Acquiring GPS lock */
+            led_toggle(0);  /* Blink LED while acquiring */
+            
+            /* Periodically print status */
+            if ((get_system_time_ms() - last_status_time) > 5000) {
+                DEBUG_PRINT("[GPS] Acquiring... (Satellites: N/A)\r\n");
+                last_status_time = get_system_time_ms();
+            }
+            
+            /* Check for timeout or GPS lock */
+            if (is_tracking_enabled()) {
+                if ((get_system_time_ms() - last_status_time) > (GPS_ACQUISITION_TIMEOUT * 1000)) {
+                    DEBUG_PRINT("[GPS] Acquisition timeout\r\n");
+                    set_device_state(STATE_SLEEP);
+                }
+            } else {
+                set_device_state(STATE_READY);
+            }
+            break;
+            
+        case STATE_TRACKING:
+            /* Active tracking - acquiring and transmitting data */
+            led_on(0);  /* LED stays on during tracking */
+            
+            if (!is_tracking_enabled()) {
+                led_off(0);
+                set_device_state(STATE_READY);
+            }
+            break;
+            
+        case STATE_TRANSMITTING:
+            /* Transmitting data via GPRS */
+            led_toggle(0);  /* Blink during transmission */
+            
+            if (!is_tracking_enabled()) {
+                led_off(0);
+                set_device_state(STATE_READY);
+            }
+            break;
+            
+        case STATE_SLEEP:
+            /* Sleep mode - minimal power */
+            led_off(0);
+            
+            if (is_tracking_enabled()) {
+                set_device_state(STATE_GPS_ACQUIRING);
+            }
+            break;
+            
+        case STATE_ERROR:
+            /* Error state */
+            led_toggle(0);
+            delay_ms(100);
+            break;
+            
+        default:
+            /* Should not reach here */
+            set_device_state(STATE_ERROR);
+            break;
+    }
+}
+
+/**
+ * @brief Print firmware information
+ */
+void print_firmware_info(void)
+{
+    DEBUG_PRINT("\r\n=== Firmware Information ===\r\n");
+    DEBUG_PRINT("Version: %d.%d.%d\r\n", FIRMWARE_VERSION_MAJOR, FIRMWARE_VERSION_MINOR, FIRMWARE_VERSION_PATCH);
+    DEBUG_PRINT("Build Date: %s\r\n", BUILD_DATE);
+    DEBUG_PRINT("Uptime: %lu ms\r\n", get_system_time_ms());
+    DEBUG_PRINT("============================\r\n");
+}
+
+/**
+ * @brief Print system diagnostics
+ */
+void print_diagnostics(void)
+{
+    DEBUG_PRINT("\r\n=== System Diagnostics ===\r\n");
+    DEBUG_PRINT("Device State: %d\r\n", g_firmware_state.device_state);
+    DEBUG_PRINT("Tracking: %s\r\n", is_tracking_enabled() ? "ENABLED" : "DISABLED");
+    DEBUG_PRINT("Sequence: %lu\r\n", g_firmware_state.sequence_number);
+    DEBUG_PRINT("System Time: %lu ms\r\n", get_system_time_ms());
+    DEBUG_PRINT("==========================\r\n");
+}
+
+/**
+ * @brief System reset (soft reset)
+ */
+void system_reset(void)
+{
+    DEBUG_PRINT("[SYSTEM] Performing soft reset...\r\n");
+    delay_ms(100);
+    NVIC_SystemReset();
+}
+
+/* ==================== C Runtime Support ==================== */
+
+/**
+ * @brief Printf redirection for debug output
+ * Redirects printf() calls to UART
+ */
+int _write(int file, char *ptr, int len)
+{
+    for (int i = 0; i < len; i++) {
+        uart_send_char(ptr[i]);
+    }
+    return len;
+}
+
+/* ==================== Entry Point ==================== */
+
+/**
+ * @brief Main entry point for firmware
+ * Never returns - infinite loop
+ */
+int main(void)
+{
+    /* Initialize system */
+    error_code_t status = system_init();
+    if (status != ERROR_OK) {
+        handle_fatal_error(status, "Failed to initialize system");
+    }
+    
+    /* Enable tracking by default */
+    set_tracking_enabled(true);
+    
+    /* Main loop - runs forever */
+    while (1) {
+        firmware_main_loop();
+        
+        /* Give watchdog a chance (if enabled) */
+        #if WATCHDOG_TIMEOUT_MS > 0
+        HAL_IWDG_Refresh(&hiwdg);
+        #endif
+        
+        /* Allow other tasks to run */
+        delay_ms(10);
+    }
+    
+    return 0;  /* Never reached */
+}
+
+/* ==================== STM32 HAL Callbacks ==================== */
+
+/**
+ * @brief HAL UART receive complete callback
+ * Called when UART receives data
+ */
+void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
+{
+    if (huart->Instance == USART2) {
+        uart_rx_callback();
+    }
+}
+
+/**
+ * @brief HAL UART transmit complete callback
+ * Called when UART transmission completes
+ */
+void HAL_UART_TxCpltCallback(UART_HandleTypeDef *huart)
+{
+    if (huart->Instance == USART2) {
+        uart_tx_callback();
+    }
+}
+
+/**
+ * @brief HAL UART error callback
+ * Called on UART errors
+ */
+void HAL_UART_ErrorCallback(UART_HandleTypeDef *huart)
+{
+    if (huart->Instance == USART2) {
+        log_error(ERROR_UART_TX_BUSY, "HAL_UART_ErrorCallback");
+    }
+}

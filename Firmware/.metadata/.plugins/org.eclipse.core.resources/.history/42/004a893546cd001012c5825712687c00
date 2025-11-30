@@ -1,0 +1,29 @@
+/**
+ * @file uart.c
+ * @brief UART driver implementation (PHASE 2 stub)
+ */
+
+#include "uart.h"
+
+error_code_t uart_init(UART_HandleTypeDef *huart)
+{
+    return ERROR_OK;
+}
+
+error_code_t uart_send_char(uint8_t ch)
+{
+    return ERROR_OK;
+}
+
+error_code_t uart_send_string(const char *str)
+{
+    return ERROR_OK;
+}
+
+void uart_rx_callback(void)
+{
+}
+
+void uart_tx_callback(void)
+{
+}

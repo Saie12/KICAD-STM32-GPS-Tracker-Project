@@ -1,0 +1,54 @@
+/**
+ * @file gpio.h
+ * @brief GPIO control module header (PHASE 2 stub)
+ * @author Embedded Systems Team
+ * @date 2025-11-29
+ */
+
+#ifndef __GPIO_H__
+#define __GPIO_H__
+
+#include <stdint.h>
+#include <stdbool.h>
+#include "types.h"
+
+/* ==================== GPIO Functions ==================== */
+
+/**
+ * @brief Initialize GPIO pins
+ * @return error_code_t - ERROR_OK on success
+ */
+error_code_t gpio_init(void);
+
+/**
+ * @brief Read button state (debounced)
+ * @param button_id - Button identifier (0 or 1)
+ * @return true if button pressed
+ */
+bool gpio_button_pressed(uint8_t button_id);
+
+/**
+ * @brief Enable button interrupt
+ * @param button_id - Button identifier
+ */
+void gpio_button_enable_interrupt(uint8_t button_id);
+
+/**
+ * @brief Disable button interrupt
+ * @param button_id - Button identifier
+ */
+void gpio_button_disable_interrupt(uint8_t button_id);
+
+/**
+ * @brief Button press callback
+ * Called when button is pressed (weak function, override if needed)
+ */
+void gpio_on_button_pressed(uint8_t button_id);
+
+/**
+ * @brief Button release callback
+ * Called when button is released
+ */
+void gpio_on_button_released(uint8_t button_id);
+
+#endif /* __GPIO_H__ */
