@@ -26,7 +26,8 @@ Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/main.h \
  ../Core/Inc/gps_parser.h ../Core/Inc/gps_uart.h \
  ../Core/Inc/sim808_config.h ../Core/Inc/sim808_driver.h \
  ../Core/Inc/sim808_config.h ../Core/Inc/sim808_gps.h \
- ../Core/Inc/sim808_gprs.h ../Core/Inc/sim808_driver.h
+ ../Core/Inc/sim808_gprs.h ../Core/Inc/sim808_driver.h \
+ ../Core/Inc/sim808_power.h
 ../Core/Inc/main.h:
 C:/Users/91755/Documents/PCB\ Design/STM32\ GPS\ Tracker/Firmware/gps_tracker/Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal.h:
 C:/Users/91755/Documents/PCB\ Design/STM32\ GPS\ Tracker/Firmware/gps_tracker/Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_conf.h:
@@ -60,3 +61,4 @@ C:/Users/91755/Documents/PCB\ Design/STM32\ GPS\ Tracker/Firmware/gps_tracker/Dr
 ../Core/Inc/sim808_gps.h:
 ../Core/Inc/sim808_gprs.h:
 ../Core/Inc/sim808_driver.h:
+../Core/Inc/sim808_power.h:
