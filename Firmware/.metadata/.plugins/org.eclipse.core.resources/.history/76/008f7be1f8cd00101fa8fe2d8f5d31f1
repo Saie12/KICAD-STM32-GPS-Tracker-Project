@@ -1,11 +1,3 @@
-/* USER CODE BEGIN Header */
-/**
-  ******************************************************************************
-  * @file           : main.c
-  * @brief          : Main program body
-  ******************************************************************************
-  */
- /* USER CODE END Header */
 
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
@@ -16,10 +8,9 @@
 #include "sim808_gprs.h"
 #include "sim808_power.h"
 
+
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-#include "gps_parser.h"
-#include "gps_uart.h"
 /* Demo NMEA sentences for testing without hardware */
 const char *demo_nmea_sentences[] = {
     "$GPRMC,092750.000,A,5321.6802,N,00630.3372,W,0.295,,121696,,,A*78",
@@ -28,18 +19,22 @@ const char *demo_nmea_sentences[] = {
     "$GPRMC,000000,V,0000.0000,N,00000.0000,E,0.0,0.0,010101,0.0,E*7A", /* Invalid (V flag) */
 };
 #define DEMO_NMEA_COUNT (sizeof(demo_nmea_sentences) / sizeof(demo_nmea_sentences[0]))
+
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
 /* USER CODE BEGIN PTD */
+
 /* USER CODE END PTD */
 
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
+
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
 /* USER CODE BEGIN PM */
+
 /* USER CODE END PM */
 
 /* Private variables ---------------------------------------------------------*/
@@ -47,8 +42,7 @@ UART_HandleTypeDef huart2;
 UART_HandleTypeDef huart1;  /* Debug/GSM UART on PA9, PA10 */
 
 /* USER CODE BEGIN PV */
-static gps_fix_t g_gps_fix;
-static uint8_t   sim808_gps_retry_count = 0;
+
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -56,13 +50,17 @@ void SystemClock_Config(void);
 static void MX_GPIO_Init(void);
 static void MX_USART2_UART_Init(void);
 static void MX_USART1_UART_Init(void);
-static void demo_gps_parser(void);
+static void demo_gps_parser(void);  /* Forward declaration */
+
+static gps_fix_t g_gps_fix;
 
 /* USER CODE BEGIN PFP */
+
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
+
 /* USER CODE END 0 */
 
 /**
@@ -74,15 +72,12 @@ int main(void)
   /* USER CODE BEGIN 1 */
   /* USER CODE END 1 */
 
-  /* MCU Configuration--------------------------------------------------------*/
-
-  /* Reset of all peripherals, Initializes the Flash interface and the Systick. */
+  /* MCU Configuration */
   HAL_Init();
 
   /* USER CODE BEGIN Init */
   /* USER CODE END Init */
 
-  /* Configure the system clock */
   SystemClock_Config();
 
   /* USER CODE BEGIN SysInit */
@@ -91,26 +86,24 @@ int main(void)
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
   MX_USART2_UART_Init();
-  MX_USART1_UART_Init();
   gps_uart_init();
 
   /* USER CODE BEGIN 2 */
-  /* Initialize SIM808 subsystems */
   sim808_init();
   sim808_gps_init();
   sim808_gprs_init();
   sim808_power_init();
-  sim808_power_set_watchdog(1);  /* Enable watchdog (mock) */
+  sim808_power_set_watchdog(1);  /* Enable watchdog */
 
   /* Welcome message */
   printf("\r\n");
   printf("=============================================\r\n");
-  printf("  STM32F030C8 GPS Tracker - Phases 1-7 Demo\r\n");
-  printf("  Hardware-Free Testing Mode (SIM808 Mock)\r\n");
+  printf("  STM32F030C8 GPS Tracker - Phase 3 Demo\r\n");
+  printf("  Hardware-Free Testing Mode\r\n");
   printf("=============================================\r\n");
   printf("\r\n");
 
-  /* Run GPS parser self‑test with demo NMEA sentences */
+  /* Run demo parser */
   demo_gps_parser();
 
   printf("Press button or wait for real GPS data...\r\n");
@@ -121,54 +114,22 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-    /* Drive SIM808 core + power manager */
+    /* USER CODE END WHILE */
     sim808_task();
     sim808_power_task();
 
-    /* Periodic SIM808 / GPS / GPRS / Power handling every 2s */
+    /* Periodically show SIM808 state and request GPS info when READY */
     static uint32_t last_sim808_tick = 0;
-    uint32_t now = HAL_GetTick();
+    if (HAL_GetTick() - last_sim808_tick >= 2000) {
+        last_sim808_tick = HAL_GetTick();
 
-    if (now - last_sim808_tick >= 2000U) {
-        last_sim808_tick = now;
-
-        /* --- Core SIM808 state --- */
         sim808_state_t st = sim808_get_state();
         printf("[SIM808] State: %s\r\n", sim808_state_to_str(st));
 
-        /* --- GPS via SIM808 (CGNSINF) with basic retry & error handling --- */
         if (st == SIM808_STATE_READY) {
             sim808_result_t res = sim808_request_gps_info();
             if (res == SIM808_OK) {
                 printf("[SIM808] Requested GPS info (AT+CGNSINF)\r\n");
-            } else {
-                /* Request was not accepted (not ready/busy) */
-                sim808_gps_retry_count++;
-            }
-
-            /* Check latest error status from driver (Phase 7) */
-            sim808_error_status_t es;
-            sim808_get_error_status(&es);
-            if (es.last_error != SIM808_ERR_NONE) {
-                printf("[SIM808 ERROR] code=%d, count=%lu\r\n",
-                       es.last_error, (unsigned long)es.error_count);
-
-                /* On timeout or repeated operation failures, trigger re-init */
-                if (es.last_error == SIM808_ERR_TIMEOUT_OP ||
-                    es.last_error == SIM808_ERR_CMD_REJECTED) {
-                    sim808_gps_retry_count++;
-                }
-            }
-
-            /* If too many consecutive problems, re‑initialize SIM808 stack */
-            if (sim808_gps_retry_count >= 3) {
-                printf("[SIM808] Too many GPS errors, reinitializing SIM808...\r\n");
-                sim808_init();
-                sim808_gps_init();
-                sim808_gprs_init();
-                sim808_power_init();
-                sim808_power_set_watchdog(1);
-                sim808_gps_retry_count = 0;
             }
 
             /* Try to fetch latest SIM808 GPS fix */
@@ -181,7 +142,7 @@ int main(void)
             }
         }
 
-        /* --- GPRS/TCP mock test sequence (once) --- */
+        /* GPRS/TCP test (when SIM808 is READY) */
         static int gprs_test_done = 0;
         if (st == SIM808_STATE_READY && !gprs_test_done) {
             static uint32_t gprs_step_tick = 0;
@@ -191,22 +152,21 @@ int main(void)
                 printf("[SIM808] Initiating GPRS attach...\r\n");
                 sim808_gprs_attach("internet");
                 gprs_step = 1;
-                gprs_step_tick = now;
-            } else if (gprs_step == 1 && now - gprs_step_tick >= 1000U) {
-                printf("[SIM808] GPRS State: %s\r\n",
-                       sim808_gprs_state_to_str(sim808_gprs_get_state()));
+                gprs_step_tick = HAL_GetTick();
+            } else if (gprs_step == 1 && HAL_GetTick() - gprs_step_tick >= 1000) {
+                printf("[SIM808] GPRS State: %s\r\n", sim808_gprs_state_to_str(sim808_gprs_get_state()));
                 if (sim808_gprs_get_state() == SIM808_GPRS_CONNECTED) {
                     printf("[SIM808] Opening TCP connection...\r\n");
                     sim808_gprs_open_tcp("example.com", 80);
                     gprs_step = 2;
-                    gprs_step_tick = now;
+                    gprs_step_tick = HAL_GetTick();
                 }
-            } else if (gprs_step == 2 && now - gprs_step_tick >= 1000U) {
+            } else if (gprs_step == 2 && HAL_GetTick() - gprs_step_tick >= 1000) {
                 printf("[SIM808] Sending test payload...\r\n");
                 sim808_gprs_send_data("GET / HTTP/1.1\r\nHost: example.com\r\n\r\n");
                 gprs_step = 3;
-                gprs_step_tick = now;
-            } else if (gprs_step == 3 && now - gprs_step_tick >= 1000U) {
+                gprs_step_tick = HAL_GetTick();
+            } else if (gprs_step == 3 && HAL_GetTick() - gprs_step_tick >= 1000) {
                 printf("[SIM808] Closing TCP connection...\r\n");
                 sim808_gprs_close();
                 gprs_test_done = 1;
@@ -214,47 +174,45 @@ int main(void)
             }
         }
 
-        /* --- Power and battery demo (mock) --- */
+        /* Power and battery monitoring */
         static int power_demo_step = 0;
         if (power_demo_step == 0 && st == SIM808_STATE_READY) {
-            printf("[SIM808 POWER] Current mode: %s\r\n",
-                   sim808_power_mode_to_str(sim808_power_get_mode()));
+            printf("[SIM808 POWER] Current mode: %s\r\n", sim808_power_mode_to_str(sim808_power_get_mode()));
 
             sim808_battery_t bat;
             if (sim808_power_get_battery(&bat) == SIM808_OK) {
                 printf("[SIM808 BATTERY] Voltage: %u mV, Charge: %d%%, Charging: %s\r\n",
-                       bat.voltage_mv, bat.charge_percent,
-                       bat.charging ? "Yes" : "No");
+                       bat.voltage_mv, bat.charge_percent, bat.charging ? "Yes" : "No");
             }
 
-            /* Demo: switch power modes sequentially over ~9s total */
+            /* Demo: switch power modes sequentially */
             static uint32_t power_mode_tick = 0;
-            if (power_mode_tick == 0U) {
-                power_mode_tick = now;
+            if (power_mode_tick == 0) {
+                power_mode_tick = HAL_GetTick();
             }
 
-            uint32_t elapsed = now - power_mode_tick;
-            if (elapsed < 3000U) {
+            uint32_t elapsed = HAL_GetTick() - power_mode_tick;
+            if (elapsed < 3000) {
                 sim808_power_set_mode(SIM808_POWER_ACTIVE);
-            } else if (elapsed < 6000U) {
+            } else if (elapsed < 6000) {
                 sim808_power_set_mode(SIM808_POWER_IDLE);
-            } else if (elapsed < 9000U) {
+            } else if (elapsed < 9000) {
                 sim808_power_set_mode(SIM808_POWER_SLEEP);
             } else {
                 sim808_power_set_mode(SIM808_POWER_STANDBY);
                 power_demo_step = 1;  /* Stop demo after one cycle */
             }
         }
+
     }
 
-    /* Simple LED heartbeat */
     static uint32_t last_blink = 0;
-    if (HAL_GetTick() - last_blink >= 500U) {
+    if (HAL_GetTick() - last_blink >= 500) {
         last_blink = HAL_GetTick();
-        HAL_GPIO_TogglePin(LED1_GPIO_Port, LED1_Pin);
+        HAL_GPIO_TogglePin(LED1_GPIO_Port, LED1_Pin);  /* Blink LED */
     }
 
-    /* If UART data arrives from real GPS (USART2), parse NMEA */
+    /* If UART data arrives, process it */
     char nmea_line[GPS_LINE_BUFFER_SIZE];
     if (gps_uart_get_line(nmea_line, sizeof(nmea_line))) {
         gps_fix_t fix;
@@ -270,12 +228,13 @@ int main(void)
             }
         }
     }
-    /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
   }
   /* USER CODE END 3 */
 }
+
+
 
 /**
   * @brief System Clock Configuration
@@ -286,6 +245,9 @@ void SystemClock_Config(void)
   RCC_OscInitTypeDef RCC_OscInitStruct = {0};
   RCC_ClkInitTypeDef RCC_ClkInitStruct = {0};
 
+  /** Initializes the RCC Oscillators according to the specified parameters
+  * in the RCC_OscInitTypeDef structure.
+  */
   RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSE;
   RCC_OscInitStruct.HSEState = RCC_HSE_ON;
   RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
@@ -297,6 +259,8 @@ void SystemClock_Config(void)
     Error_Handler();
   }
 
+  /** Initializes the CPU, AHB and APB buses clocks
+  */
   RCC_ClkInitStruct.ClockType = RCC_CLOCKTYPE_HCLK|RCC_CLOCKTYPE_SYSCLK
                               |RCC_CLOCKTYPE_PCLK1;
   RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_PLLCLK;
@@ -311,10 +275,19 @@ void SystemClock_Config(void)
 
 /**
   * @brief USART2 Initialization Function
+  * @param None
   * @retval None
   */
 static void MX_USART2_UART_Init(void)
 {
+
+  /* USER CODE BEGIN USART2_Init 0 */
+
+  /* USER CODE END USART2_Init 0 */
+
+  /* USER CODE BEGIN USART2_Init 1 */
+
+  /* USER CODE END USART2_Init 1 */
   huart2.Instance = USART2;
   huart2.Init.BaudRate = 115200;
   huart2.Init.WordLength = UART_WORDLENGTH_8B;
@@ -329,10 +302,15 @@ static void MX_USART2_UART_Init(void)
   {
     Error_Handler();
   }
+  /* USER CODE BEGIN USART2_Init 2 */
+
+  /* USER CODE END USART2_Init 2 */
+
 }
 
 /**
   * @brief USART1 Initialization Function (Debug/GSM Port)
+  * @param None
   * @retval None
   */
 static void MX_USART1_UART_Init(void)
@@ -353,47 +331,65 @@ static void MX_USART1_UART_Init(void)
   }
 }
 
+
+
+
 /**
   * @brief GPIO Initialization Function
+  * @param None
   * @retval None
   */
 static void MX_GPIO_Init(void)
 {
   GPIO_InitTypeDef GPIO_InitStruct = {0};
+  /* USER CODE BEGIN MX_GPIO_Init_1 */
 
+  /* USER CODE END MX_GPIO_Init_1 */
+
+  /* GPIO Ports Clock Enable */
   __HAL_RCC_GPIOC_CLK_ENABLE();
   __HAL_RCC_GPIOF_CLK_ENABLE();
   __HAL_RCC_GPIOA_CLK_ENABLE();
 
+  /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(LED1_GPIO_Port, LED1_Pin, GPIO_PIN_RESET);
 
+  /*Configure GPIO pin : BUTTON1_Pin */
   GPIO_InitStruct.Pin = BUTTON1_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   HAL_GPIO_Init(BUTTON1_GPIO_Port, &GPIO_InitStruct);
 
+  /*Configure GPIO pin : BUTTON2_Pin */
   GPIO_InitStruct.Pin = BUTTON2_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   HAL_GPIO_Init(BUTTON2_GPIO_Port, &GPIO_InitStruct);
 
+  /*Configure GPIO pin : LED1_Pin */
   GPIO_InitStruct.Pin = LED1_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(LED1_GPIO_Port, &GPIO_InitStruct);
 
-  /* USART1 pins: PA9 (TX), PA10 (RX) */
-  GPIO_InitStruct.Pin = GPIO_PIN_9 | GPIO_PIN_10;
+  /* USER CODE BEGIN MX_GPIO_Init_2 */
+  /*Configure GPIO pins for USART1 (PA9=TX, PA10=RX) */
+  GPIO_InitStruct.Pin = GPIO_PIN_9 | GPIO_PIN_10;  /* PA9, PA10 */
   GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_HIGH;
-  GPIO_InitStruct.Alternate = GPIO_AF1_USART1;
+  GPIO_InitStruct.Alternate = GPIO_AF1_USART1;     /* AF1 for USART1 on STM32F0 */
   HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
+
+
+  /* USER CODE END MX_GPIO_Init_2 */
 }
 
 /**
   * @brief Demo mode: test GPS parser with sample NMEA sentences
+  * @param None
+  * @retval None
   */
 static void demo_gps_parser(void)
 {
@@ -402,15 +398,15 @@ static void demo_gps_parser(void)
 
     gps_fix_t fix;
 
-    for (int i = 0; i < (int)DEMO_NMEA_COUNT; i++) {
+    for (int i = 0; i < DEMO_NMEA_COUNT; i++) {
         printf("Sentence %d: %s\n", i + 1, demo_nmea_sentences[i]);
 
         if (gps_parse_nmea(demo_nmea_sentences[i], &fix)) {
             if (fix.valid_fix) {
-                printf("  [VALID] Lat: %.6f  Lon: %.6f\n\n",
+                printf("  [VALID] Lat: %.6f°  Lon: %.6f°\n\n",
                        fix.latitude, fix.longitude);
             } else {
-                printf("  [INVALID FIX] No GPS lock\n\n");
+                printf("  [INVALID FIX] No GPS lock in this sentence\n\n");
             }
         } else {
             printf("  [PARSE ERROR] Failed to parse sentence\n\n");
@@ -421,7 +417,7 @@ static void demo_gps_parser(void)
 }
 
 /* USER CODE BEGIN 4 */
-/* printf redirection to USART1 */
+/* Override newlib _write for printf redirection */
 int _write(int file, char *ptr, int len)
 {
     if (file == STDOUT_FILENO || file == STDERR_FILENO) {
@@ -431,29 +427,41 @@ int _write(int file, char *ptr, int len)
     return -1;
 }
 
+/* USER CODE END 4 */
+
+/**
+  * @brief  This function is executed in case of error occurrence.
+  * @retval None
+  */
+void Error_Handler(void)
+{
+  /* USER CODE BEGIN Error_Handler_Debug */
+  /* User can add his own implementation to report the HAL error return state */
+  __disable_irq();
+  while (1)
+  {
+  }
+  /* USER CODE END Error_Handler_Debug */
+}
 void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
 {
     if (huart->Instance == USART2) {
         gps_uart_on_rx_complete();
     }
 }
-/* USER CODE END 4 */
-
-/**
-  * @brief  This function is executed in case of error occurrence.
-  */
-void Error_Handler(void)
-{
-  __disable_irq();
-  while (1)
-  {
-  }
-}
-
 #ifdef USE_FULL_ASSERT
+/**
+  * @brief  Reports the name of the source file and the source line number
+  *         where the assert_param error has occurred.
+  * @param  file: pointer to the source file name
+  * @param  line: assert_param error line source number
+  * @retval None
+  */
 void assert_failed(uint8_t *file, uint32_t line)
 {
-  (void)file;
-  (void)line;
+  /* USER CODE BEGIN 6 */
+  /* User can add his own implementation to report the file name and line number,
+     ex: printf("Wrong parameters value: file %s on line %d\r\n", file, line) */
+  /* USER CODE END 6 */
 }
 #endif /* USE_FULL_ASSERT */
