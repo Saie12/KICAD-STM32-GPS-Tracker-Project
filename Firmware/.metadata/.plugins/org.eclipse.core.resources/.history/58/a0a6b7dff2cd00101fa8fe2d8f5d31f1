@@ -6,7 +6,6 @@
 #include "sim808_driver.h"
 #include "sim808_gps.h"
 #include "sim808_gprs.h"
-#include "sim808_power.h"
 
 
 /* Private includes ----------------------------------------------------------*/
@@ -92,9 +91,6 @@ int main(void)
   sim808_init();
   sim808_gps_init();
   sim808_gprs_init();
-  sim808_power_init();
-  sim808_power_set_watchdog(1);  /* Enable watchdog */
-
   /* Welcome message */
   printf("\r\n");
   printf("=============================================\r\n");
@@ -116,7 +112,6 @@ int main(void)
   {
     /* USER CODE END WHILE */
     sim808_task();
-    sim808_power_task();
 
     /* Periodically show SIM808 state and request GPS info when READY */
     static uint32_t last_sim808_tick = 0;
@@ -173,37 +168,6 @@ int main(void)
                 printf("[SIM808 GPRS] Test complete!\r\n");
             }
         }
-
-        /* Power and battery monitoring */
-        static int power_demo_step = 0;
-        if (power_demo_step == 0 && st == SIM808_STATE_READY) {
-            printf("[SIM808 POWER] Current mode: %s\r\n", sim808_power_mode_to_str(sim808_power_get_mode()));
-
-            sim808_battery_t bat;
-            if (sim808_power_get_battery(&bat) == SIM808_OK) {
-                printf("[SIM808 BATTERY] Voltage: %u mV, Charge: %d%%, Charging: %s\r\n",
-                       bat.voltage_mv, bat.charge_percent, bat.charging ? "Yes" : "No");
-            }
-
-            /* Demo: switch power modes sequentially */
-            static uint32_t power_mode_tick = 0;
-            if (power_mode_tick == 0) {
-                power_mode_tick = HAL_GetTick();
-            }
-
-            uint32_t elapsed = HAL_GetTick() - power_mode_tick;
-            if (elapsed < 3000) {
-                sim808_power_set_mode(SIM808_POWER_ACTIVE);
-            } else if (elapsed < 6000) {
-                sim808_power_set_mode(SIM808_POWER_IDLE);
-            } else if (elapsed < 9000) {
-                sim808_power_set_mode(SIM808_POWER_SLEEP);
-            } else {
-                sim808_power_set_mode(SIM808_POWER_STANDBY);
-                power_demo_step = 1;  /* Stop demo after one cycle */
-            }
-        }
-
     }
 
     static uint32_t last_blink = 0;
