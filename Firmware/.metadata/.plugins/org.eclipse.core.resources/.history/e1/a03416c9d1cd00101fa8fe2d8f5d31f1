@@ -26,22 +26,6 @@ sim808_state_t sim808_get_state(void)
     return g_state;
 }
 
-sim808_result_t sim808_request_gps_info(void)
-{
-    if (g_state != SIM808_STATE_READY) {
-        return SIM808_ERR_HW;
-    }
-    if (g_active_cmd != SIM808_CMD_NONE) {
-        return SIM808_ERR_HW; /* busy */
-    }
-
-#if SIM808_USE_MOCK
-    sim808_mock_send_command("AT+CGNSINF");
-#endif
-    g_active_cmd = SIM808_CMD_GET_GPS_INFO;
-    return SIM808_OK;
-}
-
 void sim808_task(void)
 {
 #if SIM808_USE_MOCK
@@ -90,17 +74,4 @@ static void sim808_process_mock_responses(void)
             }
         }
     }
-
-    /* Handle commands once module is READY */
-    if (g_state == SIM808_STATE_READY && g_active_cmd == SIM808_CMD_GET_GPS_INFO) {
-        if (strncmp(line, "+CGNSINF:", 9) == 0) {
-            /* Later you will parse GPS data from this line.
-               For now, just note that a GPS info line was received. */
-            // TODO: parse CGNSINF into a GPS struct
-        } else if (strcmp(line, "OK") == 0 || strcmp(line, "ERROR") == 0) {
-            /* Command finished (success or fail) */
-            g_active_cmd = SIM808_CMD_NONE;
-        }
-    }
-
 }

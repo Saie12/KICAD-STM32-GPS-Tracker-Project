@@ -21,15 +21,6 @@ typedef enum {
     SIM808_ERR_HW
 } sim808_result_t;
 
-typedef enum {
-    SIM808_CMD_NONE = 0,
-    SIM808_CMD_GET_GPS_INFO
-} sim808_cmd_t;
-
-/* Request GPS info once (non-blocking).
-   Returns SIM808_OK if request accepted, SIM808_ERR_HW if not ready. */
-sim808_result_t sim808_request_gps_info(void);
-
 /* Initialize SIM808 driver (mock or real, depending on config) */
 void sim808_init(void);
 
