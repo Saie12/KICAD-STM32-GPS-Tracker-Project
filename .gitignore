@@ -8,3 +8,20 @@ __pycache__/
 *.swp
 *.zip
 *.rar
+# Build artifacts
+Debug/
+Release/
+*.o
+*.elf
+*.map
+*.lst
+
+# IDE
+.settings/
+.cproject
+.project
+*.launch
+
+# System
+.DS_Store
+Thumbs.db
