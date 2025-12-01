@@ -1,12 +1,14 @@
-#include "stm32f0xx_hal.h"
 #include "sim808_gprs.h"
 #include "sim808_mock.h"
 #include <string.h>
 #include <stdio.h>
 
-/* GPRS connection state machine */
+/* ===== GPRS STATE ===== */
+
 static sim808_gprs_state_t g_gprs_state = SIM808_GPRS_DISCONNECTED;
 static uint32_t g_gprs_connect_tick = 0;
+
+/* ===== PUBLIC API ===== */
 
 void sim808_gprs_init(void)
 {
@@ -29,23 +31,24 @@ sim808_result_t sim808_gprs_attach(const char *apn)
         return SIM808_ERR_HW;
     }
 
+    // If already connected, no need to attach again
     if (g_gprs_state == SIM808_GPRS_CONNECTED) {
-        return SIM808_OK;  /* Already connected */
+        return SIM808_OK;
     }
 
-    /* Transition to CONNECTING */
+    // Transition to CONNECTING
     g_gprs_state = SIM808_GPRS_CONNECTING;
     g_gprs_connect_tick = HAL_GetTick();
 
 #if SIM808_USE_MOCK
-    /* Mock: simulate GPRS attach commands */
+    // Simulate GPRS attach sequence
     char cmd[128];
     snprintf(cmd, sizeof(cmd), "AT+CSTT=\"%s\"", apn);
     sim808_mock_send_command(cmd);
     sim808_mock_send_command("AT+CIICR");
     sim808_mock_send_command("AT+CIFSR");
 
-    /* For mock, immediately mark as connected (in real life, we'd wait for responses) */
+    // Mock: immediately mark as connected
     g_gprs_state = SIM808_GPRS_CONNECTED;
 #endif
 
@@ -63,11 +66,11 @@ sim808_result_t sim808_gprs_open_tcp(const char *host, uint16_t port)
     }
 
 #if SIM808_USE_MOCK
-    /* Mock: simulate TCP connection */
+    // Simulate TCP connection
     char cmd[256];
     snprintf(cmd, sizeof(cmd), "AT+CIPSTART=\"TCP\",\"%s\",%u", host, port);
     sim808_mock_send_command(cmd);
-    sim808_mock_send_command("OK");  /* Simulate success */
+    sim808_mock_send_command("OK");
 #endif
 
     return SIM808_OK;
@@ -84,14 +87,13 @@ sim808_result_t sim808_gprs_send_data(const char *payload)
     }
 
 #if SIM808_USE_MOCK
-    /* Mock: simulate sending data */
+    // Simulate data transmission
     sim808_mock_send_command("AT+CIPSEND");
 
-    /* Simulate payload transmission (in real life, we'd send the actual payload length and data) */
     char cmd[256];
     snprintf(cmd, sizeof(cmd), "%s", payload);
     sim808_mock_send_command(cmd);
-    sim808_mock_send_command("OK");  /* Simulate success */
+    sim808_mock_send_command("OK");
 #endif
 
     return SIM808_OK;

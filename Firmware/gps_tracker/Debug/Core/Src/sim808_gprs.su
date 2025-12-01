@@ -1,7 +1,7 @@
-../Core/Src/sim808_gprs.c:11:6:sim808_gprs_init	8	static
-../Core/Src/sim808_gprs.c:17:21:sim808_gprs_get_state	8	static
-../Core/Src/sim808_gprs.c:22:17:sim808_gprs_attach	152	static
-../Core/Src/sim808_gprs.c:55:17:sim808_gprs_open_tcp	288	static
-../Core/Src/sim808_gprs.c:76:17:sim808_gprs_send_data	280	static
-../Core/Src/sim808_gprs.c:100:17:sim808_gprs_close	8	static
-../Core/Src/sim808_gprs.c:111:13:sim808_gprs_state_to_str	16	static
+../Core/Src/sim808_gprs.c:13:6:sim808_gprs_init	8	static
+../Core/Src/sim808_gprs.c:19:21:sim808_gprs_get_state	8	static
+../Core/Src/sim808_gprs.c:24:17:sim808_gprs_attach	152	static
+../Core/Src/sim808_gprs.c:58:17:sim808_gprs_open_tcp	288	static
+../Core/Src/sim808_gprs.c:79:17:sim808_gprs_send_data	280	static
+../Core/Src/sim808_gprs.c:102:17:sim808_gprs_close	8	static
+../Core/Src/sim808_gprs.c:113:13:sim808_gprs_state_to_str	16	static

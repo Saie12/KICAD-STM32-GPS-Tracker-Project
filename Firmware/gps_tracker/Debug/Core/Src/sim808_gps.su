@@ -1,4 +1,4 @@
-../Core/Src/sim808_gps.c:7:6:sim808_gps_init	8	static
-../Core/Src/sim808_gps.c:14:12:parse_float	32	static
-../Core/Src/sim808_gps.c:29:5:sim808_gps_parse_cgnsinf	264	static
-../Core/Src/sim808_gps.c:87:5:sim808_gps_get_fix	16	static
+../Core/Src/sim808_gps.c:11:12:parse_float	32	static
+../Core/Src/sim808_gps.c:26:6:sim808_gps_init	8	static
+../Core/Src/sim808_gps.c:36:5:sim808_gps_parse_cgnsinf	264	static
+../Core/Src/sim808_gps.c:89:5:sim808_gps_get_fix	16	static

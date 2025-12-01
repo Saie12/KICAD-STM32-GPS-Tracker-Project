@@ -1,66 +1,90 @@
 #include "sim808_mock.h"
 #include <string.h>
+#include <stdlib.h>
+#include <stdio.h>
 
-/* Simple ring buffer for response lines */
-#define MOCK_MAX_LINE_LEN   64
-#define MOCK_MAX_LINES      8
+/* ===== MOCK RESPONSE BUFFER ===== */
 
-static char  mock_lines[MOCK_MAX_LINES][MOCK_MAX_LINE_LEN];
-static int   mock_head = 0;
-static int   mock_tail = 0;
-static int   initialized = 0;
+static char g_mock_responses[512];
+static uint16_t g_resp_idx = 0;
 
-static void mock_push_line(const char *s)
-{
-    if (!s) return;
-    strncpy(mock_lines[mock_head], s, MOCK_MAX_LINE_LEN - 1);
-    mock_lines[mock_head][MOCK_MAX_LINE_LEN - 1] = '\0';
-    mock_head = (mock_head + 1) % MOCK_MAX_LINES;
-    if (mock_head == mock_tail) {
-        mock_tail = (mock_tail + 1) % MOCK_MAX_LINES; /* overwrite oldest */
-    }
-}
+/* ===== INITIALIZATION ===== */
 
 void sim808_mock_init(void)
 {
-    mock_head = 0;
-    mock_tail = 0;
-    initialized = 1;
-    /* On power-up, SIM808 typically responds "OK" to basic AT */
+    memset(g_mock_responses, 0, sizeof(g_mock_responses));
+    g_resp_idx = 0;
 }
+
+/* ===== COMMAND PROCESSING ===== */
 
 void sim808_mock_send_command(const char *cmd)
 {
-    if (!initialized || !cmd) return;
+    if (!cmd) return;
 
+    // Generate mock responses based on command
     if (strcmp(cmd, "AT") == 0) {
-        mock_push_line("OK");
+        sim808_mock_queue_response("OK");
     } else if (strcmp(cmd, "AT+CGATT?") == 0) {
-        mock_push_line("+CGATT: 1");
-        mock_push_line("OK");
+        sim808_mock_queue_response("+CGATT: 1");
+        sim808_mock_queue_response("OK");
     } else if (strcmp(cmd, "AT+CGNSPWR=1") == 0) {
-        mock_push_line("OK");
+        sim808_mock_queue_response("OK");
     } else if (strcmp(cmd, "AT+CGNSINF") == 0) {
-        /* Fake GPS info: 1,1,20250101...,lat,lon,... */
-        mock_push_line("+CGNSINF: 1,1,20250101,4807.038,N,01131.000,E,0.0");
-        mock_push_line("OK");
+        // Mock GPS response
+        sim808_mock_queue_response("+CGNSINF: 1,1,20250101,48.117283,11.516667,0.0");
+        sim808_mock_queue_response("OK");
+    } else if (strncmp(cmd, "AT+CSTT", 7) == 0) {
+        sim808_mock_queue_response("OK");
+    } else if (strcmp(cmd, "AT+CIICR") == 0) {
+        sim808_mock_queue_response("OK");
+    } else if (strcmp(cmd, "AT+CIFSR") == 0) {
+        sim808_mock_queue_response("192.168.1.100");  // Mock IP
+        sim808_mock_queue_response("OK");
     } else {
-        mock_push_line("ERROR");
+        sim808_mock_queue_response("OK");
     }
+}
+
+void sim808_mock_queue_response(const char *response)
+{
+    if (!response) return;
+
+    size_t len = strlen(response);
+    if (g_resp_idx + len + 2 >= sizeof(g_mock_responses)) return;
+
+    strcpy(&g_mock_responses[g_resp_idx], response);
+    g_resp_idx += len;
+    g_mock_responses[g_resp_idx++] = '\n';
+    g_mock_responses[g_resp_idx] = '\0';
+}
+
+int sim808_mock_get_line(char *line, size_t len)
+{
+    if (!line || len < 2) return 0;
+    if (g_resp_idx == 0) return 0;
+
+    // Find newline in buffer
+    char *newline = strchr(g_mock_responses, '\n');
+    if (!newline) return 0;
+
+    // Extract line
+    size_t line_len = newline - g_mock_responses;
+    if (line_len >= len) line_len = len - 1;
+
+    strncpy(line, g_mock_responses, line_len);
+    line[line_len] = '\0';
+
+    // Remove processed line from buffer
+    size_t remaining = g_resp_idx - line_len - 1;
+    memmove(g_mock_responses, newline + 1, remaining);
+    g_resp_idx = remaining;
+    g_mock_responses[g_resp_idx] = '\0';
+
+    return 1;
 }
 
 void sim808_mock_task(void)
 {
-    /* For now, nothing time-based; could simulate delays later */
-}
-
-int sim808_mock_get_line(char *out, int max_len)
-{
-    if (!initialized || !out || max_len <= 0) return 0;
-    if (mock_head == mock_tail) return 0; /* no data */
-
-    strncpy(out, mock_lines[mock_tail], max_len - 1);
-    out[max_len - 1] = '\0';
-    mock_tail = (mock_tail + 1) % MOCK_MAX_LINES;
-    return 1;
+    // Nothing to do in main task
 }
