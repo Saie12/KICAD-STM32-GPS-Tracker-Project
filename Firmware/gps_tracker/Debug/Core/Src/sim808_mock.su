@@ -1,0 +1,5 @@
+../Core/Src/sim808_mock.c:14:6:sim808_mock_init	8	static
+../Core/Src/sim808_mock.c:22:6:sim808_mock_send_command	16	static
+../Core/Src/sim808_mock.c:50:6:sim808_mock_queue_response	24	static
+../Core/Src/sim808_mock.c:63:5:sim808_mock_get_line	32	static
+../Core/Src/sim808_mock.c:88:6:sim808_mock_task	8	static

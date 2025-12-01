@@ -1,3 +1,2 @@
-../Core/Src/gps_parser.c:6:15:nmea_to_decimal	10
-../Core/Src/gps_parser.c:42:12:split_fields	6
-../Core/Src/gps_parser.c:67:5:gps_parse_nmea	13
+../Core/Src/gps_parser.c:8:12:parse_rmc_sentence	11
+../Core/Src/gps_parser.c:58:5:gps_parse_nmea	4

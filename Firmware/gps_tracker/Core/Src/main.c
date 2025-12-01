@@ -9,6 +9,7 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
+#include <stdio.h>
 #include <unistd.h>
 #include "sim808_config.h"
 #include "sim808_driver.h"

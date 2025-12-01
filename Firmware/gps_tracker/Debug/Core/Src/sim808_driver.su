@@ -4,5 +4,4 @@
 ../Core/Src/sim808_driver.c:47:6:sim808_init	8	static
 ../Core/Src/sim808_driver.c:68:16:sim808_get_state	8	static
 ../Core/Src/sim808_driver.c:73:17:sim808_request_gps_info	8	static
-../Core/Src/sim808_driver.c:95:6:sim808_task	16	static
-../Core/Src/sim808_driver.c:114:13:sim808_process_mock_responses	72	static
+../Core/Src/sim808_driver.c:95:6:sim808_task	8	static

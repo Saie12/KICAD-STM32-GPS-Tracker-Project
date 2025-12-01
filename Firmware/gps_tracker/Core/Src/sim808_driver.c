@@ -12,11 +12,11 @@ static uint8_t          g_step           = 0;
 static sim808_cmd_t     g_active_cmd     = SIM808_CMD_NONE;
 static sim808_error_status_t g_err       = { SIM808_ERR_NONE, 0 };
 static uint32_t         g_cmd_start_tick = 0;
-static const uint32_t   g_cmd_timeout_ms = 3000U;
+// static const uint32_t   g_cmd_timeout_ms = 3000U;
 
 /* ===== PRIVATE FUNCTIONS ===== */
 
-static void sim808_process_mock_responses(void);
+// static void sim808_process_mock_responses(void);
 
 static void sim808_set_error(sim808_error_t e)
 {
@@ -96,7 +96,7 @@ void sim808_task(void)
 {
 #if SIM808_USE_MOCK
     sim808_mock_task();
-    sim808_process_mock_responses();
+    // sim808_process_mock_responses();
 
     // Check for command timeout
     if (g_active_cmd != SIM808_CMD_NONE) {
@@ -110,7 +110,7 @@ void sim808_task(void)
 }
 
 /* ===== STATE MACHINE HANDLER ===== */
-
+/*
 static void sim808_process_mock_responses(void)
 {
     char line[64];
@@ -165,3 +165,4 @@ static void sim808_process_mock_responses(void)
         }
     }
 }
+*/
