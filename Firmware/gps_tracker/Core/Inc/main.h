@@ -1,81 +1,39 @@
-/* USER CODE BEGIN Header */
 /**
-  ******************************************************************************
-  * @file           : main.h
-  * @brief          : Header for main.c file.
-  *                   This file contains the common defines of the application.
-  ******************************************************************************
-  * @attention
-  *
-  * Copyright (c) 2025 STMicroelectronics.
-  * All rights reserved.
-  *
-  * This software is licensed under terms that can be found in the LICENSE file
-  * in the root directory of this software component.
-  * If no LICENSE file comes with this software, it is provided AS-IS.
-  *
-  ******************************************************************************
-  */
-/* USER CODE END Header */
+ * @file main.h
+ * @brief Main header - GPIO pins and peripheral definitions
+ */
 
-/* Define to prevent recursive inclusion -------------------------------------*/
-#ifndef __MAIN_H
-#define __MAIN_H
+#ifndef MAIN_H
+#define MAIN_H
 
 #ifdef __cplusplus
 extern "C" {
 #endif
 
-/* Includes ------------------------------------------------------------------*/
 #include "stm32f0xx_hal.h"
-#include "gps_parser.h"
-#include "gps_uart.h"
-#include <stdio.h>
-#include <stdint.h>
-#include <string.h>
 
+/* ===== GPIO PIN DEFINITIONS ===== */
 
-/* Private includes ----------------------------------------------------------*/
-/* USER CODE BEGIN Includes */
+#define LED1_Pin          GPIO_PIN_13
+#define LED1_GPIO_Port    GPIOC
 
-/* USER CODE END Includes */
+#define BUTTON1_Pin       GPIO_PIN_0
+#define BUTTON1_GPIO_Port GPIOF
 
-/* Exported types ------------------------------------------------------------*/
-/* USER CODE BEGIN ET */
+#define BUTTON2_Pin       GPIO_PIN_1
+#define BUTTON2_GPIO_Port GPIOF
 
-/* USER CODE END ET */
+/* ===== PERIPHERAL HANDLES ===== */
 
-/* Exported constants --------------------------------------------------------*/
-/* USER CODE BEGIN EC */
+extern UART_HandleTypeDef huart1;  /* Debug/SIM808 UART */
+extern UART_HandleTypeDef huart2;  /* GPS UART */
 
-/* USER CODE END EC */
+/* ===== ERROR HANDLER ===== */
 
-/* Exported macro ------------------------------------------------------------*/
-/* USER CODE BEGIN EM */
-
-/* USER CODE END EM */
-
-/* Exported functions prototypes ---------------------------------------------*/
 void Error_Handler(void);
-
-/* USER CODE BEGIN EFP */
-
-/* USER CODE END EFP */
-
-/* Private defines -----------------------------------------------------------*/
-#define BUTTON1_Pin GPIO_PIN_13
-#define BUTTON1_GPIO_Port GPIOC
-#define BUTTON2_Pin GPIO_PIN_0
-#define BUTTON2_GPIO_Port GPIOA
-#define LED1_Pin GPIO_PIN_4
-#define LED1_GPIO_Port GPIOA
-
-/* USER CODE BEGIN Private defines */
-
-/* USER CODE END Private defines */
 
 #ifdef __cplusplus
 }
 #endif
 
-#endif /* __MAIN_H */
+#endif /* MAIN_H */

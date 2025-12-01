@@ -1,10 +1,16 @@
+/**
+ * @file sim808_power.h
+ * @brief SIM808 power management and battery monitoring
+ */
+
 #ifndef SIM808_POWER_H
 #define SIM808_POWER_H
 
 #include <stdint.h>
 #include "sim808_driver.h"
 
-/* Power modes */
+/* ===== POWER MODES ===== */
+
 typedef enum {
     SIM808_POWER_ACTIVE = 0,
     SIM808_POWER_IDLE,
@@ -12,32 +18,28 @@ typedef enum {
     SIM808_POWER_STANDBY
 } sim808_power_mode_t;
 
-/* Battery status */
+/* ===== BATTERY STATE ===== */
+
 typedef struct {
-    uint16_t voltage_mv;      /* Battery voltage in mV */
-    int8_t   charge_percent;  /* Estimated charge 0-100 */
-    uint8_t  charging;        /* 1 if charging, 0 otherwise */
+    uint16_t voltage_mv;        // Battery voltage in mV
+    int16_t  charge_percent;    // Battery charge percentage (0-100)
+    uint8_t  charging;          // 1 = charging, 0 = not charging
 } sim808_battery_t;
 
-/* Initialize power management module */
+/* ===== PUBLIC API ===== */
+
 void sim808_power_init(void);
 
-/* Set target power mode (non-blocking) */
 sim808_result_t sim808_power_set_mode(sim808_power_mode_t mode);
 
-/* Get current power mode */
 sim808_power_mode_t sim808_power_get_mode(void);
 
-/* Get battery status (mock returns fixed values) */
 sim808_result_t sim808_power_get_battery(sim808_battery_t *bat);
 
-/* Enable/disable watchdog timer */
 sim808_result_t sim808_power_set_watchdog(uint8_t enable);
 
-/* Convert power mode to string for logging */
 const char *sim808_power_mode_to_str(sim808_power_mode_t mode);
 
-/* Periodic power management task (call from main loop) */
 void sim808_power_task(void);
 
 #endif /* SIM808_POWER_H */
