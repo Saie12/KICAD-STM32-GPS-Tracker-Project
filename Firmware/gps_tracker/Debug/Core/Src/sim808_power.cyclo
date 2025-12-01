@@ -1,7 +1,7 @@
-../Core/Src/sim808_power.c:21:6:sim808_power_init	1
-../Core/Src/sim808_power.c:29:17:sim808_power_set_mode	8
-../Core/Src/sim808_power.c:62:21:sim808_power_get_mode	1
-../Core/Src/sim808_power.c:67:17:sim808_power_get_battery	7
-../Core/Src/sim808_power.c:97:17:sim808_power_set_watchdog	3
-../Core/Src/sim808_power.c:116:13:sim808_power_mode_to_str	7
-../Core/Src/sim808_power.c:127:6:sim808_power_task	3
+../Core/Src/sim808_power.c:22:6:sim808_power_init	1
+../Core/Src/sim808_power.c:30:17:sim808_power_set_mode	8
+../Core/Src/sim808_power.c:63:21:sim808_power_get_mode	1
+../Core/Src/sim808_power.c:68:17:sim808_power_get_battery	7
+../Core/Src/sim808_power.c:98:17:sim808_power_set_watchdog	3
+../Core/Src/sim808_power.c:117:13:sim808_power_mode_to_str	7
+../Core/Src/sim808_power.c:128:6:sim808_power_task	3

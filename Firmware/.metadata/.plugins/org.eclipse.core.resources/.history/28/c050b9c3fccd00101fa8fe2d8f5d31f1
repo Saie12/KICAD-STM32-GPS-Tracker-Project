@@ -1,4 +1,3 @@
-#include "stm32f0xx_hal.h"
 #include "sim808_power.h"
 #include "sim808_driver.h"
 #include "sim808_mock.h"

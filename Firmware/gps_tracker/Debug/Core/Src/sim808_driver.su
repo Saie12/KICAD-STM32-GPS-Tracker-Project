@@ -1,8 +1,8 @@
-../Core/Src/sim808_driver.c:22:13:sim808_state_to_str	16	static
-../Core/Src/sim808_driver.c:35:13:sim808_set_error	16	static
-../Core/Src/sim808_driver.c:42:6:sim808_get_error_status	16	static
-../Core/Src/sim808_driver.c:49:6:sim808_init	8	static
-../Core/Src/sim808_driver.c:71:16:sim808_get_state	8	static
-../Core/Src/sim808_driver.c:77:17:sim808_request_gps_info	8	static
-../Core/Src/sim808_driver.c:100:6:sim808_task	16	static
-../Core/Src/sim808_driver.c:127:13:sim808_process_mock_responses	72	static
+../Core/Src/sim808_driver.c:23:13:sim808_state_to_str	16	static
+../Core/Src/sim808_driver.c:36:13:sim808_set_error	16	static
+../Core/Src/sim808_driver.c:43:6:sim808_get_error_status	16	static
+../Core/Src/sim808_driver.c:50:6:sim808_init	8	static
+../Core/Src/sim808_driver.c:72:16:sim808_get_state	8	static
+../Core/Src/sim808_driver.c:78:17:sim808_request_gps_info	8	static
+../Core/Src/sim808_driver.c:101:6:sim808_task	16	static
+../Core/Src/sim808_driver.c:128:13:sim808_process_mock_responses	72	static

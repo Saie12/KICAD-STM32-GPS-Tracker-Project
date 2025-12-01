@@ -61,7 +61,7 @@ main-build: gps_tracker.elf secondary-outputs
 
 # Tool invocations
 gps_tracker.elf gps_tracker.map: $(OBJS) $(USER_OBJS) C:\Users\91755\Documents\PCB\ Design\STM32\ GPS\ Tracker\Firmware\gps_tracker\STM32F030C8TX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-gcc -o "gps_tracker.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m0 -T"C:\Users\91755\Documents\PCB Design\STM32 GPS Tracker\Firmware\gps_tracker\STM32F030C8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="gps_tracker.map" -Wl,--gc-sections -static -u _printf_float --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+	arm-none-eabi-gcc -o "gps_tracker.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m0 -T"C:\Users\91755\Documents\PCB Design\STM32 GPS Tracker\Firmware\gps_tracker\STM32F030C8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="gps_tracker.map" -Wl,--gc-sections -static -Wl,-Map="gps_tracker.map" -Wl,--gc-sections -static -u _printf_float -Wl,--no-warn-rwx-segments --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 
