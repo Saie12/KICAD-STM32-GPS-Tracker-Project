@@ -33,12 +33,12 @@ A professional-grade GPS tracking system built around the **STM32F030C8** microc
 
 ### PCB Overview
 
-**4-layer PCB** with professional manufacturing standards:
+**2-layer PCB** with professional manufacturing standards:
 
-- **Dimensions:** 80mm × 60mm (compact form factor)
-- **Layers:** Signal, Ground, Power, Signal
-- **Manufacturing:** 1.6mm FR-4, 35µm copper
-- **Finish:** HASL (Hot Air Solder Leveling)
+- **Dimensions:** 4.35 cm × 5.85 cm
+- **Layers:** Top signal, bottom signal/ground
+- **Manufacturing:** FR‑4, 1.6 mm thickness
+- **Finish:** Standard HASL (typical low‑cost fab)
 
 ### Block Diagram
 
@@ -513,7 +513,7 @@ SRAM Usage:
 
 ## 🤝 Contributing
 
-This project is designed as a portfolio piece for interviews and learning. Improvements welcome!
+Contributions are welcome!
 
 **Contribution ideas:**
 - [ ] Add LTE support (migrate to SIM7000 module)
@@ -521,36 +521,6 @@ This project is designed as a portfolio piece for interviews and learning. Impro
 - [ ] Add cloud dashboard (AWS IoT / Azure)
 - [ ] Real-time data streaming (MQTT)
 - [ ] Multipath GPS filtering (Kalman filter)
-
----
-
-## 📝 License
-
-**MIT License** - Open source and free to use
-
-Use this code for:
-- ✅ Personal projects
-- ✅ Educational purposes
-- ✅ Commercial products (with attribution)
-- ✅ Portfolio/interview demonstrations
-
----
-
-## 👨‍💻 Author
-
-**Developed by:** Electronics & Communication Engineering Student  
-**College:** K.J. Somaiya College of Engineering, Pune, India  
-**Specialization:** Advanced Communication Technology  
-
-**Current Status:**
-- TE (3rd year) undergraduate
-- Seeking embedded systems freelance opportunities
-- Open to internship roles in firmware/PCB design
-
-**Contact:**
-- Email: [your email]
-- LinkedIn: [your profile]
-- GitHub: [your profile]
 
 ---
 
@@ -579,6 +549,5 @@ Use this code for:
 
 ---
 
-**Last Updated:** December 1, 2025  
 **Firmware Version:** 1.0 (All 7 phases complete)  
 **Build Status:** ✅ Compiles cleanly, ready for deployment
