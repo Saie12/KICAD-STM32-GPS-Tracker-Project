@@ -1,10 +1,21 @@
+/**
+ * @file sim808_driver.h
+ * @brief SIM808 GSM/GPS module driver header
+ *        Core state machine and AT command API
+ */
+
 #ifndef SIM808_DRIVER_H
 #define SIM808_DRIVER_H
 
 #include <stdint.h>
-#include "sim808_config.h"
 
-/* Simple high-level SIM808 states */
+/* ===== TYPES & ENUMERATIONS ===== */
+
+typedef enum {
+    SIM808_OK = 0,
+    SIM808_ERR_HW = 1
+} sim808_result_t;
+
 typedef enum {
     SIM808_STATE_IDLE = 0,
     SIM808_STATE_INIT,
@@ -12,14 +23,6 @@ typedef enum {
     SIM808_STATE_GPS_ON,
     SIM808_STATE_READY
 } sim808_state_t;
-
-/* Result codes for driver operations */
-typedef enum {
-    SIM808_OK = 0,
-    SIM808_ERR_TIMEOUT,
-    SIM808_ERR_PARSE,
-    SIM808_ERR_HW
-} sim808_result_t;
 
 typedef enum {
     SIM808_CMD_NONE = 0,
@@ -41,23 +44,18 @@ typedef struct {
     uint32_t       error_count;
 } sim808_error_status_t;
 
-/* Get global error status */
-void sim808_get_error_status(sim808_error_status_t *st);
+/* ===== PUBLIC API ===== */
 
-
-/* Request GPS info once (non-blocking).
-   Returns SIM808_OK if request accepted, SIM808_ERR_HW if not ready. */
-sim808_result_t sim808_request_gps_info(void);
-
-/* Initialize SIM808 driver (mock or real, depending on config) */
 void sim808_init(void);
+
+sim808_state_t sim808_get_state(void);
 
 const char *sim808_state_to_str(sim808_state_t st);
 
-/* Periodic task (call from main loop) */
+sim808_result_t sim808_request_gps_info(void);
+
 void sim808_task(void);
 
-/* Get current state */
-sim808_state_t sim808_get_state(void);
+void sim808_get_error_status(sim808_error_status_t *st);
 
 #endif /* SIM808_DRIVER_H */

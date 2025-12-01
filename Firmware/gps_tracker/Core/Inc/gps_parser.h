@@ -1,20 +1,26 @@
-#ifndef GPS_PARSER_H_
-#define GPS_PARSER_H_
+/**
+ * @file gps_parser.h
+ * @brief NMEA GPS sentence parser (RMC, GGA)
+ */
+
+#ifndef GPS_PARSER_H
+#define GPS_PARSER_H
 
 #include <stdint.h>
 
+/* ===== GPS FIX STRUCTURE ===== */
+
 typedef struct {
-    int   valid_fix;     /* 1 if GPS has valid fix, 0 otherwise */
-    double latitude;     /* decimal degrees, positive = North, negative = South */
-    double longitude;    /* decimal degrees, positive = East, negative = West */
+    uint8_t  valid_fix;     // 1 = valid fix, 0 = no fix
+    double   latitude;      // Decimal degrees
+    double   longitude;     // Decimal degrees
+    double   altitude;      // Meters (if available)
+    double   speed;         // Knots (if available)
+    uint32_t timestamp;     // Unix timestamp (if available)
 } gps_fix_t;
 
-/**
- * @brief Parse a single NMEA line (e.g. $GPRMC,...*CS\r\n).
- *
- * Supports at least GPRMC sentences. If a valid fix is found,
- * 'out' is filled and function returns 1. Otherwise returns 0.
- */
-int gps_parse_nmea(const char *line, gps_fix_t *out);
+/* ===== PUBLIC API ===== */
+
+int gps_parse_nmea(const char *line, gps_fix_t *fix);
 
 #endif /* GPS_PARSER_H */
