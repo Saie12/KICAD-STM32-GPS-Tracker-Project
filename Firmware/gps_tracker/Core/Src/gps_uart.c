@@ -1,99 +1,66 @@
 #include "gps_uart.h"
-#include "main.h"      /* for huart2 */
+#include "stm32f0xx_hal.h"
 #include <string.h>
 
-extern UART_HandleTypeDef huart2;
-/* Simple ring buffer for RX bytes */
-static volatile uint8_t  rx_buf[GPS_RX_BUFFER_SIZE];
-static volatile uint16_t rx_head = 0;
-static volatile uint16_t rx_tail = 0;
+/* ===== RING BUFFER STATE ===== */
 
-static uint8_t rx_byte; /* single‑byte buffer for HAL UART IT */
+#define GPS_RX_BUFFER_SIZE 256
 
-/* Push a byte into ring buffer */
-void gps_uart_rx_byte(uint8_t byte)
-{
-    uint16_t next = (uint16_t)((rx_head + 1U) % GPS_RX_BUFFER_SIZE);
-    if (next != rx_tail) {
-        rx_buf[rx_head] = byte;
-        rx_head = next;
-    }
-    /* else: buffer overflow, byte is dropped */
-}
+static uint8_t g_rx_buffer[GPS_RX_BUFFER_SIZE];
+static uint16_t g_rx_head = 0;
+static uint16_t g_rx_tail = 0;
 
-/* Initialize UART2 reception in interrupt mode */
+/* ===== INITIALIZATION ===== */
+
 void gps_uart_init(void)
 {
-    /* Start first interrupt‑driven receive */
-    HAL_UART_Receive_IT(&huart2, &rx_byte, 1);
+    memset(g_rx_buffer, 0, sizeof(g_rx_buffer));
+    g_rx_head = 0;
+    g_rx_tail = 0;
+
+    // Start reception interrupt
+    HAL_UART_Receive_IT(&huart2, &g_rx_buffer[g_rx_head], 1);
 }
 
-/* Called from HAL UART RX complete callback (see main.c) */
+/* ===== RX INTERRUPT HANDLER ===== */
+
 void gps_uart_on_rx_complete(void)
 {
-    gps_uart_rx_byte(rx_byte);
-    /* Restart reception for next byte */
-    HAL_UART_Receive_IT(&huart2, &rx_byte, 1);
+    // Move head pointer
+    g_rx_head = (g_rx_head + 1) % GPS_RX_BUFFER_SIZE;
+
+    // Restart reception for next byte
+    HAL_UART_Receive_IT(&huart2, &g_rx_buffer[g_rx_head], 1);
 }
 
-/* Get one byte from ring buffer, return -1 if empty */
-static int rb_get_char(void)
-{
-    if (rx_head == rx_tail) {
-        return -1; /* empty */
-    }
-    uint8_t c = rx_buf[rx_tail];
-    rx_tail = (uint16_t)((rx_tail + 1U) % GPS_RX_BUFFER_SIZE);
-    return (int)c;
-}
+/* ===== LINE EXTRACTION ===== */
 
-/* Assemble a full NMEA line ending with \n. Returns 1 if a line is copied. */
-int gps_uart_get_line(char *out, int max_len)
+int gps_uart_get_line(char *line, size_t len)
 {
-    static char line[GPS_LINE_BUFFER_SIZE];
-    static int  idx = 0;
+    if (!line || len < 2) return 0;
 
-    if (out == NULL || max_len <= 0) {
-        return 0;
+    // Check if data is available
+    if (g_rx_tail == g_rx_head) {
+        return 0;  // No data
     }
 
-    while (1) {
-        int ch = rb_get_char();
-        if (ch < 0) {
-            /* no more data */
-            return 0;
-        }
-
-        char c = (char)ch;
-        if (c == '\r') {
-            /* skip */
-            continue;
-        }
+    // Extract until newline or buffer full
+    size_t i = 0;
+    while (g_rx_tail != g_rx_head && i < len - 1) {
+        uint8_t c = g_rx_buffer[g_rx_tail];
+        g_rx_tail = (g_rx_tail + 1) % GPS_RX_BUFFER_SIZE;
 
         if (c == '\n') {
-            /* end of line */
-            line[idx] = '\0';
-            if (idx > 0) {
-                /* copy to user buffer */
-                if (idx >= max_len) {
-                    idx = 0;
-                    return 0; /* line too long; drop */
-                }
-                strcpy(out, line);
-                idx = 0;
-                return 1;
-            } else {
-                /* empty line; ignore */
-                idx = 0;
-                continue;
-            }
+            // End of line found
+            line[i] = '\0';
+            return 1;
         }
 
-        if (idx < (GPS_LINE_BUFFER_SIZE - 1)) {
-            line[idx++] = c;
-        } else {
-            /* overflow in line buffer; reset */
-            idx = 0;
+        if (c >= 32 && c <= 126) {
+            // Printable ASCII
+            line[i++] = c;
         }
     }
+
+    return 0;  // No complete line yet
 }
