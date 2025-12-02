@@ -33,7 +33,7 @@ A professional-grade GPS tracking system built around the **STM32F030C8** microc
 
 ### PCB Overview
 
-**2-layer PCB** with professional manufacturing standards:
+**4-layer PCB** with professional manufacturing standards:
 
 - **Dimensions:** 4.35 cm × 5.85 cm
 - **Layers:** Top signal, bottom signal/ground
